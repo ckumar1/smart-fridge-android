@@ -55,7 +55,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"
-                android:text="Login" />
+                android:text="Login"
+                android:onClick="onButtonClick"/>
 
         <!--  Link to Registration Screen -->
         <Button
@@ -66,7 +67,8 @@
                 android:background="@null"
                 android:text="Create Account"
                 android:textColor="#21dbd4"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:onClick="onButtonClick"/>
     </LinearLayout>
 
 </ScrollView>
