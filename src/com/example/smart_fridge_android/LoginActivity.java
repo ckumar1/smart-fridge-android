@@ -1,14 +1,11 @@
 package com.example.smart_fridge_android;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +19,9 @@ public class LoginActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        DatabaseHandler db = new DatabaseHandler(this);
+        db.getDatabaseName();
     }
 
     public void onButtonClick(View v){
