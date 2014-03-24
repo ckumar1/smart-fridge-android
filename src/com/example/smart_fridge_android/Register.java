@@ -1,7 +1,9 @@
 package com.example.smart_fridge_android;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 import org.apache.http.NameValuePair;
 import org.json.JSONObject;
 
@@ -12,7 +14,7 @@ import java.util.List;
  * All Registration network operations live here.
  */
 
-public class Register {
+public class Register extends LoginActivity {
 
     final String REGISTER_URL = "http://smart-fridge.herokuapp.com/";
 
@@ -24,7 +26,7 @@ public class Register {
     }
 
     public void execute(){
-        new createRegistration().execute();
+        new CreateRegistration().execute();
     }
 
 
@@ -37,11 +39,18 @@ public class Register {
      *
      * Will also need to implement password security later too.
      */
-    class createRegistration extends AsyncTask<String, String, String> {
+    class CreateRegistration extends AsyncTask<String, String, String> {
 
         @Override
         protected void onPreExecute(){
 
+            ProgressDialog mProgressDialog = new ProgressDialog(Register.this);
+
+            mProgressDialog.setTitle("Registering...");
+            mProgressDialog.setMessage("Please wait.");
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.setIndeterminate(true);
+            mProgressDialog.show();
         }
 
         protected String doInBackground(String... args){
@@ -54,6 +63,7 @@ public class Register {
 
         protected void onPostExecute(){
 
+            Toast.makeText(Register.this, "Registration Successful!", Toast.LENGTH_LONG).show();
         }
     }
 }

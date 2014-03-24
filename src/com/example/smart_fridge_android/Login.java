@@ -1,7 +1,10 @@
 package com.example.smart_fridge_android;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 import org.apache.http.NameValuePair;
 import org.json.JSONObject;
 
@@ -11,7 +14,7 @@ import java.util.List;
 /**
 * All Login network functionality lives here.
 */
-public class Login {
+public class Login extends LoginActivity{
 
     final String LOGIN_URL = "http://smart-fridge.herokuapp.com/";
 
@@ -23,7 +26,7 @@ public class Login {
     }
 
     public void execute(){
-        new createLogin().execute();
+        new CreateLogin().execute();
     }
 
 
@@ -36,7 +39,7 @@ public class Login {
      *
      * Will also need to implement password security later too.
      */
-    class createLogin extends AsyncTask<String, String, String> {
+    class CreateLogin extends AsyncTask<String, String, String> {
 
         @Override
         protected void onPreExecute(){

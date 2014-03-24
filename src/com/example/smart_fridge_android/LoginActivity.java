@@ -1,9 +1,11 @@
 package com.example.smart_fridge_android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -39,7 +41,12 @@ public class LoginActivity extends Activity {
                 loginParams.add(new BasicNameValuePair("password", loginPassword.getText().toString()));
 
                 Login login = new Login(loginParams);
-                login.execute();
+
+                // Don't want to do this until external db is implemented
+                //login.execute();
+
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
                 break;
 
             case R.id.btnLinkToRegisterScreen:
