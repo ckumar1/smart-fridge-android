@@ -1,6 +1,11 @@
 package com.example.smart_fridge_android;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -8,7 +13,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "smartFridge";
@@ -66,10 +71,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_FOOD_ID + " INTEGER PRIMARY KEY,"
                 + KEY_FOOD_NAME + " TEXT,"
                 + KEY_FOOD_DESCRIPTION + " TEXT,"
-                + KEY_FOOD_EXPIRATION_DATE + " DATE(),"
+                + KEY_FOOD_EXPIRATION_DATE + " TEXT,"
                 + KEY_FOOD_CATEGORY + " TEXT,"
                 + KEY_FOOD_CALORIES + " INT(16),"
-                + KEY_FOOD_PHOTO + " BLOB"
+                + KEY_FOOD_PHOTO + " BLOB" // Not sure if this is the correct type -carl
                 + ")";
 
         String CREATE_RECIPES_TABLE = "CREATE TABLE "
@@ -97,5 +102,180 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // Create tables again
         onCreate(db);
+    }
+
+    /**
+     * All CRUD(Create, Read, Update, Delete) Operations for Food
+     */
+
+    // Adding new food
+    public void addFood(Food food) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_FOOD_NAME, food.getName()); // Food Name
+        values.put(KEY_FOOD_DESCRIPTION, food.getDescription()); // Food Description
+        values.put(KEY_FOOD_EXPIRATION_DATE, food.getExpirationDate()); // Food Expiration Date
+        values.put(KEY_FOOD_CATEGORY, food.getCategory()); // Food Category
+        values.put(KEY_FOOD_CALORIES, food.getCalories()); // Food Calories
+
+        // Inserting Row
+        db.insert(TABLE_FOOD, null, values);
+        db.close(); // Closing database connection
+    }
+
+    // Getting Food
+    public Food getFood(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_FOOD, new String[] { KEY_FOOD_ID,
+                KEY_FOOD_NAME, KEY_FOOD_DESCRIPTION, KEY_FOOD_EXPIRATION_DATE,
+                KEY_FOOD_CATEGORY, KEY_FOOD_CALORIES }, KEY_FOOD_ID + "= ?", // '?' is replaced by selection args
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Food food = new Food(cursor.getString(0),
+                cursor.getString(1), cursor.getString(2), cursor.getString(3),
+                Integer.parseInt(cursor.getString(4)));
+        // return food
+        return food;
+    }
+
+    // Getting All Food
+    public List<Food> getAllFood() {
+        List<Food> foodList = new ArrayList<Food>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_FOOD;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Food food = new Food();
+                //food.setId(Integer.parseInt(cursor.getString(0)));
+                food.setName(cursor.getString(1));
+                food.setDescription(cursor.getString(2));
+                food.setExpirationDate(cursor.getString(3));
+                food.setCategory(cursor.getString(4));
+                food.setCalories(cursor.getInt(5));
+
+                // Adding food to list
+                foodList.add(food);
+            } while (cursor.moveToNext());
+        }
+
+        // return food list
+        return foodList;
+    }
+
+    // Updating Food
+    public int updateFood(Food food) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_FOOD_NAME, food.getName());
+        values.put(KEY_FOOD_DESCRIPTION, food.getDescription());
+        values.put(KEY_FOOD_EXPIRATION_DATE, food.getExpirationDate());
+        values.put(KEY_FOOD_CATEGORY, food.getCategory());
+        values.put(KEY_FOOD_CALORIES, food.getCalories());
+
+        // updating row
+        return db.update(TABLE_FOOD, values, KEY_FOOD_ID + " = ?",
+                new String[] { String.valueOf(food.getId()) });
+    }
+
+    // Deleting food
+    public void deleteContact(Food food) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_FOOD, KEY_FOOD_ID + " = ?",
+                new String[] { String.valueOf(food.getId()) });
+        db.close();
+    }
+
+
+    /**
+     * All CRUD(Create, Read, Update, Delete) Operations for Recipes
+     */
+
+    // Adding new Recipe
+    public void addRecipe(Recipe recipe) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_RECIPE_NAME, recipe.getName()); // Recipe Name
+        values.put(KEY_RECIPE_DIRECTIONS, recipe.getDirections()); // Recipe Directions
+        values.put(KEY_RECIPE_NOTES, recipe.getNotes()); // Recipe Notes
+
+        // Inserting Row
+        db.insert(TABLE_RECIPES, null, values);
+        db.close(); // Closing database connection
+    }
+
+    // Getting Recipe
+    public Recipe getRecipe(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_RECIPES, new String[] { KEY_RECIPE_ID,
+                KEY_RECIPE_NAME, KEY_RECIPE_DIRECTIONS, KEY_RECIPE_NOTES },
+                KEY_RECIPE_ID + "= ?", // '?' is replaced by selection args
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Recipe recipe = new Recipe(cursor.getString(0),
+                cursor.getString(1), cursor.getString(2));
+        // return recipe
+        return recipe;
+    }
+
+    // Getting all Recipe
+    public List<Recipe> getAllRecipes() {
+        List<Recipe> recipesList = new ArrayList<Recipe>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_RECIPES;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Recipe recipe = new Recipe();
+                recipe.setName(cursor.getString(1));
+                recipe.setDirections(cursor.getString(2));
+                recipe.setNotes(cursor.getString(3));
+
+                // Adding recipe to list
+                recipesList.add(recipe);
+            } while (cursor.moveToNext());
+        }
+
+        // return recipes list
+        return recipesList;
+    }
+
+    // Updating Recipe
+    public int updateRecipe(Recipe recipe) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_RECIPE_NAME, recipe.getName());
+        values.put(KEY_RECIPE_DIRECTIONS, recipe.getDirections());
+        values.put(KEY_RECIPE_NOTES, recipe.getNotes());
+
+        // updating row
+        return db.update(TABLE_RECIPES, values, KEY_RECIPE_ID + " = ?",
+                new String[] { String.valueOf(recipe.getId()) });
+    }
+
+    // Deleting Recipe
+    public void deleteContact(Recipe recipe) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_RECIPES, KEY_RECIPE_ID + " = ?",
+                new String[] { String.valueOf(recipe.getId()) });
+        db.close();
     }
 }
