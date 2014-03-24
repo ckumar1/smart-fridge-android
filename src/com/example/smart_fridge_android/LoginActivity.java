@@ -16,6 +16,7 @@ public class LoginActivity extends Activity {
 
     final String LOGIN_TAG = "login";
     final String REGISTER_TAG = "register";
+    boolean isRegisterView = false; //Used to distinguish which view we're currently on
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,17 @@ public class LoginActivity extends Activity {
 
         DatabaseHandler db = new DatabaseHandler(this);
         db.getDatabaseName();
+    }
+    
+    @Override
+    public void onBackPressed() {
+    	if (isRegisterView) {
+    		setContentView(R.layout.login);
+    		isRegisterView = false;
+    	}
+    	else {
+    		super.onBackPressed(); //If on the login layout back button will exit
+    	}
     }
 
     public void onButtonClick(View v){
@@ -51,6 +63,7 @@ public class LoginActivity extends Activity {
 
             case R.id.btnLinkToRegisterScreen:
                 setContentView(R.layout.register);
+                isRegisterView = true;
                 break;
 
             case R.id.btnRegister:
