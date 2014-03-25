@@ -26,12 +26,13 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/addBtn"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_alignParentRight="true"
-            android:text="Add" />
+            android:text="Add" 
+            android:onClick="onButtonClick"/>
     </RelativeLayout>
 
     <TabHost

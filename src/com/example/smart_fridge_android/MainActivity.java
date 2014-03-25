@@ -1,6 +1,7 @@
 package com.example.smart_fridge_android;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -61,6 +62,18 @@ public class MainActivity extends ListActivity {
                 // Need to implement the food / recipe views for this one
                 // It might be worth it to split them up into separate activities -carl
             }
-        });
+        });  
     }
+    
+    
+	public void onButtonClick(View v){
+
+        switch (v.getId()){
+
+            case R.id.addBtn: //Put this code in a modular location
+                Intent i = new Intent(getApplicationContext(), AddFoodActivity.class);
+                startActivity(i);
+                break;
+        }
+	}
 }
