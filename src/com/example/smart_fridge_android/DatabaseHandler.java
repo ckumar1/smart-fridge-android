@@ -155,7 +155,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Food food = new Food();
-                //food.setId(Integer.parseInt(cursor.getString(0)));
+                food.setId(Integer.parseInt(cursor.getString(0)));
                 food.setName(cursor.getString(1));
                 food.setDescription(cursor.getString(2));
                 food.setExpirationDate(cursor.getString(3));
@@ -188,7 +188,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Deleting food
-    public void deleteContact(Food food) {
+    public void deleteFood(Food food) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_FOOD, KEY_FOOD_ID + " = ?",
                 new String[] { String.valueOf(food.getId()) });
@@ -272,7 +272,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Deleting Recipe
-    public void deleteContact(Recipe recipe) {
+    public void deleteFood(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_RECIPES, KEY_RECIPE_ID + " = ?",
                 new String[] { String.valueOf(recipe.getId()) });
