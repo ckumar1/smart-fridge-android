@@ -86,7 +86,10 @@ public class LoginActivity extends Activity {
                 registerParams.add(new BasicNameValuePair("password", registerPassword.getText().toString()));
 
                 Register register = new Register(registerParams);
-                register.execute();
+
+                Intent register_intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(register_intent);
+                //register.execute();
                 break;
         }
     }

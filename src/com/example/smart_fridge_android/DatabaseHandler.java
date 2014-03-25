@@ -37,6 +37,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_FOOD_CATEGORY = "category";
     private static final String KEY_FOOD_EXPIRATION_DATE = "expiration_date";
     private static final String KEY_FOOD_CALORIES = "calories";
+    private static final String KEY_FOOD_QUANTITY = "quantity";
     private static final String KEY_FOOD_PHOTO = "photo";
 
     // Recipe table column names
@@ -74,6 +75,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_FOOD_EXPIRATION_DATE + " TEXT,"
                 + KEY_FOOD_CATEGORY + " TEXT,"
                 + KEY_FOOD_CALORIES + " INT(16),"
+                + KEY_FOOD_QUANTITY + " INT(16),"
                 + KEY_FOOD_PHOTO + " BLOB" // Not sure if this is the correct type -carl
                 + ")";
 
@@ -118,6 +120,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_FOOD_EXPIRATION_DATE, food.getExpirationDate()); // Food Expiration Date
         values.put(KEY_FOOD_CATEGORY, food.getCategory()); // Food Category
         values.put(KEY_FOOD_CALORIES, food.getCalories()); // Food Calories
+        values.put(KEY_FOOD_QUANTITY, food.getQuantity()); // Food Quantity
 
         // Inserting Row
         db.insert(TABLE_FOOD, null, values);
@@ -130,14 +133,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(TABLE_FOOD, new String[] { KEY_FOOD_ID,
                 KEY_FOOD_NAME, KEY_FOOD_DESCRIPTION, KEY_FOOD_EXPIRATION_DATE,
-                KEY_FOOD_CATEGORY, KEY_FOOD_CALORIES }, KEY_FOOD_ID + "= ?", // '?' is replaced by selection args
+                KEY_FOOD_CATEGORY, KEY_FOOD_CALORIES, KEY_FOOD_QUANTITY },
+                KEY_FOOD_ID + "= ?", // '?' is replaced by selection args
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
-        Food food = new Food(cursor.getString(0),
-                cursor.getString(1), cursor.getString(2), cursor.getString(3),
-                Integer.parseInt(cursor.getString(4)));
+        Food food = new Food(cursor.getString(1),
+                cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                Integer.parseInt(cursor.getString(5)), Integer.parseInt(cursor.getString(6)));
+        food.setId(Integer.parseInt(cursor.getString(0))); // Set the id
         // return food
         return food;
     }
@@ -147,14 +152,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(TABLE_FOOD, new String[] { KEY_FOOD_ID,
                 KEY_FOOD_NAME, KEY_FOOD_DESCRIPTION, KEY_FOOD_EXPIRATION_DATE,
-                KEY_FOOD_CATEGORY, KEY_FOOD_CALORIES }, KEY_FOOD_NAME + "= ?",
+                KEY_FOOD_CATEGORY, KEY_FOOD_CALORIES, KEY_FOOD_QUANTITY},
+                KEY_FOOD_NAME + "= ?",
                 new String[] { String.valueOf(name) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
-        Food food = new Food(cursor.getString(0),
-                cursor.getString(1), cursor.getString(2), cursor.getString(3),
-                Integer.parseInt(cursor.getString(4)));
+        Food food = new Food(cursor.getString(1),
+                cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                Integer.parseInt(cursor.getString(5)), Integer.parseInt(cursor.getString(6)));
+        food.setId(Integer.parseInt(cursor.getString(0))); // Set the id
         // return food
         return food;
     }
@@ -178,6 +185,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 food.setExpirationDate(cursor.getString(3));
                 food.setCategory(cursor.getString(4));
                 food.setCalories(cursor.getInt(5));
+                food.setQuantity(cursor.getInt(6));
 
                 // Adding food to list
                 foodList.add(food);
@@ -198,6 +206,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_FOOD_EXPIRATION_DATE, food.getExpirationDate());
         values.put(KEY_FOOD_CATEGORY, food.getCategory());
         values.put(KEY_FOOD_CALORIES, food.getCalories());
+        values.put(KEY_FOOD_QUANTITY, food.getQuantity());
 
         // updating row
         return db.update(TABLE_FOOD, values, KEY_FOOD_ID + " = ?",
@@ -250,8 +259,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        Recipe recipe = new Recipe(cursor.getString(0),
-                cursor.getString(1), cursor.getString(2));
+        Recipe recipe = new Recipe(cursor.getString(1),
+                cursor.getString(2), cursor.getString(3));
+        recipe.setId(Integer.parseInt(cursor.getString(0)));
         // return recipe
         return recipe;
     }
@@ -269,6 +279,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Recipe recipe = new Recipe();
+                recipe.setId(Integer.parseInt(cursor.getString(0)));
                 recipe.setName(cursor.getString(1));
                 recipe.setDirections(cursor.getString(2));
                 recipe.setNotes(cursor.getString(3));

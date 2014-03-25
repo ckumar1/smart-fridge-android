@@ -3,14 +3,13 @@ package com.example.smart_fridge_android;
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import junit.framework.Assert;
-
 import java.util.List;
 
 public class DatabaseHandlerTest extends AndroidTestCase {
 
     private DatabaseHandler db;
 
-    public void setup(){
+    protected void setup() throws Exception{
         RenamingDelegatingContext context = new RenamingDelegatingContext(getContext(), "test_");
         db = new DatabaseHandler(context);
     }
@@ -29,7 +28,10 @@ public class DatabaseHandlerTest extends AndroidTestCase {
         originalFood = db.getFoodByName("Apple");
         Food foodFromDb = db.getFoodById(originalFood.getId());
 
-        Assert.assertEquals(originalFood, foodFromDb);
+        //System.out.println(foodFromDb.toString());
+
+        //Assert.assertEquals(foodFromDb.toString(), originalFood, null);
+        assertTrue(foodFromDb.toString(), originalFood == null);
     }
 
     public void getAllFoodTest(){
@@ -74,6 +76,14 @@ public class DatabaseHandlerTest extends AndroidTestCase {
         Assert.assertEquals(0, db.countFoodRows());
     }
 
+
+    public void addRecipeTest(){
+        Recipe recipe = createRecipe();
+        db.addRecipe(recipe);
+
+        //Assert.assertEquals(recipe, );
+    }
+
     // Food creation for test
     private Food createFood(){
         Food food = new Food();
@@ -85,4 +95,12 @@ public class DatabaseHandlerTest extends AndroidTestCase {
         return food;
     }
 
+    // Recipe creation for test
+    private Recipe createRecipe(){
+        Recipe recipe = new Recipe();
+        recipe.setName("Macaroni and Cheese");
+        recipe.setDirections("Boil macaroni and add cheese");
+        recipe.setNotes("Don't add too much cheese");
+        return recipe;
+    }
 }

@@ -51,7 +51,6 @@ public class MainActivity extends ListActivity {
 
         setListAdapter(adapter);
 
-
         // on selecting single food item
         // launching Edit Food Screen
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

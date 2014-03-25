@@ -8,26 +8,26 @@ public class Food {
     private String expirationDate;
     private String category;
     private int calories;
+    private int quantity;
 
     public Food(){
 
     }
 
-    public Food(String name, String description, String expirationDate, String category, int calories) {
+    public Food(String name, String description, String expirationDate, String category, int calories, int quantity) {
         this.name = name;
         this.description = description;
         this.category = category;
         this.expirationDate = expirationDate;
         this.calories = calories;
+        this.quantity = quantity;
     }
 
     public int getId(){
         return id;
     }
 
-    public void setId(int id){
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
 
     public String getName() {
         return name;
@@ -69,6 +69,10 @@ public class Food {
         this.calories = calories;
     }
 
+    public int getQuantity() { return quantity; }
+
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+
     @Override
     public String toString() {
         return "Food{" +
@@ -77,7 +81,8 @@ public class Food {
                 ", description='" + description + '\'' +
                 ", category='" + category + '\'' +
                 ", expirationDate='" + expirationDate + '\'' +
-                ", calories=" + calories +
+                ", calories=" + calories + '\'' +
+                ", quantity=" + quantity +
                 '}';
     }
 }
