@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">smart-fridge-android</string>
-<<<<<<< HEAD
     <string name="AddFood">Add Food</string>
     <string name="AddFoodName">Name:</string>
     <string name="ExpirationDate">Expiration Date:</string>
@@ -9,7 +8,6 @@
     <string name="units">Units:</string>
     <string name="foodGroup">"Food Group:"</string>
     <string name="add">Add</string>
-=======
     <string name="my_fridge">My Fridge</string>
     <string name="food">Food</string>
     <string name="recipes">Recipes</string>
@@ -37,5 +35,4 @@
     <string name="add_recipe_ingredients">Ingredients</string>
     <string name="add_recipe_instructions">Instructions</string>
 
->>>>>>> 017a213d718ddfff3ae127a9b3bf59d2508f4654
 </resources>

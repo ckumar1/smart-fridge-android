@@ -11,12 +11,15 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-<<<<<<< HEAD
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+
 public class AddFoodActivity extends Activity implements OnDateSetListener{
 
+	private Button add;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,6 +34,9 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 				newFragment.show(ft, "date_dialog");
 			}
 		});
+		add = (Button) findViewById(R.id.addBtn);
+        if (add != null)
+        	add.setVisibility(View.INVISIBLE);
 	}
 
 	@Override
@@ -42,33 +48,6 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 		mDateTextView.setText(dateFormat.format(cal.getTime()));
 	}
 
-	public void onButtonClick(View v){
-
-		switch (v.getId()){
-
-		case R.id.addBtn: //Put this code in a modular location
-			Intent i = new Intent(getApplicationContext(), AddFoodActivity.class);
-			startActivity(i);
-			break;
-		case R.id.manualBtn:
-			setContentView(R.layout.add_food_manual);
-			break;
-=======
-import android.widget.Button;
-
-public class AddFoodActivity extends Activity {
-	
-	private Button add;
-	
-	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_food);
-        add = (Button) findViewById(R.id.addBtn);
-        if (add != null)
-        	add.setVisibility(View.INVISIBLE);
-    }
-	
 	protected void onPause() {
 		super.onPause();
 		add.setVisibility(View.VISIBLE); //Make button visible again when you leave this view.
@@ -83,7 +62,9 @@ public class AddFoodActivity extends Activity {
 		case R.id.logoutBtn:
     		navBar.onButtonClick(v, this);
     		break;
->>>>>>> 017a213d718ddfff3ae127a9b3bf59d2508f4654
+		case R.id.manualBtn:
+			setContentView(R.layout.add_food_manual);
+			break;
 		}
 	}
 }
