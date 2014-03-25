@@ -11,13 +11,13 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends ListActivity  {
 
     private static final String TAG_FOOD_ID = "food_id";
     private static final String TAG_FOOD_NAME = "name";
 
     DatabaseHandler db;
-
+    
     ArrayList<HashMap<String, String>> foodList; // Passed to the list adapter to be displayed
     List<Food> foodsFromDB; // Grabs all food from the internal database
 
@@ -64,15 +64,18 @@ public class MainActivity extends ListActivity {
         });  
     }
     
+    public void onButtonClick(View v) {
+    	NavigationBar navBar = new NavigationBar();
+    	
+		switch (v.getId()){
+		
+		case R.id.addBtn:
+		case R.id.logoutBtn:
+    		navBar.onButtonClick(v, this);
+    		break;
+		}
+    }
+   
     
-	public void onButtonClick(View v){
-
-        switch (v.getId()){
-
-            case R.id.addBtn: //Put this code in a modular location
-                Intent i = new Intent(getApplicationContext(), AddFoodActivity.class);
-                startActivity(i);
-                break;
-        }
-	}
+    
 }
