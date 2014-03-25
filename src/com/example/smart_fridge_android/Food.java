@@ -93,6 +93,7 @@ public class Food {
 
         Food food = (Food) o;
 
+        if (id != food.id) return false;
         if (calories != food.calories) return false;
         if (quantity != food.quantity) return false;
         if (category != null ? !category.equals(food.category) : food.category != null) return false;

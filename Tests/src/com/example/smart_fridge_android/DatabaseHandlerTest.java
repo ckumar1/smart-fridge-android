@@ -22,12 +22,10 @@ public class DatabaseHandlerTest extends AndroidTestCase {
     public void testAddFood() throws Exception{
         setup();
         Food food = createFood();
-        db.addFood(food);
-        food = db.getAllFood().get(0);
 
-        Assert.assertEquals(food, db.getFoodById(1));
+        food = db.addFood(food);
 
-        tearDown();
+        Assert.assertEquals(food, db.getAllFood().get(0));
     }
 
     public void testGetFoodById() throws Exception{
@@ -83,9 +81,52 @@ public class DatabaseHandlerTest extends AndroidTestCase {
     public void testAddRecipe() throws Exception{
         setup();
         Recipe recipe = createRecipe();
-        db.addRecipe(recipe);
+        recipe = db.addRecipe(recipe);
 
-        //Assert.assertEquals(recipe,);
+        Assert.assertEquals(recipe, db.getAllRecipes().get(0));
+    }
+
+    public void testGetRecipeById() throws Exception {
+        setup();
+        Recipe recipe = createRecipe();
+
+        recipe = db.addRecipe(recipe);
+
+        Assert.assertEquals(recipe, db.getRecipeById(recipe.getId()));
+    }
+
+    public void testGetAllRecipes() throws Exception {
+        setup();
+        Recipe recipe1 = createRecipe();
+        Recipe recipe2 = createRecipe();
+        recipe2.setName("Pie");
+
+        db.addRecipe(recipe1);
+        db.addRecipe(recipe2);
+
+        Assert.assertEquals(2, db.getAllRecipes().size());
+    }
+
+    public void testUpdateRecipe() throws Exception {
+        setup();
+        Recipe recipe = createRecipe();
+
+        recipe = db.addRecipe(recipe);
+
+        recipe.setName("Pie");
+        db.updateRecipe(recipe);
+
+        Assert.assertEquals("Pie", db.getRecipeById(recipe.getId()).getName());
+    }
+
+    public void testDeleteRecipe() throws Exception {
+        setup();
+        Recipe recipe = createRecipe();
+
+        recipe = db.addRecipe(recipe);
+        db.deleteRecipe(recipe);
+
+        Assert.assertEquals(0, db.getAllRecipes().size());
     }
 
     // Food creation for test
