@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">smart-fridge-android</string>
+    <string name="AddFood">Add Food</string>
+    <string name="AddFoodName">Name:</string>
+    <string name="ExpirationDate">Expiration Date:</string>
+    <string name="Quantity">Quantity:</string>
+    <string name="units">Units:</string>
+    <string name="foodGroup">"Food Group:"</string>
+    <string name="add">Add</string>
 </resources>

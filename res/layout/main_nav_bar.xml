@@ -38,7 +38,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="fill_horizontal"
         android:background="#287AA9"
         android:gravity="center_horizontal" >
 
@@ -58,8 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:background="#000000"
             android:layout_weight="1"
+            android:background="#000000"
             android:gravity="center_horizontal"
             android:text="Recipes"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -75,7 +74,6 @@
             android:gravity="center_horizontal"
             android:text="Settings"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-
     </LinearLayout>
 
 </LinearLayout>

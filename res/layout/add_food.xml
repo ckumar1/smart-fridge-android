@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dip"
             android:gravity="center"
-            android:text="Manual" />
+            android:text="Manual" 
+            android:onClick="onButtonClick" />
 
         <Button
             android:id="@+id/scanBtn"
