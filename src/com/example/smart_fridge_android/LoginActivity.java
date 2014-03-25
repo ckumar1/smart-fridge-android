@@ -71,6 +71,13 @@ public class LoginActivity extends Activity {
                 EditText registerName = (EditText) findViewById(R.id.registerName);
                 EditText registerEmail = (EditText) findViewById(R.id.registerEmail);
                 EditText registerPassword = (EditText) findViewById(R.id.registerPassword);
+                EditText registerConfirmPassword = (EditText) findViewById(R.id.registerConfirmPassword);
+                
+                //If the password and confirm password fields don't match we will just return before creating the new account
+                if (!isPasswordMatch(registerPassword.getText().toString(), registerConfirmPassword.getText().toString())) {
+                	Toast.makeText(this, "The passwords do not match", Toast.LENGTH_SHORT).show();
+                	return;
+                }
 
                 List<NameValuePair> registerParams = new ArrayList<NameValuePair>();
                 registerParams.add(new BasicNameValuePair("tag", REGISTER_TAG));
@@ -82,5 +89,9 @@ public class LoginActivity extends Activity {
                 register.execute();
                 break;
         }
+    }
+    
+    public boolean isPasswordMatch(String pass1, String pass2) {
+    	return pass1.equals(pass2);
     }
 }
