@@ -12,29 +12,37 @@ public class DatabaseHandlerTest extends AndroidTestCase {
     protected void setup() throws Exception{
         RenamingDelegatingContext context = new RenamingDelegatingContext(getContext(), "test_");
         db = new DatabaseHandler(context);
+        super.setUp();
     }
 
-    public void addFoodTest(){
+    protected void tearDown() throws Exception{
+        super.tearDown();
+    }
+
+    public void testAddFood() throws Exception{
+        setup();
         Food food = createFood();
         db.addFood(food);
+        food = db.getAllFood().get(0);
 
-        Assert.assertEquals(food, db.getFoodByName(food.getName()));
+        Assert.assertEquals(food, db.getFoodById(1));
+
+        tearDown();
     }
 
-    public void getFoodByIdTest(){
+    public void testGetFoodById() throws Exception{
+        setup();
         Food originalFood = createFood();
         db.addFood(originalFood);
 
-        originalFood = db.getFoodByName("Apple");
+        originalFood = db.getAllFood().get(0);
         Food foodFromDb = db.getFoodById(originalFood.getId());
 
-        //System.out.println(foodFromDb.toString());
-
-        //Assert.assertEquals(foodFromDb.toString(), originalFood, null);
-        assertTrue(foodFromDb.toString(), originalFood == null);
+        Assert.assertEquals(foodFromDb, originalFood);
     }
 
-    public void getAllFoodTest(){
+    public void testGetAllFood() throws Exception{
+        setup();
         Food food1 = createFood();
         Food food2 = createFood();
         food2.setName("Banana");
@@ -48,40 +56,36 @@ public class DatabaseHandlerTest extends AndroidTestCase {
         Assert.assertEquals("Banana", foodList.get(1).getName());
     }
 
-    public void updateFoodTest(){
+    public void testUpdateFood() throws Exception{
+        setup();
         Food food = createFood();
         db.addFood(food);
 
         food.setName("Banana");
         db.updateFood(food);
 
-        Assert.assertEquals(food, db.getFoodByName(food.getName()));
+        food = db.getAllFood().get(0);
+
+        Assert.assertEquals(food, db.getFoodById(1));
     }
 
-    public void countFoodRowsTest(){
-        Food food1 = createFood();
-        Food food2 = createFood();
-
-        db.addFood(food1);
-        db.addFood(food2);
-
-        Assert.assertEquals(2, db.countFoodRows());
-    }
-
-    public void deleteFoodTest(){
+    public void testDeleteFood() throws Exception{
+        setup();
         Food food = createFood();
         db.addFood(food);
+        food = db.getAllFood().get(0);
         db.deleteFood(food);
 
-        Assert.assertEquals(0, db.countFoodRows());
+        Assert.assertEquals(0, db.getAllFood().size());
     }
 
 
-    public void addRecipeTest(){
+    public void testAddRecipe() throws Exception{
+        setup();
         Recipe recipe = createRecipe();
         db.addRecipe(recipe);
 
-        //Assert.assertEquals(recipe, );
+        //Assert.assertEquals(recipe,);
     }
 
     // Food creation for test
@@ -92,6 +96,7 @@ public class DatabaseHandlerTest extends AndroidTestCase {
         food.setExpirationDate("12/21/14");
         food.setCategory("Fruit");
         food.setCalories(100);
+        food.setQuantity(1);
         return food;
     }
 

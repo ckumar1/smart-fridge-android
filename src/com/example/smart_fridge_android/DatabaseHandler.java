@@ -147,25 +147,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return food;
     }
 
-    public Food getFoodByName(String name){
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(TABLE_FOOD, new String[] { KEY_FOOD_ID,
-                KEY_FOOD_NAME, KEY_FOOD_DESCRIPTION, KEY_FOOD_EXPIRATION_DATE,
-                KEY_FOOD_CATEGORY, KEY_FOOD_CALORIES, KEY_FOOD_QUANTITY},
-                KEY_FOOD_NAME + "= ?",
-                new String[] { String.valueOf(name) }, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
-
-        Food food = new Food(cursor.getString(1),
-                cursor.getString(2), cursor.getString(3), cursor.getString(4),
-                Integer.parseInt(cursor.getString(5)), Integer.parseInt(cursor.getString(6)));
-        food.setId(Integer.parseInt(cursor.getString(0))); // Set the id
-        // return food
-        return food;
-    }
-
     // Getting All Food
     public List<Food> getAllFood() {
         List<Food> foodList = new ArrayList<Food>();
@@ -211,14 +192,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // updating row
         return db.update(TABLE_FOOD, values, KEY_FOOD_ID + " = ?",
                 new String[] { String.valueOf(food.getId()) });
-    }
-
-    // Counting rows
-    public int countFoodRows(){
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery("Select count(*) from " + TABLE_FOOD, null);
-        return cursor.getCount();
     }
 
     // Deleting food

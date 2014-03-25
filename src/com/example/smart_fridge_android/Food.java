@@ -85,4 +85,22 @@ public class Food {
                 ", quantity=" + quantity +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Food food = (Food) o;
+
+        if (calories != food.calories) return false;
+        if (quantity != food.quantity) return false;
+        if (category != null ? !category.equals(food.category) : food.category != null) return false;
+        if (description != null ? !description.equals(food.description) : food.description != null) return false;
+        if (expirationDate != null ? !expirationDate.equals(food.expirationDate) : food.expirationDate != null)
+            return false;
+        if (name != null ? !name.equals(food.name) : food.name != null) return false;
+
+        return true;
+    }
 }

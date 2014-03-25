@@ -69,6 +69,12 @@
                 android:textColor="#21dbd4"
                 android:textStyle="bold"
                 android:onClick="onButtonClick"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/editText" android:layout_gravity="center_horizontal"/>
     </LinearLayout>
 
 </ScrollView>
