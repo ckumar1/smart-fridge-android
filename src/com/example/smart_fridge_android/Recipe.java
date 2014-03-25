@@ -69,4 +69,20 @@ public class Recipe {
                 ", ingredients='" + ingredients + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Recipe recipe = (Recipe) o;
+
+        if (id != recipe.id) return false;
+        if (directions != null ? !directions.equals(recipe.directions) : recipe.directions != null) return false;
+        if (ingredients != null ? !ingredients.equals(recipe.ingredients) : recipe.ingredients != null) return false;
+        if (name != null ? !name.equals(recipe.name) : recipe.name != null) return false;
+        if (notes != null ? !notes.equals(recipe.notes) : recipe.notes != null) return false;
+
+        return true;
+    }
 }

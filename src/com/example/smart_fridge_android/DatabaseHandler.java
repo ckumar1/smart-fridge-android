@@ -87,6 +87,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_RECIPE_NAME + " TEXT,"
                 + KEY_RECIPE_DIRECTIONS + " TEXT,"
                 + KEY_RECIPE_NOTES + " TEXT,"
+                + KEY_RECIPE_INGREDIENTS + " TEXT,"
                 + KEY_RECIPE_PHOTO + " BLOB"
                 + ")";
 
@@ -112,7 +113,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
 
     // Adding new food
-    public void addFood(Food food) {
+    public Food addFood(Food food) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -124,8 +125,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_FOOD_QUANTITY, food.getQuantity()); // Food Quantity
 
         // Inserting Row
-        db.insert(TABLE_FOOD, null, values);
+        long insertId = db.insert(TABLE_FOOD, null, values);
+
+        Food returnFood = getFoodById((int) insertId);
         db.close(); // Closing database connection
+        return returnFood;
     }
 
     // Getting Food by Id
@@ -209,7 +213,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
 
     // Adding new Recipe
-    public void addRecipe(Recipe recipe) {
+    public Recipe addRecipe(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -219,12 +223,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_RECIPE_INGREDIENTS, recipe.getIngredients()); // Recipe Ingredients
 
         // Inserting Row
-        db.insert(TABLE_RECIPES, null, values);
+        long insertId = db.insert(TABLE_RECIPES, null, values);
+
+        // Inserting Row
+        Recipe returnRecipe = getRecipeById((int) insertId);
+
         db.close(); // Closing database connection
+        return returnRecipe;
     }
 
     // Getting Recipe
-    public Recipe getRecipe(int id) {
+    public Recipe getRecipeById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_RECIPES, new String[] { KEY_RECIPE_ID,
