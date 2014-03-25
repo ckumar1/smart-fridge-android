@@ -11,6 +11,10 @@ public class NavigationBar {
 	}
 
 	public void onButtonClick(View v, Context c) {
+		
+		if (c.getClass() == AddFoodActivity.class)
+			return; //Already in the desired Activity, possibly display Toast message?
+		
 		switch (v.getId()){
 
 		case R.id.addBtn: 
