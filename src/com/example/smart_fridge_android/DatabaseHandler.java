@@ -124,14 +124,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-    // Getting Food
-    public Food getFood(int id) {
+    // Getting Food by Id
+    public Food getFoodById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_FOOD, new String[] { KEY_FOOD_ID,
                 KEY_FOOD_NAME, KEY_FOOD_DESCRIPTION, KEY_FOOD_EXPIRATION_DATE,
                 KEY_FOOD_CATEGORY, KEY_FOOD_CALORIES }, KEY_FOOD_ID + "= ?", // '?' is replaced by selection args
                 new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Food food = new Food(cursor.getString(0),
+                cursor.getString(1), cursor.getString(2), cursor.getString(3),
+                Integer.parseInt(cursor.getString(4)));
+        // return food
+        return food;
+    }
+
+    public Food getFoodByName(String name){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_FOOD, new String[] { KEY_FOOD_ID,
+                KEY_FOOD_NAME, KEY_FOOD_DESCRIPTION, KEY_FOOD_EXPIRATION_DATE,
+                KEY_FOOD_CATEGORY, KEY_FOOD_CALORIES }, KEY_FOOD_NAME + "= ?",
+                new String[] { String.valueOf(name) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
@@ -185,6 +202,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // updating row
         return db.update(TABLE_FOOD, values, KEY_FOOD_ID + " = ?",
                 new String[] { String.valueOf(food.getId()) });
+    }
+
+    // Counting rows
+    public int countFoodRows(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("Select count(*) from " + TABLE_FOOD, null);
+        return cursor.getCount();
     }
 
     // Deleting food
@@ -272,7 +297,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Deleting Recipe
-    public void deleteFood(Recipe recipe) {
+    public void deleteRecipe(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_RECIPES, KEY_RECIPE_ID + " = ?",
                 new String[] { String.valueOf(recipe.getId()) });

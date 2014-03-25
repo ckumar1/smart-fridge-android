@@ -2,7 +2,7 @@ package com.example.smart_fridge_android;
 
 public class Food {
 
-    private int id;
+    private int id; // Set by the internal db
     private String name;
     private String description;
     private String expirationDate;
@@ -13,7 +13,7 @@ public class Food {
 
     }
 
-    public Food( String name, String description, String expirationDate, String category, int calories) {
+    public Food(String name, String description, String expirationDate, String category, int calories) {
         this.name = name;
         this.description = description;
         this.category = category;
