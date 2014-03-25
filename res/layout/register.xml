@@ -51,6 +51,18 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:password="true" />
+        <!--  Confirm Password Label -->
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:text="Confirm Password" />
+        <!--  Confirm Password TextField -->
+        <EditText
+                android:id="@+id/registerConfirmPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:password="true" />
 
         <!--  Error message -->
         <TextView android:id="@+id/register_error"
