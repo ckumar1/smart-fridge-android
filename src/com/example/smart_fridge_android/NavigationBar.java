@@ -39,9 +39,6 @@ public class NavigationBar {
             	}
                 break;
 
-          
-            
-
             case R.id.logoutBtn:
                 session = new SessionManager(c);
                 session.logoutUser();

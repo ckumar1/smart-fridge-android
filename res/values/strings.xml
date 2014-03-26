@@ -35,4 +35,12 @@
     <string name="add_recipe_ingredients">Ingredients</string>
     <string name="add_recipe_instructions">Instructions</string>
 
+
+    <string name="units_prompt">Choose a country</string>
+
+    <string-array name="units_array">
+        <item>Metric</item>
+        <item>Imperial</item>
+    </string-array>
+
 </resources>
