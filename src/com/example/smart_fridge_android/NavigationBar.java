@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.view.View;
 
 public class NavigationBar {
-	
+
+    SessionManager session;
+
 	public NavigationBar() {
 
 	}
@@ -18,12 +20,17 @@ public class NavigationBar {
 		switch (v.getId()){
 
 		case R.id.addBtn: 
-			Intent i = new Intent(c, AddFoodActivity.class);
-			c.startActivity(i);
+			Intent add_food_intent = new Intent(c, AddFoodActivity.class);
+            add_food_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			c.startActivity(add_food_intent);
 			break;
 
 		case R.id.logoutBtn:
-			//Go to the Logout Activity
+            session = new SessionManager(c);
+            session.logoutUser();
+            Intent logout_intent = new Intent(c, LoginActivity.class);
+            logout_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            c.startActivity(logout_intent);
 			break;
 		}
 	}

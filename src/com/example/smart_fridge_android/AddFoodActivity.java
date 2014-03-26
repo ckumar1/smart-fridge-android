@@ -44,13 +44,10 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 	
 	public void onButtonClick(View v) {
 		NavigationBar navBar = new NavigationBar();
+        navBar.onButtonClick(v, getApplicationContext());
     	
 		switch (v.getId()){
-		
-		case R.id.addBtn:
-		case R.id.logoutBtn:
-    		navBar.onButtonClick(v, this);
-    		break;
+
 		case R.id.manualBtn:
 			setContentView(R.layout.add_food_manual);
 			TextView mDateTextView = (TextView)findViewById(R.id.dateSelector);

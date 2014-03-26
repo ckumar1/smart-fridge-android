@@ -69,15 +69,15 @@ public class MainActivity extends ListActivity  {
     
     public void onButtonClick(View v) {
     	NavigationBar navBar = new NavigationBar();
+        navBar.onButtonClick(v, getApplicationContext());
     	
-		switch (v.getId()){
-		
-		case R.id.addBtn:
-		case R.id.logoutBtn:
-            session.logoutUser();
-    		navBar.onButtonClick(v, this);
-    		break;
-		}
+//		switch (v.getId()){
+//
+//		case R.id.addBtn:
+//            break;
+//		case R.id.logoutBtn:
+//    		break;
+//		}
     }
    
     
