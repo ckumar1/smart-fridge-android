@@ -207,6 +207,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void deleteAllFood(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        
+        db.execSQL("DELETE FROM " + TABLE_FOOD);
+    }
+
 
     /**
      * All CRUD(Create, Read, Update, Delete) Operations for Recipes
