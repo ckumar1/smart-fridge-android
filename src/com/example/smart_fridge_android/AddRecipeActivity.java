@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.view.View;
@@ -45,6 +46,10 @@ public class AddRecipeActivity extends Activity {
         	
         	EditText mEdit; 
         	mEdit = (EditText)findViewById(R.id.editText2);
+        	if (mEdit.getText().toString().equals("")) {
+        		Toast.makeText(getApplicationContext(), "Please enter an ingredient name", Toast.LENGTH_SHORT).show();
+        		return;
+        	}
         	ingredlist.add(mEdit.getText().toString());
         	mEdit.setText("");    	
         	break;
