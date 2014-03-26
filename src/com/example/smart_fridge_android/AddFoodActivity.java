@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class AddFoodActivity extends Activity implements OnDateSetListener{
@@ -64,9 +65,17 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 			break;
 		case R.id.addMan:
 			Food food = new Food();
-			food.setName(((TextView)findViewById(R.id.nameField)).getText().toString());
+			String name = ((TextView)findViewById(R.id.nameField)).getText().toString();
+			if(name.isEmpty()) {
+				Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
+				break;
+			}
+			food.setName(name);
 			food.setExpirationDate(((TextView)findViewById(R.id.dateSelector)).getText().toString());
-			food.setQuantity(Integer.parseInt(((TextView)findViewById(R.id.quantityField)).getText().toString()));
+			try {
+				int quantity = Integer.parseInt(((TextView)findViewById(R.id.quantityField)).getText().toString());
+				food.setQuantity(quantity);
+			} catch(NumberFormatException e) {	}
 			food.setCategory(((TextView)findViewById(R.id.foodgroupField)).getText().toString());
 			DatabaseHandler db = new DatabaseHandler(getApplicationContext());
 			db.addFood(food);
