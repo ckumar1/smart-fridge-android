@@ -18,6 +18,7 @@ public class MainActivity extends ListActivity  {
     private static final String TAG_FOOD_NAME = "name";
     private static final String TAG_RECIPE_ID = "recipe_id";
     private static final String TAG_RECIPE_NAME = "name";
+    public static boolean foodTab = true; 
 
     DatabaseHandler db;
     SessionManager session;
@@ -60,6 +61,7 @@ public class MainActivity extends ListActivity  {
 
 
         if (v.getId() == R.id.tabFood){
+        	foodTab = true;
             setFoodAdapter();
             setContentView(R.layout.main);
 
@@ -71,6 +73,7 @@ public class MainActivity extends ListActivity  {
         }
 
         if (v.getId() == R.id.tabRecipes){
+        	foodTab = false;
             setRecipeAdapter();
             setContentView(R.layout.main);
 
