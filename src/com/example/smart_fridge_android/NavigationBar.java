@@ -19,19 +19,19 @@ public class NavigationBar {
 		
 		switch (v.getId()){
 
-		case R.id.addBtn: 
-			Intent add_food_intent = new Intent(c, AddFoodActivity.class);
-            add_food_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			c.startActivity(add_food_intent);
-			break;
+            case R.id.addBtn:
+                Intent add_food_intent = new Intent(c, AddFoodActivity.class);
+                add_food_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                c.startActivity(add_food_intent);
+                break;
 
-		case R.id.logoutBtn:
-            session = new SessionManager(c);
-            session.logoutUser();
-            Intent logout_intent = new Intent(c, LoginActivity.class);
-            logout_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            c.startActivity(logout_intent);
-			break;
+            case R.id.logoutBtn:
+                session = new SessionManager(c);
+                session.logoutUser();
+                Intent logout_intent = new Intent(c, LoginActivity.class);
+                logout_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                c.startActivity(logout_intent);
+                break;
 		}
 	}
 }
