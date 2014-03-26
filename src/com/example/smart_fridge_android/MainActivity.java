@@ -75,6 +75,7 @@ public class MainActivity extends ListActivity  {
 
             case R.id.tabFood:
                 foodTab = true;
+
                 setFoodAdapter();
                 setContentView(R.layout.main);
 
@@ -82,12 +83,12 @@ public class MainActivity extends ListActivity  {
                 recipesView = (TextView) findViewById(R.id.tabRecipes);
                 settingsView = (TextView) findViewById(R.id.tabSettings);
 
-
                 navBar.setTabColors(foodView, recipesView, settingsView);
                 break;
 
             case R.id.tabRecipes:
                 foodTab = false;
+
                 setRecipeAdapter();
                 setContentView(R.layout.main);
 
@@ -99,12 +100,18 @@ public class MainActivity extends ListActivity  {
                 break;
 
             case R.id.tabSettings:
+
                 setContentView(R.layout.settings);
 
                 foodView = (TextView) findViewById(R.id.tabFood);
                 recipesView = (TextView) findViewById(R.id.tabRecipes);
                 settingsView = (TextView) findViewById(R.id.tabSettings);
+
                 navBar.setTabColors(settingsView, recipesView, foodView);
+
+                Button add = (Button) findViewById(R.id.addBtn);
+                if (add != null)
+                    add.setVisibility(View.INVISIBLE);
                 break;
         }
     }
