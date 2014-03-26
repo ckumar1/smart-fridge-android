@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.widget.TextView.OnEditorActionListener;
 
 
@@ -44,7 +47,7 @@ public class AddRecipeActivity extends Activity {
         case R.id.addingred:
         	
         	EditText mEdit; 
-        	mEdit = (EditText)findViewById(R.id.editText2);
+        	mEdit = (EditText)findViewById(R.id.IngredientField);
         	ingredlist.add(mEdit.getText().toString());
         	mEdit.setText("");    	
         	break;
@@ -52,7 +55,7 @@ public class AddRecipeActivity extends Activity {
         case R.id.showlist:
         	AlertDialog.Builder builder = new AlertDialog.Builder(this);
         	EditText recName;
-        	recName = (EditText)findViewById(R.id.editText1);
+        	recName = (EditText)findViewById(R.id.RecipeNameField);
         	
         	String recipeN = recName.getText().toString();
         	
@@ -62,8 +65,7 @@ public class AddRecipeActivity extends Activity {
         	{
         		message = message + "\n" + ingredient;
         	}
-        	
-           	
+        	          	
         	builder.setMessage(message);
         	builder.setTitle("Current ingredients for "+recipeN);
         	builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
@@ -74,18 +76,41 @@ public class AddRecipeActivity extends Activity {
 				}
 				}
         	);
-        	
         	builder.create();
-        	builder.show();
-             	
-        	
+        	builder.show();          	
         	break;
         	
         case R.id.addrec:
-        	break;
+        	Recipe recipe = new Recipe();
         	
-        
-        
+        	String name = ((EditText)findViewById(R.id.RecipeNameField)).getText().toString();
+			if(name.isEmpty()) {
+				Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
+				break;
+			}
+			recipe.setName(name);
+			
+			String directions = ((EditText)findViewById(R.id.InstructionsField)).getText().toString();
+			if(directions.isEmpty()) {
+				Toast.makeText(getApplicationContext(), "Directions are required", Toast.LENGTH_LONG).show();
+				break;
+			}
+			recipe.setDirections(directions);
+			
+			
+			if(ingredlist.isEmpty()) {
+				Toast.makeText(getApplicationContext(), "Ingredients are required", Toast.LENGTH_LONG).show();
+				break;
+			}
+			recipe.setIngredientsList(ingredlist);
+        	
+			DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+			db.addRecipe(recipe);
+			
+			Intent i = new Intent(this, MainActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			this.startActivity(i);
+        	break;
         }
 	
 	
