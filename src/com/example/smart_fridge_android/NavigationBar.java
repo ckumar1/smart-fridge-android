@@ -20,13 +20,6 @@ public class NavigationBar {
 		
 		switch (v.getId()){
 
-            case R.id.tabFood:
-                Toast.makeText(c, "Hello!", Toast.LENGTH_LONG).show();
-                break;
-
-            case R.id.tabRecipes:
-                break;
-
             case R.id.addBtn:
                 Intent add_food_intent = new Intent(c, AddFoodActivity.class);
                 add_food_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

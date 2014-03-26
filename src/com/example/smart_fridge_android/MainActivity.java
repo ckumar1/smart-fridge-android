@@ -55,6 +55,14 @@ public class MainActivity extends ListActivity  {
     public void onButtonClick(View v) {
     	NavigationBar navBar = new NavigationBar();
         navBar.onButtonClick(v, getApplicationContext());
+
+        if (v.getId() == R.id.tabFood){
+            setFoodAdapter();
+        }
+
+        if (v.getId() == R.id.tabRecipes){
+            setRecipeAdapter();
+        }
     }
 
     /** Shows the food list on the main activity */
