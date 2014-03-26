@@ -1,5 +1,6 @@
 package com.example.smart_fridge_android;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Recipe {
@@ -14,6 +15,11 @@ public class Recipe {
 
     }
 
+    public Recipe(String name, String directions, String notes, List<String>ingredients){
+    	this(name, directions, notes, "");
+    	this.setIngredientsList(ingredients);
+    }
+    
     public Recipe(String name, String directions, String notes, String ingredients) {
         this.name = name;
         this.directions = directions;
@@ -55,10 +61,25 @@ public class Recipe {
     	return ingredients;
     }
     
+    public List<String> getIngredientList() {
+    	return Arrays.asList(ingredients.split("<b>"));
+    }
+    
     public void setIngredients(String ingredients) {
     	this.ingredients = ingredients;
     }
 
+    public void setIngredientsList(List<String> ingredients) {
+    	String ingredientList = "";
+    	if(ingredients.size() > 0) {
+	    	ingredientList = ingredients.get(0);
+	    	for(int i = 1; i < ingredients.size(); i++) {
+	    		ingredientList += "<b>" + ingredients.get(i);
+	    	}
+    	}
+    	this.ingredients= ingredientList;
+    }
+    
     @Override
     public String toString() {
         return "Recipe{" +
