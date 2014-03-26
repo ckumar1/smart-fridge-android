@@ -9,7 +9,7 @@ public class IndividualRecipeActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_individual_recipe);
+		setContentView(R.layout.individual_recipe_item);
 	}
 
 	@Override
