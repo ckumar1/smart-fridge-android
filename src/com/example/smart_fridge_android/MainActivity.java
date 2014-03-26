@@ -37,10 +37,9 @@ public class MainActivity extends ListActivity  {
         db = new DatabaseHandler(this);
         db.getDatabaseName();
 
-        setFoodAdapter();
+        setFoodAdapter(); // Always start on the food page
 
         ListView listView = getListView();
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -62,6 +61,10 @@ public class MainActivity extends ListActivity  {
 
         if (v.getId() == R.id.tabRecipes){
             setRecipeAdapter();
+        }
+
+        if (v.getId() == R.id.tabSettings){
+            setContentView(R.layout.settings);
         }
     }
 

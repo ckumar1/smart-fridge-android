@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/main_nav_bar" android:id="@+id/include"/>
+
+    <ListView
+            android:id="@android:id/list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SETTINGS"
+            android:id="@+id/textView" 
+            android:layout_below="@+id/include"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
+            android:textSize="30sp"/>
+    <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Receive Notifications"
+            android:id="@+id/checkBoxNotifications"
+            android:layout_marginTop="58dp"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Password"
+            android:id="@+id/btnChangePassword"
+            android:layout_marginTop="65dp"
+            android:layout_below="@+id/checkBoxNotifications"
+            android:layout_centerHorizontal="true"/>
+    <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerUnits"
+            android:layout_below="@+id/btnChangePassword"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="43dp"/>
+</RelativeLayout>
