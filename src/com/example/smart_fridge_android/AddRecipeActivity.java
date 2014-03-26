@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
@@ -47,7 +46,11 @@ public class AddRecipeActivity extends Activity {
         case R.id.addingred:
         	
         	EditText mEdit; 
-        	mEdit = (EditText)findViewById(R.id.IngredientField);
+			mEdit = (EditText)findViewById(R.id.IngredientField);
+        	if (mEdit.getText().toString().equals("")) {
+        		Toast.makeText(getApplicationContext(), "Please enter an ingredient name", Toast.LENGTH_SHORT).show();
+        		return;
+        	}
         	ingredlist.add(mEdit.getText().toString());
         	mEdit.setText("");    	
         	break;
@@ -112,9 +115,5 @@ public class AddRecipeActivity extends Activity {
 			this.startActivity(i);
         	break;
         }
-	
-	
-	
-	}
-	
+	}	
 }

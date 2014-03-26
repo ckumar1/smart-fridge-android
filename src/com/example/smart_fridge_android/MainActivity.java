@@ -15,14 +15,15 @@ import java.util.List;
 public class MainActivity extends ListActivity  {
 
     private static final String TAG_FOOD_ID = "food_id";
-    private static final String TAG_FOOD_NAME = "name";
+    private static final String TAG_FOOD_DATA = "data";
     private static final String TAG_RECIPE_ID = "recipe_id";
     private static final String TAG_RECIPE_NAME = "name";
-    public static boolean foodTab = true; 
+    public static boolean foodTab;
 
     DatabaseHandler db;
     SessionManager session;
 
+    Spinner spinner;
     ListAdapter adapter;
     ArrayList<HashMap<String, String>> foodList; // Passed to the list adapter to be displayed
     ArrayList<HashMap<String, String>> recipesList;
@@ -34,10 +35,14 @@ public class MainActivity extends ListActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        foodTab = true;
+
         session = new SessionManager(getApplicationContext());
 
         db = new DatabaseHandler(this);
         db.getDatabaseName();
+
+        spinner = (Spinner) findViewById(R.id.spinnerUnits);
 
         TextView foodView = (TextView) findViewById(R.id.tabFood);
         foodView.setBackgroundColor(Color.BLUE);
@@ -48,50 +53,66 @@ public class MainActivity extends ListActivity  {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                // Need to implement the food / recipe views for this one
-                // It might be worth it to split them up into separate activities -carl
+                                    int position, long id)
+            {
+
+
             }
-        });  
+        });
     }
     
     public void onButtonClick(View v) {
     	NavigationBar navBar = new NavigationBar();
         navBar.onButtonClick(v, getApplicationContext());
 
+        TextView foodView;
+        TextView recipesView;
+        TextView settingsView;
 
-        if (v.getId() == R.id.tabFood){
-        	foodTab = true;
-            setFoodAdapter();
-            setContentView(R.layout.main);
 
-            TextView foodView = (TextView) findViewById(R.id.tabFood);
-            TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
-            TextView settingsView = (TextView) findViewById(R.id.tabSettings);
+        switch (v.getId()){
 
-            navBar.setTabColors(foodView, recipesView, settingsView);
-        }
 
-        if (v.getId() == R.id.tabRecipes){
-        	foodTab = false;
-            setRecipeAdapter();
-            setContentView(R.layout.main);
+            case R.id.tabFood:
+                foodTab = true;
 
-            TextView foodView = (TextView) findViewById(R.id.tabFood);
-            TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
-            TextView settingsView = (TextView) findViewById(R.id.tabSettings);
+                setFoodAdapter();
+                setContentView(R.layout.main);
 
-            navBar.setTabColors(recipesView, foodView, settingsView);
-        }
+                foodView = (TextView) findViewById(R.id.tabFood);
+                recipesView = (TextView) findViewById(R.id.tabRecipes);
+                settingsView = (TextView) findViewById(R.id.tabSettings);
 
-        if (v.getId() == R.id.tabSettings){
-            setContentView(R.layout.settings);
+                navBar.setTabColors(foodView, recipesView, settingsView);
+                break;
 
-            TextView foodView = (TextView) findViewById(R.id.tabFood);
-            TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
-            TextView settingsView = (TextView) findViewById(R.id.tabSettings);
+            case R.id.tabRecipes:
+                foodTab = false;
 
-            navBar.setTabColors(settingsView, recipesView, foodView);
+                setRecipeAdapter();
+                setContentView(R.layout.main);
+
+                foodView = (TextView) findViewById(R.id.tabFood);
+                recipesView = (TextView) findViewById(R.id.tabRecipes);
+                settingsView = (TextView) findViewById(R.id.tabSettings);
+
+                navBar.setTabColors(recipesView, foodView, settingsView);
+                break;
+
+            case R.id.tabSettings:
+
+                setContentView(R.layout.settings);
+
+                foodView = (TextView) findViewById(R.id.tabFood);
+                recipesView = (TextView) findViewById(R.id.tabRecipes);
+                settingsView = (TextView) findViewById(R.id.tabSettings);
+
+                navBar.setTabColors(settingsView, recipesView, foodView);
+
+                Button add = (Button) findViewById(R.id.addBtn);
+                if (add != null)
+                    add.setVisibility(View.INVISIBLE);
+                break;
         }
     }
 
@@ -109,13 +130,19 @@ public class MainActivity extends ListActivity  {
             Integer id = food.getId();            // Dumb android syntax forces this on me
             String  id_as_string = id.toString(); // Will investigate alternative methods - carl
 
+            String foodData = "";
+            foodData += food.getName();
+            foodData += " - Expires: ";
+            foodData += food.getExpirationDate();
+
+
             map.put(TAG_FOOD_ID, id_as_string);
-            map.put(TAG_FOOD_NAME, food.getName());
+            map.put(TAG_FOOD_DATA, foodData);
             foodList.add(map);
         }
 
         adapter = new SimpleAdapter(MainActivity.this, foodList, R.layout.food_list_item,
-                new String[] {TAG_FOOD_ID, TAG_FOOD_NAME}, new int[] {R.id.food_id, R.id.food_name});
+                new String[] {TAG_FOOD_ID, TAG_FOOD_DATA}, new int[] {R.id.food_id, R.id.food_data});
 
         setListAdapter(adapter);
     }

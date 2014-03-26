@@ -22,14 +22,13 @@ public class NavigationBar {
 			return; //Already in the desired Activity, possibly display Toast message?
 		
 		switch (v.getId()){
-		
-		
+
             case R.id.addBtn:
             	if(MainActivity.foodTab)
             	{
-                Intent add_food_intent = new Intent(c, AddFoodActivity.class);
-                add_food_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                c.startActivity(add_food_intent);
+                    Intent add_food_intent = new Intent(c, AddFoodActivity.class);
+                    add_food_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    c.startActivity(add_food_intent);
             	}
             	else
             	{
@@ -38,9 +37,6 @@ public class NavigationBar {
                     c.startActivity(add_recipe_intent);
             	}
                 break;
-
-          
-            
 
             case R.id.logoutBtn:
                 session = new SessionManager(c);

@@ -45,5 +45,6 @@
             android:id="@+id/spinnerUnits"
             android:layout_below="@+id/btnChangePassword"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="43dp"/>
+            android:layout_marginTop="43dp"
+            android:entries="@array/units_array" />
 </RelativeLayout>
