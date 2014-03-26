@@ -3,6 +3,7 @@ package com.example.smart_fridge_android;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
 public class NavigationBar {
 
@@ -18,6 +19,13 @@ public class NavigationBar {
 			return; //Already in the desired Activity, possibly display Toast message?
 		
 		switch (v.getId()){
+
+            case R.id.tabFood:
+                Toast.makeText(c, "Hello!", Toast.LENGTH_LONG).show();
+                break;
+
+            case R.id.tabRecipes:
+                break;
 
             case R.id.addBtn:
                 Intent add_food_intent = new Intent(c, AddFoodActivity.class);

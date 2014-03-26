@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <!-- Food id (food_id) - will be HIDDEN - used to pass to other activity -->
+    <TextView
+            android:id="@+id/recipe_id"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+    <!-- Name Label -->
+    <TextView
+            android:id="@+id/recipe_name"
+            android:layout_width="fill_parent"
+            android:layout_height="75dp"
+            android:paddingTop="6dip"
+            android:paddingLeft="6dip"
+            android:textSize="30dip"
+            android:textStyle="bold" />
+
+</LinearLayout>
