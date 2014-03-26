@@ -55,8 +55,15 @@ public class MainActivity extends ListActivity  {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id)
             {
-
-
+            	String fid = ((TextView) view.findViewById(R.id.food_id)).getText().toString();
+            	//make intent and attaach id to intent
+            	Intent foodInt = new Intent(getApplicationContext(), Individual_Food_Item.class);
+            	
+            	foodInt.putExtra("fid", fid);
+            	
+            	startActivity(foodInt);         	
+            	
+            	
             }
         });
     }

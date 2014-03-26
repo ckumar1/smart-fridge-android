@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class Individual_View_Item extends Activity {
+public class Individual_Food_Item extends Activity {
 	DatabaseHandler db; 
 	
 	@Override
