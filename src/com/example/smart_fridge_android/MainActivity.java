@@ -69,6 +69,9 @@ public class MainActivity extends ListActivity  {
         TextView recipesView;
         TextView settingsView;
 
+        CheckBox notifications;
+        Spinner units;
+
 
         switch (v.getId()){
 
@@ -110,8 +113,32 @@ public class MainActivity extends ListActivity  {
                 navBar.setTabColors(settingsView, recipesView, foodView);
 
                 Button add = (Button) findViewById(R.id.addBtn);
-                if (add != null)
+                if (add != null){
                     add.setVisibility(View.INVISIBLE);
+                }
+
+                if (session.wantsNotifications()){
+                    notifications = (CheckBox) findViewById(R.id.checkBoxNotifications);
+                    notifications.setChecked(true);
+                }
+
+                break;
+
+            case R.id.checkBoxNotifications:
+                notifications = (CheckBox) findViewById(R.id.checkBoxNotifications);
+                if (notifications.isChecked()){
+                    session.createNotificationsSession(true);
+                }
+                else{
+                    session.createNotificationsSession(false);
+                }
+
+                break;
+
+            case R.id.btnChangePassword:
+                break;
+
+            case R.id.spinnerUnits:
                 break;
         }
     }

@@ -72,7 +72,7 @@ public class LoginActivity extends Activity {
                 //new PerformLogin().execute();
 
                 // Store the session data.
-                session.createLoginSession("TEST_USERNAME", "TEST_EMAIL");
+                session.createLoginSession("TEST_USERNAME", "TEST_EMAIL"); // Need to populate with real data
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);

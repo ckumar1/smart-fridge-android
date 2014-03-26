@@ -30,7 +30,8 @@
             android:id="@+id/checkBoxNotifications"
             android:layout_marginTop="58dp"
             android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:onClick="onButtonClick"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,5 +47,5 @@
             android:layout_below="@+id/btnChangePassword"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="43dp"
-            android:entries="@array/units_array" />
+            android:entries="@array/units_array"/>
 </RelativeLayout>

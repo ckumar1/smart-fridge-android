@@ -21,7 +21,7 @@ public class SessionManager {
     int PRIVATE_MODE = 0;
 
     // Sharedpref file name
-    private static final String PREF_NAME = "GPO_Preferences";
+    private static final String PREF_NAME = "SmartFridge_Preferences";
 
     // All Shared Preferences Keys
     private static final String IS_LOGIN = "IsLoggedIn";
@@ -31,6 +31,12 @@ public class SessionManager {
 
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";
+
+    // Settings Units (Metric or Imperial)
+    public static final String KEY_UNITS = "units";
+
+    // Settings Notifications preferences
+    public static final String WANTS_NOTIFICATIONS = "ReceiveNotifications";
 
     // Constructor
     public SessionManager(Context context){
@@ -120,5 +126,30 @@ public class SessionManager {
     public boolean isLoggedIn(){
         return pref.getBoolean(IS_LOGIN, false);
     }
+
+
+    /**
+     * Settings Methods
+     */
+
+    public void createNotificationsSession(boolean wantsNotifications){
+        editor.putBoolean(WANTS_NOTIFICATIONS, wantsNotifications);
+        editor.commit();
+    }
+
+    public void createUnitsSession(String units){
+        editor.putString(KEY_UNITS, units);
+        editor.commit();
+    }
+
+    public String getUnits(){
+        return pref.getString(KEY_UNITS, "Metric");
+
+    }
+
+    public boolean wantsNotifications(){
+        return pref.getBoolean(WANTS_NOTIFICATIONS, false);
+    }
+
 }
 
