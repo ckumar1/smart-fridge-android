@@ -2,6 +2,7 @@ package com.example.smart_fridge_android;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -37,6 +38,8 @@ public class MainActivity extends ListActivity  {
         db = new DatabaseHandler(this);
         db.getDatabaseName();
 
+        TextView foodView = (TextView) findViewById(R.id.tabFood);
+        foodView.setBackgroundColor(Color.BLUE);
         setFoodAdapter(); // Always start on the food page
 
         ListView listView = getListView();
@@ -55,16 +58,37 @@ public class MainActivity extends ListActivity  {
     	NavigationBar navBar = new NavigationBar();
         navBar.onButtonClick(v, getApplicationContext());
 
+
         if (v.getId() == R.id.tabFood){
             setFoodAdapter();
+            setContentView(R.layout.main);
+
+            TextView foodView = (TextView) findViewById(R.id.tabFood);
+            TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
+            TextView settingsView = (TextView) findViewById(R.id.tabSettings);
+
+            navBar.setTabColors(foodView, recipesView, settingsView);
         }
 
         if (v.getId() == R.id.tabRecipes){
             setRecipeAdapter();
+            setContentView(R.layout.main);
+
+            TextView foodView = (TextView) findViewById(R.id.tabFood);
+            TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
+            TextView settingsView = (TextView) findViewById(R.id.tabSettings);
+
+            navBar.setTabColors(recipesView, foodView, settingsView);
         }
 
         if (v.getId() == R.id.tabSettings){
             setContentView(R.layout.settings);
+
+            TextView foodView = (TextView) findViewById(R.id.tabFood);
+            TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
+            TextView settingsView = (TextView) findViewById(R.id.tabSettings);
+
+            navBar.setTabColors(settingsView, recipesView, foodView);
         }
     }
 

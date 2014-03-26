@@ -2,7 +2,9 @@ package com.example.smart_fridge_android;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class NavigationBar {
@@ -35,4 +37,12 @@ public class NavigationBar {
                 break;
 		}
 	}
+
+    public void setTabColors(TextView highlightedView, TextView blackView1, TextView blackView2){
+
+            highlightedView.setBackgroundColor(Color.BLUE);
+            blackView1.setBackgroundColor(Color.BLACK);
+            blackView2.setBackgroundColor(Color.BLACK);
+
+    }
 }
