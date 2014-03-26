@@ -53,9 +53,10 @@ public class MainActivity extends ListActivity  {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                // Need to implement the food / recipe views for this one
-                // It might be worth it to split them up into separate activities -carl
+                                    int position, long id)
+            {
+
+
             }
         });
     }
@@ -64,39 +65,47 @@ public class MainActivity extends ListActivity  {
     	NavigationBar navBar = new NavigationBar();
         navBar.onButtonClick(v, getApplicationContext());
 
+        TextView foodView;
+        TextView recipesView;
+        TextView settingsView;
 
-        if (v.getId() == R.id.tabFood){
-        	foodTab = true;
-            setFoodAdapter();
-            setContentView(R.layout.main);
 
-            TextView foodView = (TextView) findViewById(R.id.tabFood);
-            TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
-            TextView settingsView = (TextView) findViewById(R.id.tabSettings);
+        switch (v.getId()){
 
-            navBar.setTabColors(foodView, recipesView, settingsView);
-        }
 
-        if (v.getId() == R.id.tabRecipes){
-        	foodTab = false;
-            setRecipeAdapter();
-            setContentView(R.layout.main);
+            case R.id.tabFood:
+                foodTab = true;
+                setFoodAdapter();
+                setContentView(R.layout.main);
 
-            TextView foodView = (TextView) findViewById(R.id.tabFood);
-            TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
-            TextView settingsView = (TextView) findViewById(R.id.tabSettings);
+                foodView = (TextView) findViewById(R.id.tabFood);
+                recipesView = (TextView) findViewById(R.id.tabRecipes);
+                settingsView = (TextView) findViewById(R.id.tabSettings);
 
-            navBar.setTabColors(recipesView, foodView, settingsView);
-        }
 
-        if (v.getId() == R.id.tabSettings){
-            setContentView(R.layout.settings);
+                navBar.setTabColors(foodView, recipesView, settingsView);
+                break;
 
-            TextView foodView = (TextView) findViewById(R.id.tabFood);
-            TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
-            TextView settingsView = (TextView) findViewById(R.id.tabSettings);
+            case R.id.tabRecipes:
+                foodTab = false;
+                setRecipeAdapter();
+                setContentView(R.layout.main);
 
-            navBar.setTabColors(settingsView, recipesView, foodView);
+                foodView = (TextView) findViewById(R.id.tabFood);
+                recipesView = (TextView) findViewById(R.id.tabRecipes);
+                settingsView = (TextView) findViewById(R.id.tabSettings);
+
+                navBar.setTabColors(recipesView, foodView, settingsView);
+                break;
+
+            case R.id.tabSettings:
+                setContentView(R.layout.settings);
+
+                foodView = (TextView) findViewById(R.id.tabFood);
+                recipesView = (TextView) findViewById(R.id.tabRecipes);
+                settingsView = (TextView) findViewById(R.id.tabSettings);
+                navBar.setTabColors(settingsView, recipesView, foodView);
+                break;
         }
     }
 
