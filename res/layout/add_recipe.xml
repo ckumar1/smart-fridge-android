@@ -53,19 +53,41 @@
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignLeft="@+id/textView2"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/addingred"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onButtonClick"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_toRightOf="@+id/textView3"
-        android:ems="10"
-        android:inputType="textMultiLine" />
+        android:layout_below="@+id/editText2"
+        android:text="Add new ingredient" />
+
+    <Button
+        android:id="@+id/showlist"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/addingred"
+        android:onClick="onButtonClick"
+        android:text="View current ingredient list" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="46dp"
+        android:layout_below="@+id/showlist"
+        android:layout_marginTop="19dp"
+        android:layout_toLeftOf="@+id/editText2"
         android:text="Instructions: "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -75,17 +97,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/textView4"
-        android:layout_toRightOf="@+id/textView4"
         android:ems="10"
         android:inputType="textMultiLine" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/addrec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"
+        android:layout_toRightOf="@+id/textView3"
+        android:onClick="onButtonClick"
         android:text="Add Recipe" />
 
 </RelativeLayout>
