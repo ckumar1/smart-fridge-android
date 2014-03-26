@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -63,6 +64,19 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 					newFragment.show(ft, "date_dialog");
 				}
 			});
+			break;
+		case R.id.addMan:
+			Food food = new Food();
+			food.setName(((TextView)findViewById(R.id.nameField)).getText().toString());
+			food.setExpirationDate(((TextView)findViewById(R.id.dateSelector)).getText().toString());
+			food.setQuantity(Integer.parseInt(((TextView)findViewById(R.id.quantityField)).getText().toString()));
+			food.setCategory(((TextView)findViewById(R.id.foodgroupField)).getText().toString());
+			DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+			db.addFood(food);
+			
+			Intent i = new Intent(this, MainActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			this.startActivity(i);
 			break;
 		}
 	}

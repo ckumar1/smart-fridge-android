@@ -30,20 +30,11 @@
         android:text="@string/Quantity" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/textView4"
         android:layout_below="@+id/textView4"
-        android:layout_marginTop="25dp"
-        android:text="@string/units" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView5"
-        android:layout_below="@+id/textView5"
         android:layout_marginTop="30dp"
         android:text="@string/foodGroup" />
 
@@ -76,6 +67,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="28dp"
+        android:onClick="onButtonClick"
         android:text="@string/add" />
 
     <EditText
@@ -104,6 +96,14 @@
         android:layout_alignLeft="@+id/quantityField"
         android:layout_alignTop="@+id/textView3"
         android:ems="10"
-        style="@android:style/Widget.DeviceDefault.Light.Spinner" />
+        style="@android:style/Widget.DeviceDefault.Spinner" />
+
+    <EditText
+        android:id="@+id/foodgroupField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/quantityField"
+        android:layout_alignTop="@+id/textView6"
+        android:ems="10" />
 
 </RelativeLayout>
