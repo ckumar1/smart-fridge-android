@@ -40,18 +40,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="#287AA9"
         android:gravity="center_horizontal" >
 
         <TextView
             android:id="@+id/tabFood"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:background="#000000"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:text="Food"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:clickable="true"
@@ -60,11 +60,11 @@
         <TextView
             android:id="@+id/tabRecipes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:background="#000000"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:text="Recipes"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:clickable="true"
@@ -73,12 +73,12 @@
         <TextView
             android:id="@+id/tabSettings"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical|fill_horizontal"
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:background="#000000"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:text="Settings"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:clickable="true"
