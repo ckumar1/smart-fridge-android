@@ -17,6 +17,7 @@ public class MainActivity extends ListActivity  {
     private static final String TAG_FOOD_NAME = "name";
 
     DatabaseHandler db;
+    SessionManager session;
     
     ArrayList<HashMap<String, String>> foodList; // Passed to the list adapter to be displayed
     List<Food> foodsFromDB; // Grabs all food from the internal database
@@ -25,6 +26,8 @@ public class MainActivity extends ListActivity  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        session = new SessionManager(getApplicationContext());
 
         db = new DatabaseHandler(this);
         db.getDatabaseName();
@@ -71,6 +74,7 @@ public class MainActivity extends ListActivity  {
 		
 		case R.id.addBtn:
 		case R.id.logoutBtn:
+            session.logoutUser();
     		navBar.onButtonClick(v, this);
     		break;
 		}
