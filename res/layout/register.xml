@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="#3b3b3b" >
+            android:background="#3b3b3b">
 
     <LinearLayout
             android:layout_width="fill_parent"
@@ -17,6 +17,15 @@
                 android:text="REGISTER"
                 android:textSize="25dip"
                 android:textStyle="bold" />
+        <!-- Image -->
+        <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_launcher" android:layout_gravity="center_horizontal"/>
         <!--  Name Label -->
         <TextView
                 android:layout_width="fill_parent"
@@ -48,18 +57,6 @@
         <!--  Password TextField -->
         <EditText
                 android:id="@+id/registerPassword"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:password="true" />
-        <!--  Confirm Password Label -->
-        <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dip"
-                android:text="Confirm Password" />
-        <!--  Confirm Password TextField -->
-        <EditText
-                android:id="@+id/registerConfirmPassword"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:password="true" />
