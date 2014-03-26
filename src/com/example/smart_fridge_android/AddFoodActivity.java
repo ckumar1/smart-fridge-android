@@ -23,7 +23,7 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.add_food);
+		setContentView(R.layout.add_food_manual);
 		EditText mDateTextView = (EditText)findViewById(R.id.dateSelector);
 		mDateTextView.setOnClickListener(new View.OnClickListener() {
 
@@ -34,6 +34,7 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 				newFragment.show(ft, "date_dialog");
 			}
 		});
+		setContentView(R.layout.add_food);
 		add = (Button) findViewById(R.id.addBtn);
         if (add != null)
         	add.setVisibility(View.INVISIBLE);
