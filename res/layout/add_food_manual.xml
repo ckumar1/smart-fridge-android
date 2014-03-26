@@ -97,7 +97,7 @@
         android:layout_marginTop="14dp"
         android:text="@string/AddFood" />
 
-    <EditText
+    <TextView
         android:id="@+id/dateSelector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
