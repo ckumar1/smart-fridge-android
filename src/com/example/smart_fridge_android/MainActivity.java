@@ -15,7 +15,8 @@ import java.util.List;
 public class MainActivity extends ListActivity  {
 
     private static final String TAG_FOOD_ID = "food_id";
-    private static final String TAG_FOOD_DATA = "data";
+    private static final String TAG_FOOD_NAME = "name";
+    private static final String TAG_FOOD_EXPIRATION = "expiration";
     private static final String TAG_RECIPE_ID = "recipe_id";
     private static final String TAG_RECIPE_NAME = "name";
     public static boolean foodTab;
@@ -53,7 +54,7 @@ public class MainActivity extends ListActivity  {
                                     int position, long id)
             {
             	String fid = ((TextView) view.findViewById(R.id.food_id)).getText().toString();
-            	//make intent and attaach id to intent
+            	//make intent and attach id to intent
             	Intent foodInt = new Intent(getApplicationContext(), Individual_Food_Item.class);
             	
             	foodInt.putExtra("fid", fid);
@@ -181,18 +182,26 @@ public class MainActivity extends ListActivity  {
             Integer id = food.getId();            // Dumb android syntax forces this on me
             String  id_as_string = id.toString(); // Will investigate alternative methods - carl
 
-            String foodData = "";
-            foodData += food.getName();
-            foodData += " - Expires: ";
-            foodData += food.getExpirationDate();
+            String foodName;
+            String foodExpiration = "";
+            foodName = food.getName();
+
+            if (!food.getExpirationDate().isEmpty()){
+                foodExpiration += " - Expires: ";
+                foodExpiration += food.getExpirationDate();
+            } else {
+                foodExpiration = "No Expiration Date Set";
+            }
 
             map.put(TAG_FOOD_ID, id_as_string);
-            map.put(TAG_FOOD_DATA, foodData);
+            map.put(TAG_FOOD_NAME, foodName);
+            map.put(TAG_FOOD_EXPIRATION, foodExpiration);
             foodList.add(map);
         }
 
         adapter = new SimpleAdapter(MainActivity.this, foodList, R.layout.food_list_item,
-                new String[] {TAG_FOOD_ID, TAG_FOOD_DATA}, new int[] {R.id.food_id, R.id.food_data});
+                new String[] {TAG_FOOD_ID, TAG_FOOD_NAME, TAG_FOOD_EXPIRATION},
+                new int[] {R.id.food_id, R.id.foodName, R.id.foodExpirationDate});
 
         setListAdapter(adapter);
     }
