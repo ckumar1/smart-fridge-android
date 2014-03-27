@@ -14,9 +14,19 @@
 
     <!-- Name Label -->
     <TextView
-            android:id="@+id/food_data"
+            android:id="@+id/foodName"
             android:layout_width="fill_parent"
-            android:layout_height="60dp"
+            android:layout_height="35dp"
+            android:paddingTop="6dip"
+            android:paddingLeft="6dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    <!-- Expiration Date Label -->
+    <TextView
+            android:id="@+id/foodExpirationDate"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
             android:paddingTop="6dip"
             android:paddingLeft="6dip"
             android:textSize="20sp"

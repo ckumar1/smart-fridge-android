@@ -6,16 +6,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
 public class MainActivity extends ListActivity  {
 
     private static final String TAG_FOOD_ID = "food_id";
-    private static final String TAG_FOOD_DATA = "data";
+    private static final String TAG_FOOD_NAME = "name";
+    private static final String TAG_FOOD_EXPIRATION = "expiration";
     private static final String TAG_RECIPE_ID = "recipe_id";
     private static final String TAG_RECIPE_NAME = "name";
     public static boolean foodTab;
@@ -44,24 +43,9 @@ public class MainActivity extends ListActivity  {
         TextView foodView = (TextView) findViewById(R.id.tabFood);
         foodView.setBackgroundColor(Color.BLUE);
         setFoodAdapter(); // Always start on the food page
-
-        ListView listView = getListView();
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id)
-            {
-            	String fid = ((TextView) view.findViewById(R.id.food_id)).getText().toString();
-            	//make intent and attaach id to intent
-            	Intent foodInt = new Intent(getApplicationContext(), Individual_Food_Item.class);
-            	
-            	foodInt.putExtra("fid", fid);
-            	
-            	startActivity(foodInt);
-            }
-        });
+        setListView();
     }
+    
     
     public void onButtonClick(View v) {
     	NavigationBar navBar = new NavigationBar();
@@ -78,10 +62,10 @@ public class MainActivity extends ListActivity  {
         switch (v.getId()){
 
             case R.id.tabFood:
-                foodTab = true;
 
-                setFoodAdapter();
+                foodTab = true;
                 setContentView(R.layout.main);
+                setFoodAdapter();
 
                 foodView = (TextView) findViewById(R.id.tabFood);
                 recipesView = (TextView) findViewById(R.id.tabRecipes);
@@ -91,10 +75,10 @@ public class MainActivity extends ListActivity  {
                 break;
 
             case R.id.tabRecipes:
-                foodTab = false;
 
-                setRecipeAdapter();
+                foodTab = false;
                 setContentView(R.layout.main);
+                setRecipeAdapter();
 
                 foodView = (TextView) findViewById(R.id.tabFood);
                 recipesView = (TextView) findViewById(R.id.tabRecipes);
@@ -173,7 +157,7 @@ public class MainActivity extends ListActivity  {
     }
 
     /** Shows the food list on the main activity */
-    public void setFoodAdapter(){
+    private void setFoodAdapter(){
 
         foodList = new ArrayList<HashMap<String, String>>();
 
@@ -186,24 +170,33 @@ public class MainActivity extends ListActivity  {
             Integer id = food.getId();            // Dumb android syntax forces this on me
             String  id_as_string = id.toString(); // Will investigate alternative methods - carl
 
-            String foodData = "";
-            foodData += food.getName();
-            foodData += " - Expires: ";
-            foodData += food.getExpirationDate();
+            String foodName;
+            String foodExpiration = "";
+            foodName = food.getName();
+
+            if (!food.getExpirationDate().isEmpty()){
+                foodExpiration += " - Expires: ";
+                foodExpiration += food.getExpirationDate();
+            } else {
+                foodExpiration = "No Expiration Date Set";
+            }
 
             map.put(TAG_FOOD_ID, id_as_string);
-            map.put(TAG_FOOD_DATA, foodData);
+            map.put(TAG_FOOD_NAME, foodName);
+            map.put(TAG_FOOD_EXPIRATION, foodExpiration);
             foodList.add(map);
         }
 
         adapter = new SimpleAdapter(MainActivity.this, foodList, R.layout.food_list_item,
-                new String[] {TAG_FOOD_ID, TAG_FOOD_DATA}, new int[] {R.id.food_id, R.id.food_data});
+                new String[] {TAG_FOOD_ID, TAG_FOOD_NAME, TAG_FOOD_EXPIRATION},
+                new int[] {R.id.food_id, R.id.foodName, R.id.foodExpirationDate});
 
         setListAdapter(adapter);
+        setListView();
     }
 
     /** Shows the recipe list on the main activity */
-    public void setRecipeAdapter(){
+    private void setRecipeAdapter(){
 
         recipesList = new ArrayList<HashMap<String, String>>();
 
@@ -225,5 +218,34 @@ public class MainActivity extends ListActivity  {
                 new String[] {TAG_RECIPE_ID, TAG_RECIPE_NAME}, new int[] {R.id.recipe_id, R.id.recipe_name});
 
         setListAdapter(adapter);
+        setListView();
+    }
+
+    private void setListView(){
+        ListView listView = getListView();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id)
+            {
+                if (foodTab) {
+                    String fid = ((TextView) view.findViewById(R.id.food_id)).getText().toString();
+                    //make intent and attach id to intent
+                    Intent foodInt = new Intent(getApplicationContext(), Individual_Food_Item.class);
+
+                    foodInt.putExtra("fid", fid);
+
+                    startActivity(foodInt);
+                } else if (!foodTab) {
+                    String rid = ((TextView) view.findViewById(R.id.recipe_id)).getText().toString();
+
+                    Intent recipeInt = new Intent(getApplicationContext(), IndividualRecipeActivity.class);
+
+                    recipeInt.putExtra("rid", rid);
+                    startActivity(recipeInt);
+                }
+            }
+        });
     }
 }
