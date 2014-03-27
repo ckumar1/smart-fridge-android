@@ -6,9 +6,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+
+import java.util.*;
 
 public class MainActivity extends ListActivity  {
 
@@ -152,41 +151,81 @@ public class MainActivity extends ListActivity  {
     }
 
     /** Shows the food list on the main activity */
-    private void setFoodAdapter(){
+//    private void setFoodAdapter(){
+//
+//
+//        foodList = new ArrayList<HashMap<String, String>>();
+//
+//        foodsFromDB = db.getAllFood();
+//
+//        for (Food food : foodsFromDB){
+//
+//            HashMap<String, String> map = new HashMap<String, String>();
+//
+//            Integer id = food.getId();            // Dumb android syntax forces this on me
+//            String  id_as_string = id.toString(); // Will investigate alternative methods - carl
+//
+//            String foodName;
+//            String foodExpiration = "";
+//            foodName = food.getName();
+//
+//            if (!food.getExpirationDate().isEmpty()){
+//                foodExpiration += " - Expires: ";
+//                foodExpiration += food.getExpirationDate();
+//            } else {
+//                foodExpiration = "No Expiration Date Set";
+//            }
+//
+//            map.put(TAG_FOOD_ID, id_as_string);
+//            map.put(TAG_FOOD_NAME, foodName);
+//            map.put(TAG_FOOD_EXPIRATION, foodExpiration);
+//            foodList.add(map);
+//        }
+//
+//        adapter = new SimpleAdapter(MainActivity.this, foodList, R.layout.list_item,
+//                new String[] {TAG_FOOD_ID, TAG_FOOD_NAME, TAG_FOOD_EXPIRATION},
+//                new int[] {R.id.food_id, R.id.foodName, R.id.foodExpirationDate});
+//
+//        setListAdapter(adapter);
+//        setListView();
+//    }
 
-        foodList = new ArrayList<HashMap<String, String>>();
+    private void setFoodAdapter(){
+        ArrayList<String> list = new ArrayList<String>();
+        String value;
 
         foodsFromDB = db.getAllFood();
 
         for (Food food : foodsFromDB){
 
-            HashMap<String, String> map = new HashMap<String, String>();
+            value = "";
 
             Integer id = food.getId();            // Dumb android syntax forces this on me
             String  id_as_string = id.toString(); // Will investigate alternative methods - carl
+
+            value += id_as_string + ",";
 
             String foodName;
             String foodExpiration = "";
             foodName = food.getName();
 
+            value += foodName + ",";
+
             if (!food.getExpirationDate().isEmpty()){
-                foodExpiration += " - Expires: ";
-                foodExpiration += food.getExpirationDate();
+                //foodExpiration += " - Expires: ";
+                foodExpiration = food.getExpirationDate();
             } else {
                 foodExpiration = "No Expiration Date Set";
             }
 
-            map.put(TAG_FOOD_ID, id_as_string);
-            map.put(TAG_FOOD_NAME, foodName);
-            map.put(TAG_FOOD_EXPIRATION, foodExpiration);
-            foodList.add(map);
+            value += foodExpiration;
+
+            list.add(value);
         }
 
-        adapter = new SimpleAdapter(MainActivity.this, foodList, R.layout.food_list_item,
-                new String[] {TAG_FOOD_ID, TAG_FOOD_NAME, TAG_FOOD_EXPIRATION},
-                new int[] {R.id.food_id, R.id.foodName, R.id.foodExpirationDate});
+        FoodCustomAdapter customAdapter = new FoodCustomAdapter(getApplicationContext(), list);
 
-        setListAdapter(adapter);
+        setListAdapter(customAdapter);
         setListView();
     }
 

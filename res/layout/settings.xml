@@ -60,16 +60,5 @@
             android:id="@+id/radioButtonImperial"
             android:layout_below="@+id/radioButtonMetric"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="28dp"
-            android:onClick="onButtonClick"/>
-    <!--<Spinner-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/spinnerUnits"-->
-            <!--android:layout_below="@+id/btnChangePassword"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_marginTop="43dp"-->
-            <!--android:entries="@array/units_array"/>-->
-
-
+            android:layout_marginTop="28dp"/>
 </RelativeLayout>
