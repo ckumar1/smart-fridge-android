@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class Individual_Food_Item extends Activity {
 	DatabaseHandler db; 
+	Food food = new Food();
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -17,25 +19,41 @@ public class Individual_Food_Item extends Activity {
         
         db = new DatabaseHandler(this);
         db.getDatabaseName();
-        Food food = new Food();
+        
         food = db.getFoodById(Integer.parseInt(id));
         
-    }
+        String name = food.getName();
+        TextView nameText = (TextView) findViewById(R.id.FoodName);
+        nameText.setText(name);
+        
+        int quantity = food.getQuantity();
+        TextView quantityText = (TextView) findViewById(R.id.FoodQuantity);
+        quantityText.setText(""+quantity);
+        
+        String expDate = food.getExpirationDate();
+        TextView expDateText = (TextView) findViewById(R.id.ExpDate);
+        expDateText.setText(expDate);
+        
+        //add in nutritional information Iteration 2
+        
+            }
+	
 //get id, intent to start activity
 	public void onButtonClick(View v) {
 		
 		NavigationBar navBar = new NavigationBar();
         navBar.onButtonClick(v, getApplicationContext());
-        
+                           
+                    
         switch (v.getId()){
         
         case R.id.DeleteButton:
+        	db.deleteFood(food);
         	
-        	
-        	break;
-        
-       //String foodname = food.getName(name);
-        
+        	Intent i = new Intent(this, MainActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			this.startActivity(i);
+        	break;       
         }
 	
 	}	

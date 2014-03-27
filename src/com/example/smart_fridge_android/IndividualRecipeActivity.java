@@ -2,7 +2,6 @@ package com.example.smart_fridge_android;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
 
 public class IndividualRecipeActivity extends Activity {
 
@@ -11,5 +10,4 @@ public class IndividualRecipeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.individual_recipe_item);
 	}
-
 }

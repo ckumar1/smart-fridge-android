@@ -28,6 +28,7 @@
         <activity android:name="com.example.smart_fridge_android.MainActivity" />
         <activity android:name="com.example.smart_fridge_android.AddFoodActivity" />
         <activity android:name="com.example.smart_fridge_android.IndividualRecipeActivity" />
+        <activity android:name="com.example.smart_fridge_android.Individual_Food_Item" />
     </application>
 
 </manifest>
