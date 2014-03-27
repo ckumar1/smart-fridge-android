@@ -19,32 +19,57 @@
             android:layout_height="wrap_content"
             android:text="SETTINGS"
             android:id="@+id/textView"
-            android:layout_below="@+id/include"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="45dp"
-            android:textSize="30sp"/>
+            android:layout_marginTop="31dp"
+            android:textSize="30sp" android:layout_below="@+id/include" android:layout_centerHorizontal="true"/>
     <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Receive Notifications"
             android:id="@+id/checkBoxNotifications"
-            android:layout_marginTop="58dp"
-            android:layout_below="@+id/textView"
+            android:layout_marginTop="28dp"
+            android:onClick="onButtonClick" android:layout_below="@+id/textView"
             android:layout_centerHorizontal="true"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Change Password"
             android:id="@+id/btnChangePassword"
-            android:layout_marginTop="65dp"
-            android:layout_below="@+id/checkBoxNotifications"
-            android:layout_centerHorizontal="true"/>
-    <Spinner
+            android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinnerUnits"
-            android:layout_below="@+id/btnChangePassword"
+            android:text="Units"
+            android:id="@+id/textView2"
+            android:layout_marginTop="57dp"
+            android:layout_below="@+id/btnChangePassword" android:layout_centerHorizontal="true"
+            android:textSize="20sp"/>
+    <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Metric"
+            android:id="@+id/radioButtonMetric"
+            android:layout_marginTop="31dp"
+            android:layout_below="@+id/textView2"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="43dp"
-            android:entries="@array/units_array" />
+            android:singleLine="false"
+            android:onClick="onButtonClick"/>
+    <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Imperial"
+            android:id="@+id/radioButtonImperial"
+            android:layout_below="@+id/radioButtonMetric"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:onClick="onButtonClick"/>
+    <!--<Spinner-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/spinnerUnits"-->
+            <!--android:layout_below="@+id/btnChangePassword"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="43dp"-->
+            <!--android:entries="@array/units_array"/>-->
+
+
 </RelativeLayout>

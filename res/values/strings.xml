@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">smart-fridge-android</string>
     <string name="AddFood">Add Food</string>
     <string name="AddFoodName">Name:</string>
@@ -34,13 +35,18 @@
     <string name="add_recipe_name">Name</string>
     <string name="add_recipe_ingredients">Ingredients</string>
     <string name="add_recipe_instructions">Instructions</string>
-
-
     <string name="units_prompt">Choose a country</string>
 
     <string-array name="units_array">
         <item>Metric</item>
         <item>Imperial</item>
     </string-array>
+
+    <string name="Recipe">Recipe</string>
+    <string name="RecipeName">"Name: "</string>
+    <string name="IndRecipeInstructions">Instructions:</string>
+    <string name="title_activity_individual_recipe">IndividualRecipeActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

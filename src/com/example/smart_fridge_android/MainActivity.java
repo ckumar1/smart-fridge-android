@@ -23,7 +23,7 @@ public class MainActivity extends ListActivity  {
     DatabaseHandler db;
     SessionManager session;
 
-    Spinner spinner;
+    Spinner units;
     ListAdapter adapter;
     ArrayList<HashMap<String, String>> foodList; // Passed to the list adapter to be displayed
     ArrayList<HashMap<String, String>> recipesList;
@@ -41,8 +41,6 @@ public class MainActivity extends ListActivity  {
 
         db = new DatabaseHandler(this);
         db.getDatabaseName();
-
-        spinner = (Spinner) findViewById(R.id.spinnerUnits);
 
         TextView foodView = (TextView) findViewById(R.id.tabFood);
         foodView.setBackgroundColor(Color.BLUE);
@@ -76,6 +74,9 @@ public class MainActivity extends ListActivity  {
         TextView recipesView;
         TextView settingsView;
 
+        CheckBox notifications;
+        RadioButton metric;
+        RadioButton imperial;
 
         switch (v.getId()){
 
@@ -116,9 +117,78 @@ public class MainActivity extends ListActivity  {
 
                 navBar.setTabColors(settingsView, recipesView, foodView);
 
+                metric = (RadioButton) findViewById(R.id.radioButtonMetric);
+                imperial = (RadioButton) findViewById(R.id.radioButtonImperial);
+
+                if (session.getUnits().equals("Metric")){
+                    metric.setChecked(true);
+                    imperial.setChecked(false);
+                } else {
+                    metric.setChecked(false);
+                    imperial.setChecked(true);
+                }
+
+//                units = (Spinner) findViewById(R.id.spinnerUnits);
+//
+//                Toast.makeText(getApplicationContext(), session.getUnits(), Toast.LENGTH_SHORT).show();
+//                units.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view,
+//                                               int position, long id){
+//                        if (position == 0){
+//                            session.createUnitsSession("Metric");
+//                        } else {
+//                            session.createUnitsSession("Imperial");
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent){
+//
+//                    }
+//                });
+
+
                 Button add = (Button) findViewById(R.id.addBtn);
-                if (add != null)
+                if (add != null){
                     add.setVisibility(View.INVISIBLE);
+                }
+
+                if (session.wantsNotifications()){
+                    notifications = (CheckBox) findViewById(R.id.checkBoxNotifications);
+                    notifications.setChecked(true);
+                }
+
+                break;
+
+            case R.id.checkBoxNotifications:
+                notifications = (CheckBox) findViewById(R.id.checkBoxNotifications);
+                if (notifications.isChecked()){
+                    session.createNotificationsSession(true);
+                }
+                else{
+                    session.createNotificationsSession(false);
+                }
+                break;
+
+            case R.id.btnChangePassword:
+                break;
+
+            case R.id.radioButtonMetric:
+                session.createUnitsSession("Metric");
+                metric = (RadioButton) findViewById(R.id.radioButtonMetric);
+                imperial = (RadioButton) findViewById(R.id.radioButtonImperial);
+                metric.setChecked(true);
+                imperial.setChecked(false);
+                break;
+
+            case R.id.radioButtonImperial:
+                session.createUnitsSession("Imperial");
+                metric = (RadioButton) findViewById(R.id.radioButtonMetric);
+                imperial = (RadioButton) findViewById(R.id.radioButtonImperial);
+                metric.setChecked(false);
+                imperial.setChecked(true);
                 break;
         }
     }
@@ -141,7 +211,6 @@ public class MainActivity extends ListActivity  {
             foodData += food.getName();
             foodData += " - Expires: ";
             foodData += food.getExpirationDate();
-
 
             map.put(TAG_FOOD_ID, id_as_string);
             map.put(TAG_FOOD_DATA, foodData);
