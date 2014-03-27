@@ -16,7 +16,7 @@ public class IndividualRecipeActivity extends Activity {
 		setContentView(R.layout.individual_recipe_item);
 		
 		Intent intent = getIntent();
-        String id = intent.getStringExtra("fid");
+        String id = intent.getStringExtra("rid");
         
         db = new DatabaseHandler(this);
         db.getDatabaseName();
