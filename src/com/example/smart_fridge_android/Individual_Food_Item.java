@@ -18,7 +18,7 @@ public class Individual_Food_Item extends Activity {
         db = new DatabaseHandler(this);
         db.getDatabaseName();
         Food food = new Food();
-        food = db.getFoodById(Integer.parseInt(id));
+        food = db.getFoodById(Integer.parseInt(id)); 
         
     }
 //get id, intent to start activity
