@@ -53,16 +53,26 @@ public class MainActivity extends ListActivity  {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id)
             {
-            	String fid = ((TextView) view.findViewById(R.id.food_id)).getText().toString();
-            	//make intent and attach id to intent
-            	Intent foodInt = new Intent(getApplicationContext(), Individual_Food_Item.class);
-            	
-            	foodInt.putExtra("fid", fid);
-            	
-            	startActivity(foodInt);
+            	if (foodTab) {
+            		String fid = ((TextView) view.findViewById(R.id.food_id)).getText().toString();
+            		//make intent and attach id to intent
+            		Intent foodInt = new Intent(getApplicationContext(), Individual_Food_Item.class);
+
+            		foodInt.putExtra("fid", fid);
+
+            		startActivity(foodInt); 
+            	} else if (!foodTab) {
+            		String rid = ((TextView) view.findViewById(R.id.recipe_id)).getText().toString();
+            		
+            		Intent recipeInt = new Intent(getApplicationContext(), IndividualRecipeActivity.class);
+            		
+            		recipeInt.putExtra("rid", rid);
+            		startActivity(recipeInt);
+            	}
             }
         });
     }
+    
     
     public void onButtonClick(View v) {
     	NavigationBar navBar = new NavigationBar();
@@ -82,7 +92,6 @@ public class MainActivity extends ListActivity  {
                 foodTab = true;
 
                 setFoodAdapter();
-                setContentView(R.layout.main);
 
                 foodView = (TextView) findViewById(R.id.tabFood);
                 recipesView = (TextView) findViewById(R.id.tabRecipes);
@@ -95,7 +104,6 @@ public class MainActivity extends ListActivity  {
                 foodTab = false;
 
                 setRecipeAdapter();
-                setContentView(R.layout.main);
 
                 foodView = (TextView) findViewById(R.id.tabFood);
                 recipesView = (TextView) findViewById(R.id.tabRecipes);
