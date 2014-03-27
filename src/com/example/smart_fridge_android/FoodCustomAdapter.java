@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class FoodCustomAdapter extends ArrayAdapter<String> {
@@ -22,7 +20,7 @@ public class FoodCustomAdapter extends ArrayAdapter<String> {
     private String expires = " - Expires: ";
 
     public FoodCustomAdapter(Context context, ArrayList<String> values) {
-        super(context, R.layout.list_item, values);
+        super(context, R.layout.food_list_item, values);
         this.context = context;
         this.values = values;
     }
@@ -31,7 +29,7 @@ public class FoodCustomAdapter extends ArrayAdapter<String> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.list_item, parent, false);
+        View rowView = inflater.inflate(R.layout.food_list_item, parent, false);
 
         parsedValues = parse(values.get(position));
 

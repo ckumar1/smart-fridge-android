@@ -156,45 +156,6 @@ public class MainActivity extends ListActivity  {
     }
 
     /** Shows the food list on the main activity */
-//    private void setFoodAdapter(){
-//
-//
-//        foodList = new ArrayList<HashMap<String, String>>();
-//
-//        foodsFromDB = db.getAllFood();
-//
-//        for (Food food : foodsFromDB){
-//
-//            HashMap<String, String> map = new HashMap<String, String>();
-//
-//            Integer id = food.getId();            // Dumb android syntax forces this on me
-//            String  id_as_string = id.toString(); // Will investigate alternative methods - carl
-//
-//            String foodName;
-//            String foodExpiration = "";
-//            foodName = food.getName();
-//
-//            if (!food.getExpirationDate().isEmpty()){
-//                foodExpiration += " - Expires: ";
-//                foodExpiration += food.getExpirationDate();
-//            } else {
-//                foodExpiration = "No Expiration Date Set";
-//            }
-//
-//            map.put(TAG_FOOD_ID, id_as_string);
-//            map.put(TAG_FOOD_NAME, foodName);
-//            map.put(TAG_FOOD_EXPIRATION, foodExpiration);
-//            foodList.add(map);
-//        }
-//
-//        adapter = new SimpleAdapter(MainActivity.this, foodList, R.layout.list_item,
-//                new String[] {TAG_FOOD_ID, TAG_FOOD_NAME, TAG_FOOD_EXPIRATION},
-//                new int[] {R.id.food_id, R.id.foodName, R.id.foodExpirationDate});
-//
-//        setListAdapter(adapter);
-//        setListView();
-//    }
-
     private void setFoodAdapter(){
         ArrayList<String> list = new ArrayList<String>();
         String value;
@@ -211,7 +172,7 @@ public class MainActivity extends ListActivity  {
             value += id_as_string + ",";
 
             String foodName;
-            String foodExpiration = "";
+            String foodExpiration;
             foodName = food.getName();
 
             value += foodName + ",";
