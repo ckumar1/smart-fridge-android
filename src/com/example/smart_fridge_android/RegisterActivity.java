@@ -27,6 +27,7 @@ public class RegisterActivity extends Activity {
     EditText inputName;
     EditText inputEmail;
     EditText inputPassword;
+    EditText inputConfirmPassword;
 
     // url to create new user
     private static String url_create_user = "http://group-project-organizer.herokuapp.com/register.php";
@@ -43,6 +44,7 @@ public class RegisterActivity extends Activity {
         inputName = (EditText) findViewById(R.id.registerName);
         inputEmail = (EditText) findViewById(R.id.registerEmail);
         inputPassword = (EditText) findViewById(R.id.registerPassword);
+        inputConfirmPassword = (EditText) findViewById(R.id.registerConfirmPassword);
     }
 
     public void onButtonClick(View v){
@@ -50,11 +52,16 @@ public class RegisterActivity extends Activity {
         switch (v.getId()){
 
             case R.id.btnRegister:
-                // Implement when external db is set up
-                //new CreateNewUser().execute();
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                if (!inputPassword.getText().toString().equals(inputConfirmPassword.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "Passwords do not match!", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Implement when external db is set up
+                    //new CreateNewUser().execute();
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
     }
