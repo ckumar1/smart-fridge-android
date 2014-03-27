@@ -147,6 +147,7 @@ public class MainActivity extends ListActivity  {
                 break;
 
             case R.id.btnChangePassword:
+            	setContentView(R.layout.change_password);
                 break;
 
             case R.id.radioButtonMetric:
@@ -164,6 +165,10 @@ public class MainActivity extends ListActivity  {
                 metric.setChecked(false);
                 imperial.setChecked(true);
                 break;
+                
+            //case R.id.ChangePassword:
+            	
+            	
         }
     }
 

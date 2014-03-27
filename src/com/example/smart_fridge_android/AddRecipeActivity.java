@@ -66,7 +66,13 @@ public class AddRecipeActivity extends Activity {
   
         	for(String ingredient : ingredlist)
         	{
+        		if(message.equals(""))
+        		{
+        			message = ingredient;
+        		}
+        		else {
         		message = message + "\n" + ingredient;
+        		}
         	}
         	          	
         	builder.setMessage(message);
