@@ -6,11 +6,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 
 public class MainActivity extends ListActivity  {
 
@@ -45,32 +43,7 @@ public class MainActivity extends ListActivity  {
         TextView foodView = (TextView) findViewById(R.id.tabFood);
         foodView.setBackgroundColor(Color.BLUE);
         setFoodAdapter(); // Always start on the food page
-
-        ListView listView = getListView();
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id)
-            {
-            	if (foodTab) {
-            		String fid = ((TextView) view.findViewById(R.id.food_id)).getText().toString();
-            		//make intent and attach id to intent
-            		Intent foodInt = new Intent(getApplicationContext(), Individual_Food_Item.class);
-
-            		foodInt.putExtra("fid", fid);
-
-            		startActivity(foodInt); 
-            	} else if (!foodTab) {
-            		String rid = ((TextView) view.findViewById(R.id.recipe_id)).getText().toString();
-            		
-            		Intent recipeInt = new Intent(getApplicationContext(), IndividualRecipeActivity.class);
-            		
-            		recipeInt.putExtra("rid", rid);
-            		startActivity(recipeInt);
-            	}
-            }
-        });
+        setListView();
     }
     
     
@@ -89,8 +62,9 @@ public class MainActivity extends ListActivity  {
         switch (v.getId()){
 
             case R.id.tabFood:
-                foodTab = true;
 
+                foodTab = true;
+                setContentView(R.layout.main);
                 setFoodAdapter();
 
                 foodView = (TextView) findViewById(R.id.tabFood);
@@ -101,8 +75,9 @@ public class MainActivity extends ListActivity  {
                 break;
 
             case R.id.tabRecipes:
-                foodTab = false;
 
+                foodTab = false;
+                setContentView(R.layout.main);
                 setRecipeAdapter();
 
                 foodView = (TextView) findViewById(R.id.tabFood);
@@ -177,7 +152,7 @@ public class MainActivity extends ListActivity  {
     }
 
     /** Shows the food list on the main activity */
-    public void setFoodAdapter(){
+    private void setFoodAdapter(){
 
         foodList = new ArrayList<HashMap<String, String>>();
 
@@ -212,10 +187,11 @@ public class MainActivity extends ListActivity  {
                 new int[] {R.id.food_id, R.id.foodName, R.id.foodExpirationDate});
 
         setListAdapter(adapter);
+        setListView();
     }
 
     /** Shows the recipe list on the main activity */
-    public void setRecipeAdapter(){
+    private void setRecipeAdapter(){
 
         recipesList = new ArrayList<HashMap<String, String>>();
 
@@ -237,5 +213,34 @@ public class MainActivity extends ListActivity  {
                 new String[] {TAG_RECIPE_ID, TAG_RECIPE_NAME}, new int[] {R.id.recipe_id, R.id.recipe_name});
 
         setListAdapter(adapter);
+        setListView();
+    }
+
+    private void setListView(){
+        ListView listView = getListView();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id)
+            {
+                if (foodTab) {
+                    String fid = ((TextView) view.findViewById(R.id.food_id)).getText().toString();
+                    //make intent and attach id to intent
+                    Intent foodInt = new Intent(getApplicationContext(), Individual_Food_Item.class);
+
+                    foodInt.putExtra("fid", fid);
+
+                    startActivity(foodInt);
+                } else if (!foodTab) {
+                    String rid = ((TextView) view.findViewById(R.id.recipe_id)).getText().toString();
+
+                    Intent recipeInt = new Intent(getApplicationContext(), IndividualRecipeActivity.class);
+
+                    recipeInt.putExtra("rid", rid);
+                    startActivity(recipeInt);
+                }
+            }
+        });
     }
 }
