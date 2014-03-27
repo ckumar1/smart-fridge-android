@@ -12,11 +12,4 @@ public class IndividualRecipeActivity extends Activity {
 		setContentView(R.layout.individual_recipe_item);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.individual_recipe, menu);
-		return true;
-	}
-
 }
