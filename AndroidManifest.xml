@@ -22,6 +22,7 @@
         <activity android:name="AddRecipeActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name="AddFoodActivity" />
+        <activity android:name="Individual_Food_Item"/>
     </application>
 
 </manifest>
