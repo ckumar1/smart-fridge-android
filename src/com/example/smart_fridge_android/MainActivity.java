@@ -23,7 +23,6 @@ public class MainActivity extends ListActivity  {
     DatabaseHandler db;
     SessionManager session;
 
-    Spinner units;
     ListAdapter adapter;
     ArrayList<HashMap<String, String>> foodList; // Passed to the list adapter to be displayed
     ArrayList<HashMap<String, String>> recipesList;
@@ -69,8 +68,7 @@ public class MainActivity extends ListActivity  {
             		recipeInt.putExtra("rid", rid);
             		startActivity(recipeInt);
             	}
-            	
-            	
+
             }
         });
     }
@@ -89,7 +87,6 @@ public class MainActivity extends ListActivity  {
         RadioButton imperial;
 
         switch (v.getId()){
-
 
             case R.id.tabFood:
                 foodTab = true;
@@ -135,28 +132,6 @@ public class MainActivity extends ListActivity  {
                     metric.setChecked(false);
                     imperial.setChecked(true);
                 }
-
-//                units = (Spinner) findViewById(R.id.spinnerUnits);
-//
-//                Toast.makeText(getApplicationContext(), session.getUnits(), Toast.LENGTH_SHORT).show();
-//                units.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//
-//                    @Override
-//                    public void onItemSelected(AdapterView<?> parent, View view,
-//                                               int position, long id){
-//                        if (position == 0){
-//                            session.createUnitsSession("Metric");
-//                        } else {
-//                            session.createUnitsSession("Imperial");
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onNothingSelected(AdapterView<?> parent){
-//
-//                    }
-//                });
-
 
                 Button add = (Button) findViewById(R.id.addBtn);
                 if (add != null){

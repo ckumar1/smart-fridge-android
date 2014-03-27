@@ -119,6 +119,15 @@
                     android:text="nutrInfoField" />
 
             </RelativeLayout>
+
+            <Button
+                android:id="@+id/IndRecipeDeleteButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Delete Recipe" />
+
         </LinearLayout>
     </ScrollView>
 
