@@ -31,13 +31,15 @@ public class LoginActivity extends Activity {
     EditText inputPassword;
 
     // url to log in a user
-    private static String url_login = "http://group-project-organizer.herokuapp.com/login.php";
+    private static String url_login = "";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_USER = "user";
     private static final String TAG_UID = "uid";
     private static final String TAG_EMAIL = "email";
+
+    private static final String STARTING_TAB = "startingTab";
 
     public SessionManager session;
 
@@ -49,8 +51,8 @@ public class LoginActivity extends Activity {
         session = new SessionManager(getApplicationContext());
 
         if (session.isLoggedIn()){
-            //Toast.makeText(getApplicationContext(), "User already logged in", Toast.LENGTH_LONG).show();
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            i.putExtra(STARTING_TAB, "food");
             startActivity(i);
         } else {
             //Toast.makeText(getApplicationContext(), "User NOT already logged in", Toast.LENGTH_LONG).show();
@@ -75,6 +77,7 @@ public class LoginActivity extends Activity {
                 session.createLoginSession("TEST_USERNAME", "TEST_EMAIL"); // Need to populate with real data
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra(STARTING_TAB, "food");
                 startActivity(intent);
                 break;
 
@@ -128,7 +131,7 @@ public class LoginActivity extends Activity {
 
                 if (success == 1) {
                     // successfully logged in user, store session info
-                    //session.createLoginSession("carl", json.getString(""));
+                    //session.createLoginSession("", json.getString(""));
 
                     // Selects the user data
                     JSONArray userArray = json.getJSONArray(TAG_USER);

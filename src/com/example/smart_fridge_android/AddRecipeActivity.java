@@ -20,7 +20,9 @@ import android.widget.TextView.OnEditorActionListener;
 
 public class AddRecipeActivity extends Activity {
 
-	private List <String> ingredlist = new ArrayList<String>();
+    private static final String STARTING_TAB = "startingTab";
+
+    private List <String> ingredlist = new ArrayList<String>();
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -107,6 +109,7 @@ public class AddRecipeActivity extends Activity {
 			
 			Intent i = new Intent(this, MainActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.putExtra(STARTING_TAB, "recipe");
 			this.startActivity(i);
         	break;
         }

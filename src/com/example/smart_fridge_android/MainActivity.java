@@ -17,6 +17,7 @@ public class MainActivity extends ListActivity  {
     private static final String TAG_RECIPE_ID = "recipe_id";
     private static final String TAG_RECIPE_NAME = "name";
     public static boolean foodTab;
+    private static final String STARTING_TAB = "startingTab";
 
     DatabaseHandler db;
     SessionManager session;
@@ -26,12 +27,12 @@ public class MainActivity extends ListActivity  {
     List<Food> foodsFromDB; // Grabs all food from the internal database
     List<Recipe> recipesFromDB;
 
+    String startingTab = "";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
-        foodTab = true;
 
         session = new SessionManager(getApplicationContext());
 
@@ -41,10 +42,22 @@ public class MainActivity extends ListActivity  {
         Button add = (Button) findViewById(R.id.addBtn);
         add.setVisibility(View.VISIBLE);
 
-        TextView foodView = (TextView) findViewById(R.id.tabFood);
-        foodView.setBackgroundColor(Color.BLUE);
-        setFoodAdapter(); // Always start on the food page
-        setListView();
+        Intent intent = getIntent();
+        startingTab = intent.getStringExtra(STARTING_TAB);
+
+        if (startingTab.equals("food")){
+            foodTab = true;
+            TextView foodView = (TextView) findViewById(R.id.tabFood);
+            foodView.setBackgroundColor(Color.BLUE);
+            setFoodAdapter();
+            setListView();
+        } else if (startingTab.equals("recipe")){
+            foodTab = false;
+            TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
+            recipesView.setBackgroundColor(Color.BLUE);
+            setRecipeAdapter();
+            setListView();
+        }
     }
     
     

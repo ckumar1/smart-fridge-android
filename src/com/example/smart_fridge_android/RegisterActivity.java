@@ -20,6 +20,8 @@ import java.util.List;
 
 public class RegisterActivity extends Activity {
 
+    private static final String STARTING_TAB = "startingTab";
+
     // Progress Dialog
     private ProgressDialog pDialog;
 
@@ -30,7 +32,7 @@ public class RegisterActivity extends Activity {
     EditText inputConfirmPassword;
 
     // url to create new user
-    private static String url_create_user = "http://group-project-organizer.herokuapp.com/register.php";
+    private static String url_create_user = "";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
@@ -60,6 +62,7 @@ public class RegisterActivity extends Activity {
                     //new CreateNewUser().execute();
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra(STARTING_TAB, "food");
                     startActivity(intent);
                 }
                 break;

@@ -19,7 +19,9 @@ import android.widget.Toast;
 
 public class AddFoodActivity extends Activity implements OnDateSetListener{
 
-	@Override
+    private static final String STARTING_TAB = "startingTab";
+
+    @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_food);
@@ -73,6 +75,7 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 			
 			Intent i = new Intent(this, MainActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.putExtra(STARTING_TAB, "food");
 			this.startActivity(i);
 			break;
 		}

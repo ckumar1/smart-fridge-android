@@ -7,7 +7,10 @@ import android.app.Activity;
 import android.content.Intent;
 
 public class IndividualRecipeActivity extends Activity {
-	DatabaseHandler db; 
+
+    private static final String STARTING_TAB = "startingTab";
+
+    DatabaseHandler db;
 	Recipe recipe;
 	
 	@Override
@@ -47,6 +50,7 @@ public class IndividualRecipeActivity extends Activity {
 			
 			Intent i = new Intent(this, MainActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.putExtra(STARTING_TAB, "recipe");
 			this.startActivity(i);
         	break; 
 		}

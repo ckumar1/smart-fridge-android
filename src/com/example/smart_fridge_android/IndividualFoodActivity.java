@@ -7,7 +7,10 @@ import android.view.View;
 import android.widget.TextView;
 
 public class IndividualFoodActivity extends Activity {
-	DatabaseHandler db; 
+
+    private static final String STARTING_TAB = "startingTab";
+
+    DatabaseHandler db;
 	Food food = new Food();
 	
 	@Override
@@ -52,6 +55,7 @@ public class IndividualFoodActivity extends Activity {
         	
         	Intent i = new Intent(this, MainActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.putExtra(STARTING_TAB, "food");
 			this.startActivity(i);
         	break;       
         }
