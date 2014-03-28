@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class Individual_Food_Item extends Activity {
+public class IndividualFoodActivity extends Activity {
 	DatabaseHandler db; 
 	Food food = new Food();
 	

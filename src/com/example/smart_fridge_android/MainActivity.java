@@ -22,7 +22,6 @@ public class MainActivity extends ListActivity  {
     SessionManager session;
 
     ListAdapter adapter;
-    ArrayList<HashMap<String, String>> foodList; // Passed to the list adapter to be displayed
     ArrayList<HashMap<String, String>> recipesList;
     List<Food> foodsFromDB; // Grabs all food from the internal database
     List<Recipe> recipesFromDB;
@@ -37,7 +36,7 @@ public class MainActivity extends ListActivity  {
         session = new SessionManager(getApplicationContext());
 
         db = new DatabaseHandler(this);
-        db.getDatabaseName();
+        //db.getDatabaseName();
 
         TextView foodView = (TextView) findViewById(R.id.tabFood);
         foodView.setBackgroundColor(Color.BLUE);
@@ -232,7 +231,7 @@ public class MainActivity extends ListActivity  {
                 if (foodTab) {
                     String fid = ((TextView) view.findViewById(R.id.food_id)).getText().toString();
                     //make intent and attach id to intent
-                    Intent foodInt = new Intent(getApplicationContext(), Individual_Food_Item.class);
+                    Intent foodInt = new Intent(getApplicationContext(), IndividualFoodActivity.class);
 
                     foodInt.putExtra("fid", fid);
 

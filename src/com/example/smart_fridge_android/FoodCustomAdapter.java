@@ -10,6 +10,7 @@ import android.widget.*;
 import java.util.*;
 
 public class FoodCustomAdapter extends ArrayAdapter<String> {
+    private final String HAS_NOT_EXPIRED = "No Expiration Date Set";
     private final Context context;
     private final List<String> values;
     private List<String> parsedValues;
@@ -49,8 +50,12 @@ public class FoodCustomAdapter extends ArrayAdapter<String> {
             expirationView.setTextColor(Color.RED);
         }
 
-        expirationView.setText(expires + expirationDate);
-
+        if (expirationDate.equals(HAS_NOT_EXPIRED)){
+            expirationView.setText(expirationDate);
+        }
+        else {
+            expirationView.setText(expires + expirationDate);
+        }
 
         return rowView;
     }
@@ -74,7 +79,7 @@ public class FoodCustomAdapter extends ArrayAdapter<String> {
         int month;
         int day;
 
-        if (expirationDate.equals("No Expiration Date Set")){
+        if (expirationDate.equals(HAS_NOT_EXPIRED)){
             return true;
         }
 
