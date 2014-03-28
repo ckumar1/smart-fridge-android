@@ -12,7 +12,6 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.*;
 import java.util.List;
 
@@ -90,7 +89,6 @@ public class JSONParser {
 
         // return JSON String
         return jObj;
-
     }
 }
 

@@ -6,14 +6,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
-
 import java.util.*;
 
 public class MainActivity extends ListActivity  {
 
-    private static final String TAG_FOOD_ID = "food_id";
-    private static final String TAG_FOOD_NAME = "name";
-    private static final String TAG_FOOD_EXPIRATION = "expiration";
     private static final String TAG_RECIPE_ID = "recipe_id";
     private static final String TAG_RECIPE_NAME = "name";
     public static boolean foodTab;

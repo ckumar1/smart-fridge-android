@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class NavigationBar {
 

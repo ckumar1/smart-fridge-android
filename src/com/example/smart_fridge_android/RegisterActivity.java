@@ -7,14 +7,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +30,7 @@ public class RegisterActivity extends Activity {
     EditText inputConfirmPassword;
 
     // url to create new user
-    private static String url_create_user = "";
+    private static String url_create_user = "http://www.http://fridgepantry.herokuapp.com/sign_up/";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";

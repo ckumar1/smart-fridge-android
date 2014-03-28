@@ -6,10 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import org.apache.http.NameValuePair;
@@ -17,7 +14,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +27,7 @@ public class LoginActivity extends Activity {
     EditText inputPassword;
 
     // url to log in a user
-    private static String url_login = "";
+    private static String url_login = "http://www.http://fridgepantry.herokuapp.com/sign_in/";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";

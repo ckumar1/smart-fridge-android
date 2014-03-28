@@ -1,7 +1,6 @@
 package com.example.smart_fridge_android;
 
 import java.util.Calendar;
-
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;

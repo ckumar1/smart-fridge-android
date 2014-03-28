@@ -3,7 +3,6 @@ package com.example.smart_fridge_android;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
 import android.app.Activity;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.DialogFragment;
@@ -15,7 +14,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 public class AddFoodActivity extends Activity implements OnDateSetListener{
 

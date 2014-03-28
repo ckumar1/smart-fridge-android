@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-
 import java.util.*;
 
 public class FoodCustomAdapter extends ArrayAdapter<String> {
