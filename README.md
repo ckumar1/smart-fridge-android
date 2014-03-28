@@ -18,9 +18,13 @@ https://github.com/ckumar1/smart-fridge-android/wiki/Cloning-project-for-eclipse
 7. Application will be run on the emulator
 
 While running the application (Iteration 1 build):
-1. Login / register functionality not implemented.
-Just hit login to create a new session and be taken to the main activity.
 
-2. Main navigation tabs (Food, Recipes, Settings) will not work in the following scenarios:
+1. Login / register functionality not implemented. Just hit login to create a new session and be taken to the main activity.
+ 
+2. Main navigation tabs (Food, Recipes, Settings) will not work in the following scenarios
 Add food, add recipe, view food, view recipe.
 
+3. Change password is not implemented in this iteration.
+
+
+If you have any issues and need to get a hold of one of use, you may contact Carl Pratt at carl.pratt.13@gmail.com
