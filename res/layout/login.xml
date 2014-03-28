@@ -26,7 +26,8 @@
         <EditText
                 android:id="@+id/loginEmail"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
 
         <!--  Password Label -->
         <TextView

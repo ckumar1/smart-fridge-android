@@ -67,8 +67,6 @@
         android:layout_marginTop="14dp"
         android:layout_toRightOf="@+id/textView1"
         android:ems="10" >
-
-        <requestFocus />
     </EditText>
 
     <Button
