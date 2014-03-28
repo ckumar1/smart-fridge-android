@@ -20,23 +20,14 @@ import android.widget.TextView.OnEditorActionListener;
 
 public class AddRecipeActivity extends Activity {
 
-
-	private Button add;
 	private List <String> ingredlist = new ArrayList<String>();
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_recipe);
-		add = (Button) findViewById(R.id.addBtn);
-        if (add != null)
-        	add.setVisibility(View.INVISIBLE);
+        removeAddButton();
 	}
-	
-	protected void onPause() {
-		super.onPause();
-		add.setVisibility(View.VISIBLE); //Make button visible again when you leave this view.
-	}
-	
+
 	public void onButtonClick(View v) {
 		
 		NavigationBar navBar = new NavigationBar();
@@ -78,13 +69,11 @@ public class AddRecipeActivity extends Activity {
         	builder.setMessage(message);
         	builder.setTitle("Current ingredients for "+recipeN);
         	builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-								@Override
+				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
-					dialog.cancel();					
+					dialog.cancel();
 				}
-				}
-        	);
+			});
         	builder.create();
         	builder.show();          	
         	break;
@@ -121,5 +110,11 @@ public class AddRecipeActivity extends Activity {
 			this.startActivity(i);
         	break;
         }
-	}	
+        removeAddButton();
+	}
+
+    private void removeAddButton(){
+        Button addButton = (Button) findViewById(R.id.addBtn);
+        addButton.setVisibility(View.INVISIBLE);
+    }
 }

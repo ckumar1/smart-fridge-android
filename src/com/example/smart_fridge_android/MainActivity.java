@@ -36,7 +36,10 @@ public class MainActivity extends ListActivity  {
         session = new SessionManager(getApplicationContext());
 
         db = new DatabaseHandler(this);
-        //db.getDatabaseName();
+        db.getDatabaseName();
+
+        Button add = (Button) findViewById(R.id.addBtn);
+        add.setVisibility(View.VISIBLE);
 
         TextView foodView = (TextView) findViewById(R.id.tabFood);
         foodView.setBackgroundColor(Color.BLUE);

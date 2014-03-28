@@ -19,15 +19,11 @@ import android.widget.Toast;
 
 public class AddFoodActivity extends Activity implements OnDateSetListener{
 
-	private Button add;
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_food);
-		add = (Button) findViewById(R.id.addBtn);
-        if (add != null)
-        	add.setVisibility(View.INVISIBLE);
+        removeAddButton();
 	}
 
 	@Override
@@ -39,11 +35,6 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 		mDateTextView.setText(dateFormat.format(cal.getTime()));
 	}
 
-	protected void onPause() {
-		super.onPause();
-		add.setVisibility(View.VISIBLE); //Make button visible again when you leave this view.
-	}
-	
 	public void onButtonClick(View v) {
 		NavigationBar navBar = new NavigationBar();
         navBar.onButtonClick(v, getApplicationContext());
@@ -85,5 +76,12 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 			this.startActivity(i);
 			break;
 		}
+
+        removeAddButton();
 	}
+
+    private void removeAddButton(){
+        Button addButton = (Button) findViewById(R.id.addBtn);
+        addButton.setVisibility(View.INVISIBLE);
+    }
 }
