@@ -63,7 +63,7 @@ public class FoodCustomAdapter extends ArrayAdapter<String> {
 
         List<String> list = new ArrayList<String>();
 
-        String[] parsed = string.split(",");
+        String[] parsed = string.split("<b>");
 
         list.add(parsed[0]);
         list.add(parsed[1]);

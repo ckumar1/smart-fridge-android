@@ -180,13 +180,13 @@ public class MainActivity extends ListActivity  {
             Integer id = food.getId();            // Dumb android syntax forces this on me
             String  id_as_string = id.toString(); // Will investigate alternative methods - carl
 
-            value += id_as_string + ",";
+            value += id_as_string + "<b>";
 
             String foodName;
             String foodExpiration;
             foodName = food.getName();
 
-            value += foodName + ",";
+            value += foodName + "<b>";
 
             if (!food.getExpirationDate().isEmpty()){
                 //foodExpiration += " - Expires: ";
