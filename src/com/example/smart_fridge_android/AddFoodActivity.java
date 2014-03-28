@@ -61,6 +61,10 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 				Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
 				break;
 			}
+            if(name.contains("<") && name.contains(">")){
+                Toast.makeText(getApplicationContext(), "No tags (<>) allowed", Toast.LENGTH_LONG).show();
+                break;
+            }
 			food.setName(name);
 			food.setExpirationDate(((TextView)findViewById(R.id.dateSelector)).getText().toString());
 			try {
