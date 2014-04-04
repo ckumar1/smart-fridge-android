@@ -10,6 +10,7 @@ import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -43,6 +44,24 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 		super.onPause();
 		add.setVisibility(View.VISIBLE); //Make button visible again when you leave this view.
 	}
+	
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 0) {
+           if (resultCode == RESULT_OK) {
+               
+              String contents = intent.getStringExtra("SCAN_RESULT");
+              String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+           
+              //display results
+              Log.i("result",contents);
+              Log.i("result",format);
+                                        
+           } else if (resultCode == RESULT_CANCELED) {
+              // Handle cancel
+              Log.i("App","Scan unsuccessful");
+           }
+      }
+   }
 	
 	public void onButtonClick(View v) {
 		NavigationBar navBar = new NavigationBar();
@@ -83,6 +102,11 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 			Intent i = new Intent(this, MainActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			this.startActivity(i);
+			break;
+		case R.id.scanBtn:
+            Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+            intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+            startActivityForResult(intent, 0);
 			break;
 		}
 	}
