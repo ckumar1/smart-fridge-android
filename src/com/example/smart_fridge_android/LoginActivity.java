@@ -27,7 +27,7 @@ public class LoginActivity extends Activity {
     EditText inputPassword;
 
     // url to log in a user
-    private static String url_login = "http://www.http://fridgepantry.herokuapp.com/sign_in/";
+    private static String url_login = "http://fridgepantry.herokuapp.com/sign_in/";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";

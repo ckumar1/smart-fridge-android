@@ -81,10 +81,7 @@ public class MainActivity extends ListActivity  {
                 setContentView(R.layout.main);
                 setFoodAdapter();
 
-                foodView = (TextView) findViewById(R.id.tabFood);
-                recipesView = (TextView) findViewById(R.id.tabRecipes);
-                settingsView = (TextView) findViewById(R.id.tabSettings);
-
+                setTabListeners();
                 navBar.setTabColors(foodView, recipesView, settingsView);
                 break;
 
@@ -94,10 +91,7 @@ public class MainActivity extends ListActivity  {
                 setContentView(R.layout.main);
                 setRecipeAdapter();
 
-                foodView = (TextView) findViewById(R.id.tabFood);
-                recipesView = (TextView) findViewById(R.id.tabRecipes);
-                settingsView = (TextView) findViewById(R.id.tabSettings);
-
+                setTabListeners();
                 navBar.setTabColors(recipesView, foodView, settingsView);
                 break;
 
@@ -208,6 +202,10 @@ public class MainActivity extends ListActivity  {
         setListView();
     }
 
+    /**
+     * Sets the proper ListView for the tab being viewed.
+     *  ListView is set to food items if foodTab is true, and to recipes if foodTab is false.
+     */
     private void setListView(){
         ListView listView = getListView();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -236,14 +234,15 @@ public class MainActivity extends ListActivity  {
         });
     }
 
+    /**
+     * Prepares button listeners and session manager for the settings view.
+     *  This was put into a method because this code was needed in two separate areas of MainActivity
+     */
     private void prepareSettingsView(){
 
         setContentView(R.layout.settings);
 
-        foodView = (TextView) findViewById(R.id.tabFood);
-        recipesView = (TextView) findViewById(R.id.tabRecipes);
-        settingsView = (TextView) findViewById(R.id.tabSettings);
-
+        setTabListeners();
         navBar.setTabColors(settingsView, recipesView, foodView);
 
         metric = (RadioButton) findViewById(R.id.radioButtonMetric);
@@ -266,6 +265,14 @@ public class MainActivity extends ListActivity  {
             notifications = (CheckBox) findViewById(R.id.checkBoxNotifications);
             notifications.setChecked(true);
         }
+    }
 
+    /**
+     * Sets the TextView listeners that are used for coloring the main tabs.
+     */
+    private void setTabListeners(){
+        foodView = (TextView) findViewById(R.id.tabFood);
+        recipesView = (TextView) findViewById(R.id.tabRecipes);
+        settingsView = (TextView) findViewById(R.id.tabSettings);
     }
 }
