@@ -33,7 +33,7 @@
             android:id="@+id/editTextRecipeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:ems="9"
             android:layout_alignBottom="@id/textViewRecipeName"
             android:layout_alignParentRight="true"
             android:layout_alignBaseline="@id/textViewRecipeName"
@@ -54,11 +54,22 @@
             android:id="@+id/editTextUseIngredients"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:ems="5"
+            android:layout_alignLeft="@id/editTextRecipeName"
+            android:layout_alignStart="@id/editTextRecipeName"
+            android:layout_alignBaseline="@id/textViewUseIngredients"/>
+
+    <Button
+            android:id="@+id/btnAddIngredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:ems="3"
             android:layout_alignBottom="@id/textViewUseIngredients"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignBaseline="@id/textViewUseIngredients"
-            android:layout_alignParentEnd="true"/>
+            android:onClick="onButtonClick"/>
 
     <TextView
             android:id="@+id/textViewCalorieCount"
@@ -73,34 +84,46 @@
             android:layout_alignParentStart="true"/>
 
     <Button
-            android:id="@+id/btnLessCalories"
+            android:id="@+id/btnCalorieCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="&lt;"
-            android:ems="2"
-            android:layout_alignTop="@id/textViewCalorieCount"
-            android:layout_alignLeft="@id/editTextUseIngredients"
-            android:layout_alignStart="@id/editTextUseIngredients"
-            android:layout_alignBaseline="@id/textViewCalorieCount"/>
-    <Button
-            android:id="@+id/btnMoreCalories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="&gt;"
-            android:ems="2"
-            android:layout_alignTop="@id/btnLessCalories"
-            android:layout_toRightOf="@id/btnLessCalories"
-            android:layout_alignBaseline="@id/textViewCalorieCount"/>
+            android:text="Less Than"
+            android:ems="7"
+            android:layout_alignLeft="@id/editTextRecipeName"
+            android:layout_alignStart="@id/editTextRecipeName"
+            android:layout_alignBaseline="@id/textViewCalorieCount"
+            android:onClick="onButtonClick"/>
+
+    <!--<Button-->
+            <!--android:id="@+id/btnLessCalories"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="&lt;"-->
+            <!--android:ems="2"-->
+            <!--android:layout_alignTop="@id/textViewCalorieCount"-->
+            <!--android:layout_alignLeft="@id/editTextUseIngredients"-->
+            <!--android:layout_alignStart="@id/editTextUseIngredients"-->
+            <!--android:layout_alignBaseline="@id/textViewCalorieCount"/>-->
+    <!--<Button-->
+            <!--android:id="@+id/btnMoreCalories"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="&gt;"-->
+            <!--android:ems="2"-->
+            <!--android:layout_alignTop="@id/btnLessCalories"-->
+            <!--android:layout_toRightOf="@id/btnLessCalories"-->
+            <!--android:layout_alignBaseline="@id/textViewCalorieCount"/>-->
 
     <EditText
             android:id="@+id/editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="6"
+            android:inputType="number"
+            android:ems="3"
             android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/btnMoreCalories"
+            android:layout_alignTop="@id/textViewCalorieCount"
             android:layout_alignRight="@+id/textViewAdvancedRecipeSearch"
-            android:layout_alignEnd="@+id/textViewAdvancedRecipeSearch"
+            android:layout_alignEnd="@id/textViewAdvancedRecipeSearch"
             android:layout_alignBaseline="@id/textViewCalorieCount"/>
 
     <TextView
@@ -122,6 +145,8 @@
             android:ems="10"
             android:layout_alignBottom="@id/textViewCategory"
             android:layout_alignParentRight="true"
+            android:layout_alignLeft="@id/btnCalorieCount"
+            android:layout_alignStart="@id/btnCalorieCount"
             android:layout_alignBaseline="@id/textViewCategory"
             android:layout_alignParentEnd="true"/>
     <Button
@@ -132,5 +157,4 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:onClick="onButtonClick"/>
-
 </RelativeLayout>
