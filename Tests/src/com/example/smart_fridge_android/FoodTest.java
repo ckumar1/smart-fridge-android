@@ -16,8 +16,6 @@ public class FoodTest extends AndroidTestCase{
         super.tearDown();
     }
 
-    //TODO Write Tests
-    
     public void testSetGetId() throws Exception{
     	assertEquals(0, food.getId());
     	food.setId(1);

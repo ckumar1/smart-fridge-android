@@ -22,6 +22,8 @@ public class AdvancedSearchRecipeActivity extends Activity {
 
     JSONParser jsonParser = new JSONParser();
 
+    Button calorieCountButton;
+
     // url to yummly api
     // Using Carl's api id and api key for now.
     private static String url_yummly = "http://api.yummly.com/v1/api/recipes?_app_id=5780cd3c&_app_key=c2d2c46e25e5051ee5f51ebedcdd16fd&q=";
@@ -38,15 +40,12 @@ public class AdvancedSearchRecipeActivity extends Activity {
         switch (v.getId()) {
 
             case R.id.btnSearchRecipes:
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                i.putExtra(STARTING_TAB, "food");
-
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
+                Intent resultsIntent = new Intent(getApplicationContext(), RecipeSearchResultsActivity.class);
+                startActivity(resultsIntent);
                 break;
 
             case R.id.btnCalorieCount:
-                Button calorieCountButton = (Button) findViewById(R.id.btnCalorieCount);
+                calorieCountButton = (Button) findViewById(R.id.btnCalorieCount);
 
                 if (calorieCountButton.getText().equals("Less Than")){
                     calorieCountButton.setText("Greater Than");
