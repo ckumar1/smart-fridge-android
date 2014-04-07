@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 import java.util.*;
 
@@ -12,8 +13,9 @@ public class MainActivity extends ListActivity  {
 
     private static final String TAG_RECIPE_ID = "recipe_id";
     private static final String TAG_RECIPE_NAME = "name";
-    public static boolean foodTab;
     private static final String STARTING_TAB = "startingTab";
+
+    public static boolean foodTab;
 
     DatabaseHandler db;
     SessionManager session;
@@ -57,6 +59,12 @@ public class MainActivity extends ListActivity  {
             foodView.setBackgroundColor(Color.BLUE);
             setFoodAdapter();
             setListView();
+
+            Button advancedRecipeSearch = (Button) findViewById(R.id.btnAdvancedRecipeSearch);
+            ViewGroup layout = (ViewGroup) advancedRecipeSearch.getParent();
+            layout.removeView(advancedRecipeSearch);
+
+
         } else if (startingTab.equals("recipes")){
             foodTab = false;
             TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
@@ -83,6 +91,10 @@ public class MainActivity extends ListActivity  {
 
                 setTabListeners();
                 navBar.setTabColors(foodView, recipesView, settingsView);
+
+                Button advancedRecipeSearch = (Button) findViewById(R.id.btnAdvancedRecipeSearch);
+                ViewGroup layout = (ViewGroup) advancedRecipeSearch.getParent();
+                layout.removeView(advancedRecipeSearch);
                 break;
 
             case R.id.tabRecipes:
@@ -97,7 +109,12 @@ public class MainActivity extends ListActivity  {
 
             case R.id.tabSettings:
 
-               prepareSettingsView();
+                prepareSettingsView();
+                break;
+
+            case R.id.btnAdvancedRecipeSearch:
+                Intent advancedRecipeSearchIntent = new Intent(getApplicationContext(), AdvancedSearchRecipeActivity.class);
+                startActivity(advancedRecipeSearchIntent);
                 break;
 
             case R.id.checkBoxNotifications:
@@ -131,12 +148,12 @@ public class MainActivity extends ListActivity  {
                 break;
                 
             //case R.id.ChangePassword:
-            	
-            	
         }
     }
 
-    /** Shows the food list on the main activity */
+    /**
+     * Shows the food list on the main activity
+     **/
     private void setFoodAdapter(){
         ArrayList<String> list = new ArrayList<String>();
         String value;
@@ -176,7 +193,9 @@ public class MainActivity extends ListActivity  {
         setListView();
     }
 
-    /** Shows the recipe list on the main activity */
+    /**
+     *  Shows the recipe list on the main activity
+     **/
     private void setRecipeAdapter(){
 
         recipesList = new ArrayList<HashMap<String, String>>();

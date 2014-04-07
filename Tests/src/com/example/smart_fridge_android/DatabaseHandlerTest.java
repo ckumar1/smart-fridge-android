@@ -24,7 +24,7 @@ public class DatabaseHandlerTest extends AndroidTestCase {
 
         food = db.addFood(food);
 
-        Assert.assertEquals(food, db.getAllFood().get(0));
+        assertEquals(food, db.getAllFood().get(0));
     }
 
     public void testGetFoodById() throws Exception{
@@ -34,7 +34,7 @@ public class DatabaseHandlerTest extends AndroidTestCase {
         originalFood = db.getAllFood().get(0);
         Food foodFromDb = db.getFoodById(originalFood.getId());
 
-        Assert.assertEquals(foodFromDb, originalFood);
+        assertEquals(foodFromDb, originalFood);
     }
 
     public void testGetAllFood() throws Exception{
@@ -46,9 +46,9 @@ public class DatabaseHandlerTest extends AndroidTestCase {
 
         List<Food> foodList = db.getAllFood();
 
-        Assert.assertEquals(2, foodList.size());
-        Assert.assertEquals("Apple", foodList.get(0).getName());
-        Assert.assertEquals("Banana", foodList.get(1).getName());
+        assertEquals(2, foodList.size());
+        assertEquals("Apple", foodList.get(0).getName());
+        assertEquals("Banana", foodList.get(1).getName());
     }
 
     public void testUpdateFood() throws Exception{
@@ -60,7 +60,7 @@ public class DatabaseHandlerTest extends AndroidTestCase {
 
         food = db.getAllFood().get(0);
 
-        Assert.assertEquals(food, db.getFoodById(1));
+        assertEquals(food, db.getFoodById(1));
     }
 
     public void testDeleteFood() throws Exception{
@@ -69,7 +69,7 @@ public class DatabaseHandlerTest extends AndroidTestCase {
         food = db.getAllFood().get(0);
         db.deleteFood(food);
 
-        Assert.assertEquals(0, db.getAllFood().size());
+        assertEquals(0, db.getAllFood().size());
     }
 
 
@@ -77,7 +77,7 @@ public class DatabaseHandlerTest extends AndroidTestCase {
         Recipe recipe = createRecipe();
         recipe = db.addRecipe(recipe);
 
-        Assert.assertEquals(recipe, db.getAllRecipes().get(0));
+        assertEquals(recipe, db.getAllRecipes().get(0));
     }
 
     public void testGetRecipeById() throws Exception {
@@ -85,7 +85,7 @@ public class DatabaseHandlerTest extends AndroidTestCase {
 
         recipe = db.addRecipe(recipe);
 
-        Assert.assertEquals(recipe, db.getRecipeById(recipe.getId()));
+        assertEquals(recipe, db.getRecipeById(recipe.getId()));
     }
 
     public void testGetAllRecipes() throws Exception {
@@ -96,7 +96,7 @@ public class DatabaseHandlerTest extends AndroidTestCase {
         db.addRecipe(recipe1);
         db.addRecipe(recipe2);
 
-        Assert.assertEquals(2, db.getAllRecipes().size());
+        assertEquals(2, db.getAllRecipes().size());
     }
 
     public void testUpdateRecipe() throws Exception {
@@ -107,7 +107,7 @@ public class DatabaseHandlerTest extends AndroidTestCase {
         recipe.setName("Pie");
         db.updateRecipe(recipe);
 
-        Assert.assertEquals("Pie", db.getRecipeById(recipe.getId()).getName());
+        assertEquals("Pie", db.getRecipeById(recipe.getId()).getName());
     }
 
     public void testDeleteRecipe() throws Exception {
@@ -116,7 +116,7 @@ public class DatabaseHandlerTest extends AndroidTestCase {
         recipe = db.addRecipe(recipe);
         db.deleteRecipe(recipe);
 
-        Assert.assertEquals(0, db.getAllRecipes().size());
+        assertEquals(0, db.getAllRecipes().size());
     }
 
     // Food creation for test

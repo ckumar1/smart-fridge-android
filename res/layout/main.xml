@@ -9,6 +9,15 @@
         android:layout_height="wrap_content"
         layout="@layout/main_nav_bar" />
 
+    <Button
+            android:id="@+id/btnAdvancedRecipeSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Advanced Recipe Search"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:onClick="onButtonClick"/>
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"

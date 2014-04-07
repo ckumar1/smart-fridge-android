@@ -2,6 +2,7 @@ package com.example.smart_fridge_android;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdvancedSearchRecipeActivity extends Activity {
+
+    private static final String STARTING_TAB = "startingTab";
 
     // Progress Dialog
     private ProgressDialog pDialog;
@@ -26,12 +29,45 @@ public class AdvancedSearchRecipeActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //setContentView(R.layout.advanced_search_recipes);
+        setContentView(R.layout.advanced_recipe_search);
     }
 
     public void onButtonClick(View v) {
 
         switch (v.getId()) {
+
+            case R.id.btnSearchRecipes:
+
+
+            case R.id.tabFood:
+
+                Intent tabFoodIntent = new Intent(getApplicationContext(), MainActivity.class);
+                tabFoodIntent.putExtra(STARTING_TAB, "food");
+
+                tabFoodIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(tabFoodIntent);
+
+                break;
+
+            case R.id.tabRecipes:
+
+                Intent tabRecipesIntent = new Intent(getApplicationContext(), MainActivity.class);
+                tabRecipesIntent.putExtra(STARTING_TAB, "recipes");
+
+                tabRecipesIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(tabRecipesIntent);
+
+                break;
+
+            case R.id.tabSettings:
+
+                Intent tabSettingsIntent = new Intent(getApplicationContext(), MainActivity.class);
+                tabSettingsIntent.putExtra(STARTING_TAB, "settings");
+
+                tabSettingsIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(tabSettingsIntent);
+
+                break;
 
         }
 

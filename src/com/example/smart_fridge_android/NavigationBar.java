@@ -44,6 +44,10 @@ public class NavigationBar {
                 logout_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 c.startActivity(logout_intent);
                 break;
+
+            case R.id.btnAdvancedRecipeSearch:
+                Intent advancedRecipeSearchIntent = new Intent();
+                break;
 		}
 	}
 
