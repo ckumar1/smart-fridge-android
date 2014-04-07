@@ -1,6 +1,7 @@
 package com.example.smart_fridge_android;
 
 import android.test.AndroidTestCase;
+import android.test.MoreAsserts;
 
 public class FoodTest extends AndroidTestCase{
 	
@@ -70,8 +71,8 @@ public class FoodTest extends AndroidTestCase{
     	assertEquals(food,food);
     	
     	// Check null and non-food object params
-    	assertFalse(food.equals(null));
-    	assertFalse(food.equals("String test"));
+    	MoreAsserts.assertNotEqual(null,food);
+    	MoreAsserts.assertNotEqual("String test", food);
     	
     	Food other = new Food("Apple", "Red", "12/21/14", "Fruit", 100, 1);
     	other.setId(0);
@@ -79,19 +80,22 @@ public class FoodTest extends AndroidTestCase{
     	// Check different Id
     	assertEquals(food, other);
     	other.setId(1);
-    	assertFalse("food id should be different", food.equals(other));
+    	MoreAsserts.assertNotEqual("food id should be different", 
+    			other, food);
     	food.setId(1);
     	
     	// Check different Calories
     	assertEquals(food, other);
     	other.setCalories(200);
-    	assertFalse("food calories should be different", food.equals(other));
+    	MoreAsserts.assertNotEqual("food calories should be different", 
+    			other, food);
     	food.setCalories(200);
     	
     	// Check different Quantity
     	assertEquals(food, other);
     	other.setQuantity(2);
-    	assertFalse("food quantity should be different", food.equals(other));
+    	MoreAsserts.assertNotEqual("food quantity should be different", 
+    			other, food);
     	food.setQuantity(2);
     	
     	//Check different Category, including null checks
@@ -100,11 +104,13 @@ public class FoodTest extends AndroidTestCase{
     	food.setCategory(null);
     	assertEquals(food, other);
     	other.setCategory("Fruit");
-    	assertFalse("other Category should be Fruit", food.equals(other));
+    	MoreAsserts.assertNotEqual("other Category should be Fruit", 
+    			other, food);
     	food.setCategory("Fruit");
     	assertEquals(food, other);
     	other.setCategory("Melon");
-    	assertFalse("other Category should be Melon", food.equals(other));
+    	MoreAsserts.assertNotEqual("other Category should be Melon", 
+    			other, food);
     	food.setCategory("Melon");
     	
     	//Check different Description, including null checks
@@ -113,11 +119,13 @@ public class FoodTest extends AndroidTestCase{
     	food.setDescription(null);
     	assertEquals(food, other);
     	other.setDescription("Blue");
-    	assertFalse("other Description should be Blue", food.equals(other));
+    	MoreAsserts.assertNotEqual("other Description should be Blue", 
+    			other, food);
     	food.setDescription("Blue");
     	assertEquals(food, other);
     	other.setDescription("Red");
-    	assertFalse("other Description should be Red", food.equals(other));
+    	MoreAsserts.assertNotEqual("other Description should be Red", 
+    			other, food);
     	food.setDescription("Red");
     	
     	//Check different expiration date, including null checks
@@ -126,11 +134,13 @@ public class FoodTest extends AndroidTestCase{
     	food.setExpirationDate(null);
     	assertEquals(food, other);
     	other.setExpirationDate("1/1/00");
-    	assertFalse("other ExpirationDate should be 1/1/00", food.equals(other));
+    	MoreAsserts.assertNotEqual("other ExpirationDate should be 1/1/00", 
+    			other, food);
     	food.setExpirationDate("1/1/00");
     	assertEquals(food, other);
     	other.setExpirationDate("1/1/99");
-    	assertFalse("other ExpirationDate should be 1/1/99", food.equals(other));
+    	MoreAsserts.assertNotEqual("other ExpirationDate should be 1/1/99", 
+    			other, food);
     	food.setExpirationDate("1/1/99");
     	
     	//Check different name, including null checks
@@ -139,11 +149,13 @@ public class FoodTest extends AndroidTestCase{
     	food.setName(null);
     	assertEquals(food, other);
     	other.setName("Apple");
-    	assertFalse("other Name should be Apple", food.equals(other));
+    	MoreAsserts.assertNotEqual("other Name should be Apple", 
+    			other, food);
     	food.setName("Apple");
     	assertEquals(food, other);
     	other.setName("Banana");
-    	assertFalse("other Name should be Banana", food.equals(other));
+    	MoreAsserts.assertNotEqual("other Name should be Banana", 
+    			other, food);
     	food.setName("Banana");
     	assertEquals(food, other);
     }

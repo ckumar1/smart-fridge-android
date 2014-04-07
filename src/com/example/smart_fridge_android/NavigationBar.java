@@ -12,7 +12,6 @@ public class NavigationBar {
 
 	public NavigationBar() {
     
-
 	}
 
 	public void onButtonClick(View v, Context c) {

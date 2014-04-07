@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.test.AndroidTestCase;
+import android.test.MoreAsserts;
 
 public class RecipeTest extends AndroidTestCase{
 	
@@ -90,8 +91,8 @@ public class RecipeTest extends AndroidTestCase{
     	assertEquals(recipe,recipe);
     	
     	// Check null and non-food object params
-    	assertFalse(recipe.equals(null));
-    	assertFalse(recipe.equals("String test"));
+    	MoreAsserts.assertNotEqual(null, recipe);
+    	MoreAsserts.assertNotEqual("String test", recipe);
     	
     	Recipe other = new Recipe("Mac and Cheese", 
     			"Boil macaroni and add cheese", "Don't add too much cheese", 
@@ -101,7 +102,8 @@ public class RecipeTest extends AndroidTestCase{
     	// Check different Id
     	assertEquals(recipe, other);
     	other.setId(1);
-    	assertFalse("recipe id should be different", recipe.equals(other));
+    	MoreAsserts.assertNotEqual("recipe id should be different", 
+    			other, recipe);
     	recipe.setId(1);
     	
     	//Check different Directions, including null checks
@@ -110,13 +112,13 @@ public class RecipeTest extends AndroidTestCase{
     	recipe.setDirections(null);
     	assertEquals(recipe, other);
     	other.setDirections("Throw in pot");
-    	assertFalse("other Directions should be 'Throw in pot'", 
-    			recipe.equals(other));
+    	MoreAsserts.assertNotEqual("other Directions should be 'Throw in pot'", 
+    			other, recipe);
     	recipe.setDirections("Throw in pot");
     	assertEquals(recipe, other);
     	other.setDirections("Use laser eyes");
-    	assertFalse("other Directions should be 'Use laser eyes'", 
-    			recipe.equals(other));
+    	MoreAsserts.assertNotEqual("other Directions should be 'Use laser eyes'", 
+    			other, recipe);
     	recipe.setDirections("Use laser eyes");
     	
     	//Check different Ingredients, including null checks
@@ -125,13 +127,13 @@ public class RecipeTest extends AndroidTestCase{
     	recipe.setIngredients(null);
     	assertEquals(recipe, other);
     	other.setIngredients("Water");
-    	assertFalse("other Ingredients should be 'Water'", 
-    			recipe.equals(other));
+    	MoreAsserts.assertNotEqual("other Ingredients should be 'Water'", 
+    			other, recipe);
     	recipe.setIngredients("Water");
     	assertEquals(recipe, other);
     	other.setIngredients("Water<b>Cheese");
-    	assertFalse("other ingredients should be 'Water<b>Cheese'", 
-    			recipe.equals(other));
+    	MoreAsserts.assertNotEqual("other ingredients should be 'Water<b>Cheese'", 
+    			other, recipe);
     	recipe.setIngredients("Water<b>Cheese");
     	
     	//Check different name, including null checks
@@ -140,13 +142,13 @@ public class RecipeTest extends AndroidTestCase{
     	recipe.setName(null);
     	assertEquals(recipe, other);
     	other.setName("Yellow noodles");
-    	assertFalse("other Name should be 'Yellow noodles'", 
-    			recipe.equals(other));
+    	MoreAsserts.assertNotEqual("other Name should be 'Yellow noodles'", 
+    			other, recipe);
     	recipe.setName("Yellow noodles");
     	assertEquals(recipe, other);
     	other.setName("Mac 'n Cheese");
-    	assertFalse("other Name should be 'Mac 'n Cheese'", 
-    			recipe.equals(other));
+    	MoreAsserts.assertNotEqual("other Name should be 'Mac 'n Cheese'", 
+    			other, recipe);
     	recipe.setName("Mac 'n Cheese");
     	
     	//Check different Notes, including null checks
@@ -155,13 +157,13 @@ public class RecipeTest extends AndroidTestCase{
     	recipe.setNotes(null);
     	assertEquals(recipe, other);
     	other.setNotes("Use water");
-    	assertFalse("other Notes should be 'Use water'", 
-    			recipe.equals(other));
+    	MoreAsserts.assertNotEqual("other Notes should be 'Use water'", 
+    			other, recipe);
     	recipe.setNotes("Use water");
     	assertEquals(recipe, other);
     	other.setNotes("Use laser eyes");
-    	assertFalse("other Notes should be 'Use laser eyes'", 
-    			recipe.equals(other));
+    	MoreAsserts.assertNotEqual("other Notes should be 'Use laser eyes'", 
+    			other, recipe);
     	recipe.setNotes("Use laser eyes");
     	assertEquals(recipe,other);
     }
