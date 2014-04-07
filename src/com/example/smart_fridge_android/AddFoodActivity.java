@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -30,6 +31,7 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
     static final int CAMERA_RESULT = 1;
     private ImageView mImageView;
     private Uri imageUri; //This is the uri we get from taking a photo and storing it
+    private String imagePath;
 
 
     @Override
@@ -85,10 +87,10 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 			food.setName(name);
 			food.setExpirationDate(((TextView)findViewById(R.id.dateSelector)).getText().toString());
 			
-			if (imageUri == null) {
+			if (imagePath.equals("")) {
 				food.setImagePath("");
 			} else {
-				food.setImagePath(imageUri.toString());
+				food.setImagePath(imagePath);
 			}
 			
 			try {
@@ -118,12 +120,14 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 		File imagesFolder = new File(Environment.getExternalStorageDirectory(), "fridge_images");
 		imagesFolder.mkdirs();
 
-		//filePath = "/MyImages/QR_" + timeStamp + ".png" ;
+		//filePath = "/fridge_images/food_image" + timeStamp + ".png" ;
 		File image = new File(imagesFolder, "food_image" + timeStamp + ".png");
 		Uri uriSavedImage = Uri.fromFile(image);
 
 		imageIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
 		imageUri = uriSavedImage; //store away the URI so we can access it later
+		imagePath = image.toString();
+		Log.w("path",imagePath);
 		startActivityForResult(imageIntent, CAMERA_RESULT);
 	}
 	

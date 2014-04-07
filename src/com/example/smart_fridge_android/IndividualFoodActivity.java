@@ -1,9 +1,15 @@
 package com.example.smart_fridge_android;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class IndividualFoodActivity extends Activity {
@@ -38,12 +44,19 @@ public class IndividualFoodActivity extends Activity {
         expDateText.setText(expDate);
         
         String path = food.getImagePath();
-        TextView pathView = (TextView) findViewById(R.id.imgPathView);
-        pathView.setText(path);
+        File imgFile = new  File(path);
+        if(imgFile.exists()){
+        	Log.w("Image", "Image Exists!");
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+            ImageView myImage = (ImageView) findViewById(R.id.imgView);
+            myImage.setImageBitmap(myBitmap);
+
+        }
+        
         
         //add in nutritional information Iteration 2
-        
-            }
+	}
 	
 //get id, intent to start activity
 	public void onButtonClick(View v) {
