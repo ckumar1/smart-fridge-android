@@ -103,4 +103,23 @@
         android:text="nutringgoeshere"
         android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/individualFoodItemNutritionalInfo"
+        android:layout_marginTop="20dp"
+        android:text="Image Path:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/imgPathView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignLeft="@+id/textView8"
+        android:text="TextView" />
+
 </RelativeLayout>

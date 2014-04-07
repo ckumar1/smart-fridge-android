@@ -76,7 +76,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_FOOD_CATEGORY + " TEXT,"
                 + KEY_FOOD_CALORIES + " INT(16),"
                 + KEY_FOOD_QUANTITY + " INT(16),"
-                + KEY_FOOD_PHOTO + " BLOB" // Not sure if this is the correct type -carl
+                + KEY_FOOD_PHOTO + " TEXT" // Not sure if this is the correct type -carl
                 + ")";
 
         String CREATE_RECIPES_TABLE = "CREATE TABLE "
@@ -122,6 +122,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_FOOD_CATEGORY, food.getCategory()); // Food Category
         values.put(KEY_FOOD_CALORIES, food.getCalories()); // Food Calories
         values.put(KEY_FOOD_QUANTITY, food.getQuantity()); // Food Quantity
+        values.put(KEY_FOOD_PHOTO, food.getImagePath());
 
         // Inserting Row
         long insertId = db.insert(TABLE_FOOD, null, values);
@@ -137,14 +138,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(TABLE_FOOD, new String[] { KEY_FOOD_ID,
                 KEY_FOOD_NAME, KEY_FOOD_DESCRIPTION, KEY_FOOD_EXPIRATION_DATE,
-                KEY_FOOD_CATEGORY, KEY_FOOD_CALORIES, KEY_FOOD_QUANTITY },
+                KEY_FOOD_CATEGORY, KEY_FOOD_CALORIES, KEY_FOOD_QUANTITY, KEY_FOOD_PHOTO },
                 KEY_FOOD_ID + "= ?", // '?' is replaced by selection args
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
         Food food = new Food(cursor.getString(1),
-                cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(7),
                 Integer.parseInt(cursor.getString(5)), Integer.parseInt(cursor.getString(6)));
         food.setId(Integer.parseInt(cursor.getString(0))); // Set the id
         // return food
@@ -171,6 +172,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 food.setCategory(cursor.getString(4));
                 food.setCalories(cursor.getInt(5));
                 food.setQuantity(cursor.getInt(6));
+                food.setImagePath(cursor.getString(7));
 
                 // Adding food to list
                 foodList.add(food);
@@ -192,6 +194,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_FOOD_CATEGORY, food.getCategory());
         values.put(KEY_FOOD_CALORIES, food.getCalories());
         values.put(KEY_FOOD_QUANTITY, food.getQuantity());
+        values.put(KEY_FOOD_PHOTO, food.getImagePath());
 
         // updating row
         return db.update(TABLE_FOOD, values, KEY_FOOD_ID + " = ?",

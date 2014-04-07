@@ -106,4 +106,22 @@
         android:layout_alignTop="@+id/textView6"
         android:ems="10" />
 
+    <Button
+        android:id="@+id/imageBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/foodgroupField"
+        android:layout_marginTop="18dp"
+        android:layout_toLeftOf="@+id/textView1"
+        android:onClick="onButtonClick"
+        android:text="Add Image" />
+
+    <ImageView
+        android:id="@+id/mImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageBtn"
+        android:layout_marginLeft="29dp"
+        android:layout_toRightOf="@+id/addMan" />
+
 </RelativeLayout>

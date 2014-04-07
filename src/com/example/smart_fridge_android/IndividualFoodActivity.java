@@ -37,6 +37,10 @@ public class IndividualFoodActivity extends Activity {
         TextView expDateText = (TextView) findViewById(R.id.ExpDate);
         expDateText.setText(expDate);
         
+        String path = food.getImagePath();
+        TextView pathView = (TextView) findViewById(R.id.imgPathView);
+        pathView.setText(path);
+        
         //add in nutritional information Iteration 2
         
             }
