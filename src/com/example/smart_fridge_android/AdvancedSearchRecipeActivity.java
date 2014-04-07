@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import org.apache.http.NameValuePair;
 import org.json.JSONObject;
 import java.util.ArrayList;
@@ -37,6 +38,22 @@ public class AdvancedSearchRecipeActivity extends Activity {
         switch (v.getId()) {
 
             case R.id.btnSearchRecipes:
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                i.putExtra(STARTING_TAB, "food");
+
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+                break;
+
+            case R.id.btnCalorieCount:
+                Button calorieCountButton = (Button) findViewById(R.id.btnCalorieCount);
+
+                if (calorieCountButton.getText().equals("Less Than")){
+                    calorieCountButton.setText("Greater Than");
+                } else {
+                    calorieCountButton.setText("Less Than");
+                }
+                break;
 
 
             case R.id.tabFood:
