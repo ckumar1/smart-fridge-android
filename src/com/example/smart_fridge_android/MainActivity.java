@@ -18,6 +18,16 @@ public class MainActivity extends ListActivity  {
     DatabaseHandler db;
     SessionManager session;
 
+    NavigationBar navBar = new NavigationBar();
+
+    TextView foodView;
+    TextView recipesView;
+    TextView settingsView;
+
+    CheckBox notifications;
+    RadioButton metric;
+    RadioButton imperial;
+
     ListAdapter adapter;
     ArrayList<HashMap<String, String>> recipesList;
     List<Food> foodsFromDB; // Grabs all food from the internal database
@@ -47,27 +57,21 @@ public class MainActivity extends ListActivity  {
             foodView.setBackgroundColor(Color.BLUE);
             setFoodAdapter();
             setListView();
-        } else if (startingTab.equals("recipe")){
+        } else if (startingTab.equals("recipes")){
             foodTab = false;
             TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
             recipesView.setBackgroundColor(Color.BLUE);
             setRecipeAdapter();
             setListView();
+        } else if (startingTab.equals("settings")){
+            foodTab = false;
+            prepareSettingsView();
         }
     }
     
     
     public void onButtonClick(View v) {
-    	NavigationBar navBar = new NavigationBar();
         navBar.onButtonClick(v, getApplicationContext());
-
-        TextView foodView;
-        TextView recipesView;
-        TextView settingsView;
-
-        CheckBox notifications;
-        RadioButton metric;
-        RadioButton imperial;
 
         switch (v.getId()){
 
@@ -99,35 +103,7 @@ public class MainActivity extends ListActivity  {
 
             case R.id.tabSettings:
 
-                setContentView(R.layout.settings);
-
-                foodView = (TextView) findViewById(R.id.tabFood);
-                recipesView = (TextView) findViewById(R.id.tabRecipes);
-                settingsView = (TextView) findViewById(R.id.tabSettings);
-
-                navBar.setTabColors(settingsView, recipesView, foodView);
-
-                metric = (RadioButton) findViewById(R.id.radioButtonMetric);
-                imperial = (RadioButton) findViewById(R.id.radioButtonImperial);
-
-                if (session.getUnits().equals("Metric")){
-                    metric.setChecked(true);
-                    imperial.setChecked(false);
-                } else {
-                    metric.setChecked(false);
-                    imperial.setChecked(true);
-                }
-
-                Button add = (Button) findViewById(R.id.addBtn);
-                if (add != null){
-                    add.setVisibility(View.INVISIBLE);
-                }
-
-                if (session.wantsNotifications()){
-                    notifications = (CheckBox) findViewById(R.id.checkBoxNotifications);
-                    notifications.setChecked(true);
-                }
-
+               prepareSettingsView();
                 break;
 
             case R.id.checkBoxNotifications:
@@ -258,5 +234,38 @@ public class MainActivity extends ListActivity  {
                 }
             }
         });
+    }
+
+    private void prepareSettingsView(){
+
+        setContentView(R.layout.settings);
+
+        foodView = (TextView) findViewById(R.id.tabFood);
+        recipesView = (TextView) findViewById(R.id.tabRecipes);
+        settingsView = (TextView) findViewById(R.id.tabSettings);
+
+        navBar.setTabColors(settingsView, recipesView, foodView);
+
+        metric = (RadioButton) findViewById(R.id.radioButtonMetric);
+        imperial = (RadioButton) findViewById(R.id.radioButtonImperial);
+
+        if (session.getUnits().equals("Metric")){
+            metric.setChecked(true);
+            imperial.setChecked(false);
+        } else {
+            metric.setChecked(false);
+            imperial.setChecked(true);
+        }
+
+        Button add = (Button) findViewById(R.id.addBtn);
+        if (add != null){
+            add.setVisibility(View.INVISIBLE);
+        }
+
+        if (session.wantsNotifications()){
+            notifications = (CheckBox) findViewById(R.id.checkBoxNotifications);
+            notifications.setChecked(true);
+        }
+
     }
 }

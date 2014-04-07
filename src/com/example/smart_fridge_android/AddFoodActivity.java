@@ -38,48 +38,78 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 	public void onButtonClick(View v) {
 		NavigationBar navBar = new NavigationBar();
         navBar.onButtonClick(v, getApplicationContext());
-    	
+
 		switch (v.getId()){
 
-		case R.id.manualBtn:
-			setContentView(R.layout.add_food_manual);
-			TextView mDateTextView = (TextView)findViewById(R.id.dateSelector);
-			mDateTextView.setOnClickListener(new View.OnClickListener() {
+            case R.id.tabFood:
 
-				@Override
-				public void onClick(View v) {
-					FragmentTransaction ft = getFragmentManager().beginTransaction();
-					DialogFragment newFragment = new DatePickerDialogFragment(AddFoodActivity.this);
-					newFragment.show(ft, "date_dialog");
-				}
-			});
-			break;
-		case R.id.addMan:
-			Food food = new Food();
-			String name = ((TextView)findViewById(R.id.nameField)).getText().toString();
-			if(name.isEmpty()) {
-				Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
-				break;
-			}
-            if(name.contains("<") && name.contains(">")){
-                Toast.makeText(getApplicationContext(), "No tags (<>) allowed", Toast.LENGTH_LONG).show();
+                Intent tabFoodIntent = new Intent(getApplicationContext(), MainActivity.class);
+                tabFoodIntent.putExtra(STARTING_TAB, "food");
+
+                tabFoodIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(tabFoodIntent);
+
                 break;
-            }
-			food.setName(name);
-			food.setExpirationDate(((TextView)findViewById(R.id.dateSelector)).getText().toString());
-			try {
-				int quantity = Integer.parseInt(((TextView)findViewById(R.id.quantityField)).getText().toString());
-				food.setQuantity(quantity);
-			} catch(NumberFormatException e) {	}
-			food.setCategory(((TextView)findViewById(R.id.foodgroupField)).getText().toString());
-			DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-			db.addFood(food);
-			
-			Intent i = new Intent(this, MainActivity.class);
-			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            i.putExtra(STARTING_TAB, "food");
-			this.startActivity(i);
-			break;
+
+            case R.id.tabRecipes:
+
+                Intent tabRecipesIntent = new Intent(getApplicationContext(), MainActivity.class);
+                tabRecipesIntent.putExtra(STARTING_TAB, "recipes");
+
+                tabRecipesIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(tabRecipesIntent);
+
+                break;
+
+            case R.id.tabSettings:
+
+                Intent tabSettingsIntent = new Intent(getApplicationContext(), MainActivity.class);
+                tabSettingsIntent.putExtra(STARTING_TAB, "settings");
+
+                tabSettingsIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(tabSettingsIntent);
+
+                break;
+
+            case R.id.manualBtn:
+                setContentView(R.layout.add_food_manual);
+                TextView mDateTextView = (TextView)findViewById(R.id.dateSelector);
+                mDateTextView.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        DialogFragment newFragment = new DatePickerDialogFragment(AddFoodActivity.this);
+                        newFragment.show(ft, "date_dialog");
+                    }
+                });
+                break;
+            case R.id.addMan:
+                Food food = new Food();
+                String name = ((TextView)findViewById(R.id.nameField)).getText().toString();
+                if(name.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
+                    break;
+                }
+                if(name.contains("<") && name.contains(">")){
+                    Toast.makeText(getApplicationContext(), "No tags (<>) allowed", Toast.LENGTH_LONG).show();
+                    break;
+                }
+                food.setName(name);
+                food.setExpirationDate(((TextView)findViewById(R.id.dateSelector)).getText().toString());
+                try {
+                    int quantity = Integer.parseInt(((TextView)findViewById(R.id.quantityField)).getText().toString());
+                    food.setQuantity(quantity);
+                } catch(NumberFormatException e) {	}
+                food.setCategory(((TextView)findViewById(R.id.foodgroupField)).getText().toString());
+                DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+                db.addFood(food);
+
+                Intent i = new Intent(this, MainActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                i.putExtra(STARTING_TAB, "food");
+                this.startActivity(i);
+                break;
 		}
 
         removeAddButton();
