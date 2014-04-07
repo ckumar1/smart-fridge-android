@@ -9,6 +9,7 @@ public class Recipe {
     private String name;
     private String directions;
     private String notes;
+    // Delimited by <b>
     private String ingredients;
 
     public Recipe(){
@@ -31,7 +32,9 @@ public class Recipe {
         return id;
     }
 
-    public void setId(int id) { this.id = id;}
+    public void setId(int id) { 
+    	this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -62,7 +65,10 @@ public class Recipe {
     }
     
     public List<String> getIngredientList() {
-    	return Arrays.asList(ingredients.split("<b>"));
+    	if(ingredients != null) {
+    		return Arrays.asList(ingredients.split("<b>"));
+    	}
+    	return null;
     }
     
     public void setIngredients(String ingredients) {
@@ -70,14 +76,15 @@ public class Recipe {
     }
 
     public void setIngredientsList(List<String> ingredients) {
-    	String ingredientList = "";
-    	if(ingredients.size() > 0) {
+    	String ingredientList = (ingredients != null) ? "" : null;
+    	if(ingredients != null && ingredients.size() > 0) {
 	    	ingredientList = ingredients.get(0);
+	    	// place a <b> between each item in the list
 	    	for(int i = 1; i < ingredients.size(); i++) {
 	    		ingredientList += "<b>" + ingredients.get(i);
 	    	}
     	}
-    	this.ingredients= ingredientList;
+    	this.ingredients = ingredientList;
     }
     
     @Override

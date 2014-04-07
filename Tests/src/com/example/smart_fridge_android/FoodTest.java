@@ -16,56 +16,56 @@ public class FoodTest extends AndroidTestCase{
         super.tearDown();
     }
 
-    public void testSetGetId() throws Exception{
+    public void testSetGetId() {
     	assertEquals(0, food.getId());
     	food.setId(1);
     	assertEquals(1, food.getId());
     }
     
-    public void testSetGetName() throws Exception{
+    public void testSetGetName() {
     	assertEquals("Apple", food.getName());
     	food.setName("Banana");
     	assertEquals("Banana", food.getName());
     }
     
-    public void testSetGetDescription() throws Exception{
+    public void testSetGetDescription() {
     	assertEquals("Red", food.getDescription());
     	food.setDescription("Yellow");
     	assertEquals("Yellow", food.getDescription());
     }
     
-    public void testSetGetExpirationDate() throws Exception{
+    public void testSetGetExpirationDate() {
     	assertEquals("12/21/14", food.getExpirationDate());
     	food.setExpirationDate("11/15/15");
     	assertEquals("11/15/15", food.getExpirationDate());
     }
     
-    public void testSetGetCategory() throws Exception{
+    public void testSetGetCategory() {
     	assertEquals("Fruit", food.getCategory());
     	food.setCategory("Melon");
     	assertEquals("Melon", food.getCategory());
     }
     
-    public void testSetGetCalories() throws Exception{
+    public void testSetGetCalories() {
     	assertEquals(100, food.getCalories());
     	food.setCalories(9000); // Not quite over 9000
     	assertEquals(9000, food.getCalories());
     }
     
-    public void testSetGetQuantity() throws Exception{
+    public void testSetGetQuantity() {
     	assertEquals(1, food.getQuantity());
     	food.setQuantity(10);
     	assertEquals(10, food.getQuantity());
     }
     
-    public void testToString() throws Exception{
-    	String foodStr = "Food{id='0', name='Apple', description='Red', " +
+    public void testToString() {
+    	String foodStr = "Food{id=0, name='Apple', description='Red', " +
     			"category='Fruit', expirationDate='12/21/14', " +
     			"calories=100, quantity=1}";
     	assertEquals(foodStr, food.toString());
     }
     
-    public void testEquals() throws Exception{
+    public void testEquals() {
     	// Equals to self
     	assertEquals(food,food);
     	
