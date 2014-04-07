@@ -29,7 +29,6 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 
     private static final String STARTING_TAB = "startingTab";
     static final int CAMERA_RESULT = 1;
-    private ImageView mImageView;
     private Uri imageUri; //This is the uri we get from taking a photo and storing it
     private String imagePath;
 
@@ -68,7 +67,6 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 					newFragment.show(ft, "date_dialog");
 				}
 			});
-			mImageView = (ImageView) findViewById(R.id.mImageView);
 			break;
 		case R.id.imageBtn:
 			dispatchTakePictureIntent();
@@ -125,9 +123,7 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 		Uri uriSavedImage = Uri.fromFile(image);
 
 		imageIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
-		imageUri = uriSavedImage; //store away the URI so we can access it later
 		imagePath = image.toString();
-		Log.w("path",imagePath);
 		startActivityForResult(imageIntent, CAMERA_RESULT);
 	}
 	
@@ -135,7 +131,6 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if (requestCode == CAMERA_RESULT && resultCode == RESULT_OK) {
-	        Toast.makeText(getApplicationContext(), imageUri.toString(), Toast.LENGTH_LONG).show();
 	    }
 	}
 

@@ -68,6 +68,10 @@ public class IndividualFoodActivity extends Activity {
         switch (v.getId()){
         
         case R.id.DeleteButton:
+        	File food_image = new File(food.getImagePath());
+        	Boolean deleted = food_image.delete(); //Delete the photo from your phone
+        	if (!deleted)
+        		Log.w("Delete Food", "Food Image wasn't deleted");
         	db.deleteFood(food);
         	
         	Intent i = new Intent(this, MainActivity.class);
