@@ -9,10 +9,10 @@ public class DatabaseHandlerTest extends AndroidTestCase {
 
     private DatabaseHandler db;
 
-    protected void setup() throws Exception{
+    protected void setUp() throws Exception{
+        super.setUp();
         RenamingDelegatingContext context = new RenamingDelegatingContext(getContext(), "test_");
         db = new DatabaseHandler(context);
-        super.setUp();
     }
 
     protected void tearDown() throws Exception{
@@ -20,7 +20,6 @@ public class DatabaseHandlerTest extends AndroidTestCase {
     }
 
     public void testAddFood() throws Exception{
-        setup();
         Food food = createFood();
 
         food = db.addFood(food);
@@ -29,7 +28,6 @@ public class DatabaseHandlerTest extends AndroidTestCase {
     }
 
     public void testGetFoodById() throws Exception{
-        setup();
         Food originalFood = createFood();
         db.addFood(originalFood);
 
@@ -40,7 +38,6 @@ public class DatabaseHandlerTest extends AndroidTestCase {
     }
 
     public void testGetAllFood() throws Exception{
-        setup();
         Food food1 = createFood();
         Food food2 = createFood();
         food2.setName("Banana");
@@ -55,7 +52,6 @@ public class DatabaseHandlerTest extends AndroidTestCase {
     }
 
     public void testUpdateFood() throws Exception{
-        setup();
         Food food = createFood();
         db.addFood(food);
 
@@ -68,7 +64,6 @@ public class DatabaseHandlerTest extends AndroidTestCase {
     }
 
     public void testDeleteFood() throws Exception{
-        setup();
         Food food = createFood();
         db.addFood(food);
         food = db.getAllFood().get(0);
@@ -79,7 +74,6 @@ public class DatabaseHandlerTest extends AndroidTestCase {
 
 
     public void testAddRecipe() throws Exception{
-        setup();
         Recipe recipe = createRecipe();
         recipe = db.addRecipe(recipe);
 
@@ -87,7 +81,6 @@ public class DatabaseHandlerTest extends AndroidTestCase {
     }
 
     public void testGetRecipeById() throws Exception {
-        setup();
         Recipe recipe = createRecipe();
 
         recipe = db.addRecipe(recipe);
@@ -96,7 +89,6 @@ public class DatabaseHandlerTest extends AndroidTestCase {
     }
 
     public void testGetAllRecipes() throws Exception {
-        setup();
         Recipe recipe1 = createRecipe();
         Recipe recipe2 = createRecipe();
         recipe2.setName("Pie");
@@ -108,7 +100,6 @@ public class DatabaseHandlerTest extends AndroidTestCase {
     }
 
     public void testUpdateRecipe() throws Exception {
-        setup();
         Recipe recipe = createRecipe();
 
         recipe = db.addRecipe(recipe);
@@ -120,7 +111,6 @@ public class DatabaseHandlerTest extends AndroidTestCase {
     }
 
     public void testDeleteRecipe() throws Exception {
-        setup();
         Recipe recipe = createRecipe();
 
         recipe = db.addRecipe(recipe);
