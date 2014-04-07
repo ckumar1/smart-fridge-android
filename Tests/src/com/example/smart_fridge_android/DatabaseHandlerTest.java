@@ -2,7 +2,6 @@ package com.example.smart_fridge_android;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import junit.framework.Assert;
 import java.util.List;
 
 public class DatabaseHandlerTest extends AndroidTestCase {

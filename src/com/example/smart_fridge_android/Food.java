@@ -27,7 +27,9 @@ public class Food {
         return id;
     }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) { 
+    	this.id = id; 
+    }
 
     public String getName() {
         return name;
@@ -69,23 +71,28 @@ public class Food {
         this.calories = calories;
     }
 
-    public int getQuantity() { return quantity; }
+    public int getQuantity() { 
+    	return quantity; 
+    }
 
-    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public void setQuantity(int quantity) { 
+    	this.quantity = quantity;
+    }
 
     @Override
     public String toString() {
         return "Food{" +
                 "id='" + id + '\'' +
-                "name='" + name + '\'' +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", category='" + category + '\'' +
                 ", expirationDate='" + expirationDate + '\'' +
-                ", calories=" + calories + '\'' +
+                ", calories=" + calories +
                 ", quantity=" + quantity +
                 '}';
     }
 
+    /* Used for testing */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
