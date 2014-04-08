@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -48,9 +50,14 @@ public class IndividualFoodActivity extends Activity {
         if(imgFile.exists()){
         	Log.w("Image", "Image Exists!");
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-
             ImageView myImage = (ImageView) findViewById(R.id.imgView);
             myImage.setImageBitmap(myBitmap);
+            Matrix matrix = new Matrix();
+            myImage.setScaleType(ImageView.ScaleType.MATRIX);
+            matrix.postRotate((float) 180, myImage.getDrawable().getBounds().width()/2,
+                    myImage.getDrawable().getBounds().height()/2);
+            myImage.setImageMatrix(matrix);
+
 
         }
         
@@ -68,10 +75,13 @@ public class IndividualFoodActivity extends Activity {
         switch (v.getId()){
         
         case R.id.DeleteButton:
-        	File food_image = new File(food.getImagePath());
-        	Boolean deleted = food_image.delete(); //Delete the photo from your phone
-        	if (!deleted)
-        		Log.w("Delete Food", "Food Image wasn't deleted");
+            //delete image from phone only if device has camera
+            if (Camera.getNumberOfCameras() > 0) {
+                File food_image = new File(food.getImagePath());
+                Boolean deleted = food_image.delete(); //Delete the photo from your phone
+                if (!deleted)
+                    Log.w("Delete Food", "Food Image wasn't deleted");
+            }
         	db.deleteFood(food);
         	
         	Intent i = new Intent(this, MainActivity.class);
