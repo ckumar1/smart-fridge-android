@@ -1,7 +1,6 @@
 package com.example.smart_fridge_android;
 
 import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
@@ -41,7 +40,7 @@ public class AddFoodActivityTest
     			View.INVISIBLE, addButton.getVisibility());
     }
     
-    public void testManualAddValid() {
+    public void testManualAddValidFood() {
     	startActivity(launchIntent, null, null);
     	Activity activity = getActivity();
     	assertNotNull(activity);
@@ -121,7 +120,7 @@ public class AddFoodActivityTest
     			Intent.FLAG_ACTIVITY_CLEAR_TOP, addIntent.getFlags());
     }
     
-    public void testManualAddInvalid() {
+    public void testManualAddInvalidFood() {
     	startActivity(launchIntent, null, null);
     	Activity activity = getActivity();
     	assertNotNull(activity);
