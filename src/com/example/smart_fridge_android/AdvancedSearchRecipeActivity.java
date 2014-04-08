@@ -37,8 +37,7 @@ public class AdvancedSearchRecipeActivity extends Activity {
 
     public void onButtonClick(View view) {
 
-        NavigationBar navBar = new NavigationBar();
-        navBar.onTabsClicked(view, getApplicationContext());
+        NavigationBar.onTabsClicked(view, this);
 
         switch (view.getId()) {
 

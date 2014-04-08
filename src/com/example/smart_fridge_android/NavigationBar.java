@@ -1,5 +1,6 @@
 package com.example.smart_fridge_android;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -81,37 +82,37 @@ public class NavigationBar {
      * and our smooth transitions between tabs will disappear.
      *
      * @param view
-     * @param context
+     * @param activity
      */
-    public void onTabsClicked(View view, Context context){
+    public static void onTabsClicked(View view, Activity activity){
 
         switch (view.getId()){
 
             case R.id.tabFood:
-                Intent tabFoodIntent = new Intent(context, MainActivity.class);
+                Intent tabFoodIntent = new Intent(activity.getApplicationContext(), MainActivity.class);
                 tabFoodIntent.putExtra(STARTING_TAB, "food");
 
                 tabFoodIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                tabFoodIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(tabFoodIntent);
+                tabFoodIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity.startActivity(tabFoodIntent);
                 break;
 
             case R.id.tabRecipes:
-                Intent tabRecipesIntent = new Intent(context, MainActivity.class);
+                Intent tabRecipesIntent = new Intent(activity, MainActivity.class);
                 tabRecipesIntent.putExtra(STARTING_TAB, "recipes");
 
                 tabRecipesIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                tabRecipesIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(tabRecipesIntent);
+                tabRecipesIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity.startActivity(tabRecipesIntent);
                 break;
 
             case R.id.tabSettings:
-                Intent tabSettingsIntent = new Intent(context, MainActivity.class);
+                Intent tabSettingsIntent = new Intent(activity, MainActivity.class);
                 tabSettingsIntent.putExtra(STARTING_TAB, "settings");
 
                 tabSettingsIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                tabSettingsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(tabSettingsIntent);
+                tabSettingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity.startActivity(tabSettingsIntent);
                 break;
         }
     }

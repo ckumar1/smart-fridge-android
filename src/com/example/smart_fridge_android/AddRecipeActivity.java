@@ -28,7 +28,7 @@ public class AddRecipeActivity extends Activity {
 		
 		NavigationBar navBar = new NavigationBar();
         navBar.onButtonClick(view, getApplicationContext());
-        navBar.onTabsClicked(view, getApplicationContext());
+        NavigationBar.onTabsClicked(view, this);
         switch (view.getId()){
 
             case R.id.addingred:

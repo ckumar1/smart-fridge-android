@@ -38,7 +38,7 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 	public void onButtonClick(View view) {
 		NavigationBar navBar = new NavigationBar();
         navBar.onButtonClick(view, getApplicationContext());
-        navBar.onTabsClicked(view, getApplicationContext());
+        NavigationBar.onTabsClicked(view, this);
 
 		switch (view.getId()){
 

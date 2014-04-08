@@ -40,7 +40,7 @@ public class NavigationBarTest extends AndroidTestCase{
     	assertEquals("Starting tab should be set to food", 
     			"food", tabFoodIntent.getStringExtra(STARTING_TAB));
     	assertEquals("Clear top flag should be set", 
-    			Intent.FLAG_ACTIVITY_CLEAR_TOP, tabFoodIntent.getFlags());
+    			Intent.FLAG_ACTIVITY_CLEAR_TOP + Intent.FLAG_ACTIVITY_NEW_TASK, tabFoodIntent.getFlags());
     }
 
     /* Test whether recipes tab works */
@@ -59,8 +59,8 @@ public class NavigationBarTest extends AndroidTestCase{
     			tabRecipeIntent.hasExtra(STARTING_TAB));
     	assertEquals("Starting tab should be set to recipes", 
     			"recipes", tabRecipeIntent.getStringExtra(STARTING_TAB));
-    	assertEquals("Clear top flag should be set", 
-    			Intent.FLAG_ACTIVITY_CLEAR_TOP, tabRecipeIntent.getFlags());
+    	assertEquals("Clear top flag should be set",
+                Intent.FLAG_ACTIVITY_CLEAR_TOP + Intent.FLAG_ACTIVITY_NEW_TASK, tabRecipeIntent.getFlags());
 	}
 
 	/* Test whether settings tab works */
@@ -79,8 +79,8 @@ public class NavigationBarTest extends AndroidTestCase{
     			tabSettingsIntent.hasExtra(STARTING_TAB));
     	assertEquals("Starting tab should be set to settings", 
     			"settings", tabSettingsIntent.getStringExtra(STARTING_TAB));
-    	assertEquals("Intent.FLAG_ACTIVITY_CLEAR_TOP should be set", 
-    			Intent.FLAG_ACTIVITY_CLEAR_TOP, tabSettingsIntent.getFlags());
+    	assertEquals("Intent.FLAG_ACTIVITY_CLEAR_TOP should be set",
+                Intent.FLAG_ACTIVITY_CLEAR_TOP + Intent.FLAG_ACTIVITY_NEW_TASK, tabSettingsIntent.getFlags());
 
 	}
 
