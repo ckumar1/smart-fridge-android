@@ -35,9 +35,12 @@ public class AdvancedSearchRecipeActivity extends Activity {
         setContentView(R.layout.advanced_recipe_search);
     }
 
-    public void onButtonClick(View v) {
+    public void onButtonClick(View view) {
 
-        switch (v.getId()) {
+        NavigationBar navBar = new NavigationBar();
+        navBar.onTabsClicked(view, getApplicationContext());
+
+        switch (view.getId()) {
 
             case R.id.btnSearchRecipes:
                 Intent resultsIntent = new Intent(getApplicationContext(), RecipeSearchResultsActivity.class);
@@ -53,38 +56,6 @@ public class AdvancedSearchRecipeActivity extends Activity {
                     calorieCountButton.setText("Less Than");
                 }
                 break;
-
-
-            case R.id.tabFood:
-
-                Intent tabFoodIntent = new Intent(getApplicationContext(), MainActivity.class);
-                tabFoodIntent.putExtra(STARTING_TAB, "food");
-
-                tabFoodIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(tabFoodIntent);
-
-                break;
-
-            case R.id.tabRecipes:
-
-                Intent tabRecipesIntent = new Intent(getApplicationContext(), MainActivity.class);
-                tabRecipesIntent.putExtra(STARTING_TAB, "recipes");
-
-                tabRecipesIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(tabRecipesIntent);
-
-                break;
-
-            case R.id.tabSettings:
-
-                Intent tabSettingsIntent = new Intent(getApplicationContext(), MainActivity.class);
-                tabSettingsIntent.putExtra(STARTING_TAB, "settings");
-
-                tabSettingsIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(tabSettingsIntent);
-
-                break;
-
         }
 
         /**
