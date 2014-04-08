@@ -45,21 +45,17 @@ public class AddRecipeActivity extends Activity {
 
             case R.id.showlist:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                EditText recName;
-                recName = (EditText)findViewById(R.id.RecipeNameField);
+                EditText recName = (EditText)findViewById(R.id.RecipeNameField);
 
                 String recipeN = recName.getText().toString();
 
                 String message = "";
-
-                for(String ingredient : ingredlist)
-                {
-                    if(message.equals(""))
-                    {
+                for(String ingredient : ingredlist) {
+                    if(message.equals("")) {
                         message = ingredient;
                     }
                     else {
-                    message = message + "\n" + ingredient;
+                    	message = message + "\n" + ingredient;
                     }
                 }
 

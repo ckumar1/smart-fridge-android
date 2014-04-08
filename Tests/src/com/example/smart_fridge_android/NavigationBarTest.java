@@ -29,9 +29,8 @@ public class NavigationBarTest extends AndroidTestCase{
     	assertNotNull(tabFood);
     	
 		tabFood.performClick();
-    	
     	// Check for correct tabfood Intent params
-    	Intent tabFoodIntent = current.getStartedActivityIntent();
+		Intent tabFoodIntent = current.getStartedActivityIntent();
     	assertNotNull(tabFoodIntent);
     	assertEquals(".MainActivity class should be set in Intent",
     			".MainActivity",tabFoodIntent.getComponent().getShortClassName());
@@ -39,7 +38,7 @@ public class NavigationBarTest extends AndroidTestCase{
     			tabFoodIntent.hasExtra(STARTING_TAB));
     	assertEquals("Starting tab should be set to food", 
     			"food", tabFoodIntent.getStringExtra(STARTING_TAB));
-    	assertEquals("Clear top flag should be set", 
+    	assertEquals("Clear top flag should be set",
     			Intent.FLAG_ACTIVITY_CLEAR_TOP + Intent.FLAG_ACTIVITY_NEW_TASK, tabFoodIntent.getFlags());
     }
 
@@ -81,7 +80,6 @@ public class NavigationBarTest extends AndroidTestCase{
     			"settings", tabSettingsIntent.getStringExtra(STARTING_TAB));
     	assertEquals("Intent.FLAG_ACTIVITY_CLEAR_TOP should be set",
                 Intent.FLAG_ACTIVITY_CLEAR_TOP + Intent.FLAG_ACTIVITY_NEW_TASK, tabSettingsIntent.getFlags());
-
 	}
 
 	/* Test whether logout button works */
