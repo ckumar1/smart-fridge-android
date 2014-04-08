@@ -1,10 +1,13 @@
 package com.example.smart_fridge_android;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class AddRecipeActivityTest 
 	extends ActivityUnitTestCase<AddRecipeActivity>{
@@ -48,5 +51,103 @@ public class AddRecipeActivityTest
     	NavigationBarTest.logoutBtnTest(activity, this);
     }
 
+    public void testViewIngredientList() {
+    	// Test the showlist Button. May be challenging
+    }
+    
+    public void testAddInvalidRecipe() {
+    	// Test for bad input
+    }
+    
+    public void testAddValidRecipe() {
+    	startActivity(launchIntent, null, null);
+    	Activity activity = getActivity();
+    	assertNotNull(activity);
+    	
+    	//Check name field
+    	EditText nameField = (EditText)activity.findViewById(R.id.RecipeNameField);
+    	assertNotNull(nameField);
+    	assertTrue("Name should start blank", 
+    			nameField.getText().toString().isEmpty());
+    	nameField.setText("TESTMACNCHEESETEST");
+    	assertEquals("Name should have TESTMACNCHEESETEST", "TESTMACNCHEESETEST",
+    			nameField.getText().toString());
+    	
+    	//Check Directions field
+    	EditText directionsField = (EditText)activity.findViewById(R.id.InstructionsField);
+    	assertNotNull(directionsField);
+    	assertTrue("Directions should start blank", 
+    			directionsField.getText().toString().isEmpty());
+    	directionsField.setText("Boil noodles and add cheese");
+    	assertEquals("Name should have Boil noodles and add cheese", 
+    			"Boil noodles and add cheese", directionsField.getText().toString());
+    	
+    	//Check ingredient button
+    	Button addIngrBtn = (Button)activity.findViewById(R.id.addingred);
+    	assertNotNull(addIngrBtn);
+    	
+    	// Check Ingredient field
+    	EditText ingredientField = (EditText)activity.findViewById(R.id.IngredientField);
+    	assertNotNull(ingredientField);
+    	assertTrue("Ingredient should start blank", 
+    			ingredientField.getText().toString().isEmpty());
+    	ingredientField.setText("macaroni");
+    	assertEquals("Ingredient should have macaroni", "macaroni",
+    			ingredientField.getText().toString());
+    	
+    	// Add the ingredient and check that the field is blank
+    	addIngrBtn.performClick();
+    	assertTrue("Ingredient should be blank again", 
+    			ingredientField.getText().toString().isEmpty());
+    	
+    	// Add another ingredient
+    	ingredientField.setText("cheese");
+    	assertEquals("Ingredient should have cheese", "cheese",
+    			ingredientField.getText().toString());
+    	addIngrBtn.performClick();
+    	assertTrue("Ingredient should be blank again", 
+    			ingredientField.getText().toString().isEmpty());
+    	
+    	Button addRecipe = (Button)activity.findViewById(R.id.addrec);
+    	assertNotNull(addRecipe);
+    	
+    	// Note that this actually creates the recipe item in your application
+    	addRecipe.performClick();
+    	
+    	// Check if the item was created correctly
+    	DatabaseHandler db = new DatabaseHandler(activity.getApplicationContext());
+    	List<Recipe> list = db.getAllRecipes();
+    	Recipe addedItem = findRecipeInList(list, "TESTMACNCHEESETEST");
+    	
+    	assertNotNull(addedItem);
+    	assertEquals("Boil noodles and add cheese", addedItem.getDirections());
+    	assertEquals("macaroni<b>cheese", addedItem.getIngredients());
+    	
+    	// Need to delete the food again and check that it is gone
+    	db.deleteRecipe(addedItem);
+    	assertFalse(db.getAllRecipes().contains(addedItem));
+    	
+    	// Check that the correct Intent was created
+    	Intent addIntent = getStartedActivityIntent();
+    	assertNotNull(addIntent);
+    	assertEquals(".MainActivity class should be set in Intent",
+    			".MainActivity",addIntent.getComponent().getShortClassName());
+    	assertTrue("Starting tab extra should be set", 
+    			addIntent.hasExtra(STARTING_TAB));
+    	assertEquals("Starting tab should be set to recipe", 
+    			"recipe", addIntent.getStringExtra(STARTING_TAB));
+    	assertEquals("Clear top flag should be set", 
+    			Intent.FLAG_ACTIVITY_CLEAR_TOP, addIntent.getFlags());
+    }
+    
+    private Recipe findRecipeInList(List<Recipe> list, String name) {
+    	Recipe addedItem = null;
+    	for(int i = 0; i < list.size() && addedItem == null; i++) {
+    		if(list.get(i).getName().equals(name)) {
+    			addedItem = list.get(i);
+    		}
+    	}
+    	return addedItem;
+    }
     //TODO Write Tests
 }
