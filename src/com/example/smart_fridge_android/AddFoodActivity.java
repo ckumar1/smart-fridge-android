@@ -9,6 +9,7 @@ import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -50,11 +51,12 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
            if (resultCode == RESULT_OK) {
                
               String contents = intent.getStringExtra("SCAN_RESULT");
-              String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+            //  String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
            
               //display results
               Log.i("result",contents);
-              Log.i("result",format);
+              Toast.makeText(getApplicationContext(), contents, Toast.LENGTH_LONG).show();
+           //   Log.i("result",format);
                                         
            } else if (resultCode == RESULT_CANCELED) {
               // Handle cancel
@@ -62,6 +64,16 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
            }
       }
    }
+    
+    public void scanBarcode() {
+       /* Uri uriUrl = Uri.parse("http://zxing.appspot.com/scan");
+        Intent scanInBrowser= new Intent(Intent.ACTION_VIEW, uriUrl);
+        scanInBrowser.putExtra("SCAN_MODE", "QR_CODE_MODE");
+        startActivityForResult(scanInBrowser, 0); */
+        Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+        intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+        startActivityForResult(intent, 0); 
+    }
 	
 	public void onButtonClick(View v) {
 		NavigationBar navBar = new NavigationBar();
@@ -104,9 +116,7 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 			this.startActivity(i);
 			break;
 		case R.id.scanBtn:
-            Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-            intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-            startActivityForResult(intent, 0);
+			scanBarcode();
 			break;
 		}
 	}
