@@ -130,11 +130,15 @@ public class AddFoodActivityTest
     	
     	manualBtn.performClick();
     	
+    	Button addMan = (Button)activity.findViewById(R.id.addMan);
+    	assertNotNull(addMan);
+    	
     	// Test failure with blank name field
     	EditText nameField = (EditText)activity.findViewById(R.id.nameField);
     	assertNotNull(nameField);
     	assertTrue("Name should start blank", 
     			nameField.getText().toString().isEmpty());
+    	addMan.performClick();
     	
     	// Make sure the food was not created.
     	DatabaseHandler db = new DatabaseHandler(activity.getApplicationContext());
@@ -150,6 +154,7 @@ public class AddFoodActivityTest
     	nameField.setText("Apple<br>");
     	assertEquals("Name should have Apple<br>", "Apple<br>", 
     			nameField.getText().toString());
+    	addMan.performClick();
     	
     	// Make sure the food was not created
     	db = new DatabaseHandler(activity.getApplicationContext());

@@ -52,11 +52,127 @@ public class AddRecipeActivityTest
     }
 
     public void testViewIngredientList() {
-    	// Test the showlist Button. May be challenging
+    	// TODO Test the showlist Button. May be challenging
     }
     
-    public void testAddInvalidRecipe() {
-    	// Test for bad input
+    public void testAddInvalidRecipeName() {
+    	startActivity(launchIntent, null, null);
+    	Activity activity = getActivity();
+    	assertNotNull(activity);
+    	
+    	Button addRecipe = (Button)activity.findViewById(R.id.addrec);
+    	assertNotNull(addRecipe);
+    	
+    	// Test failure with blank name field
+    	EditText nameField = (EditText)activity.findViewById(R.id.RecipeNameField);
+    	assertNotNull(nameField);
+    	assertTrue("Name should start blank", 
+    			nameField.getText().toString().isEmpty());
+    	addRecipe.performClick();
+    	
+    	// Make sure the recipe was not created.
+    	DatabaseHandler db = new DatabaseHandler(activity.getApplicationContext());
+    	List<Recipe> list = db.getAllRecipes();
+    	Recipe addedItem = findRecipeInList(list, "");
+    	assertNull(addedItem);
+    	
+    	// Make sure intent was not sent
+    	Intent addIntent = getStartedActivityIntent();
+    	assertNull(addIntent);
+    	
+    	// Test failure with a name with tags
+    	nameField.setText("Food<br>");
+    	assertEquals("Name should have Food<br>", "Food<br>",
+    			nameField.getText().toString());
+    	addRecipe.performClick();
+    	
+    	// Make sure the recipe was not created.
+    	db = new DatabaseHandler(activity.getApplicationContext());
+    	list = db.getAllRecipes();
+    	addedItem = findRecipeInList(list, "Food<br>");
+    	assertNull(addedItem);
+    	
+    	// Make sure intent was not sent
+    	addIntent = getStartedActivityIntent();
+    	assertNull(addIntent);
+    }
+    
+    public void testAddInvalidRecipeDirections() {
+    	startActivity(launchIntent, null, null);
+    	Activity activity = getActivity();
+    	assertNotNull(activity);
+    	
+    	Button addRecipe = (Button)activity.findViewById(R.id.addrec);
+    	assertNotNull(addRecipe);
+    	
+    	EditText nameField = (EditText)activity.findViewById(R.id.RecipeNameField);
+    	assertNotNull(nameField);
+    	nameField.setText("TESTNAMETEST");
+    	assertEquals("Name should have TESTNAMETEST", 
+    			"TESTNAMETEST", nameField.getText().toString());
+    	
+    	// Test failure with blank name field
+    	EditText descriptionField = (EditText)activity.findViewById(R.id.InstructionsField);
+    	assertNotNull(descriptionField);
+    	assertTrue("Description should start blank", 
+    			descriptionField.getText().toString().isEmpty());
+    	addRecipe.performClick();
+    	
+    	// Make sure the recipe was not created.
+    	DatabaseHandler db = new DatabaseHandler(activity.getApplicationContext());
+    	List<Recipe> list = db.getAllRecipes();
+    	Recipe addedItem = findRecipeInList(list, "TESTNAMETEST");
+    	assertNull(addedItem);
+    	
+    	// Make sure intent was not sent
+    	Intent addIntent = getStartedActivityIntent();
+    	assertNull(addIntent);
+    }
+    
+    public void testAddInvalidRecipeIngredients() {
+    	startActivity(launchIntent, null, null);
+    	Activity activity = getActivity();
+    	assertNotNull(activity);
+    	
+    	Button addRecipe = (Button)activity.findViewById(R.id.addrec);
+    	assertNotNull(addRecipe);
+    	
+    	EditText nameField = (EditText)activity.findViewById(R.id.RecipeNameField);
+    	assertNotNull(nameField);
+    	nameField.setText("TESTNAMETEST");
+    	assertEquals("Name should have TESTNAMETEST", 
+    			"TESTNAMETEST", nameField.getText().toString());
+    	
+    	// Test failure with blank name field
+    	EditText descriptionField = (EditText)activity.findViewById(R.id.InstructionsField);
+    	assertNotNull(descriptionField);
+    	descriptionField.setText("Boil");
+    	assertEquals("Description should have Boil", 
+    			"Boil", descriptionField.getText().toString());
+    	
+    	// Should not add the ingredient
+    	Button addIngrBtn = (Button)activity.findViewById(R.id.addingred);
+    	assertNotNull(addIngrBtn);
+    	
+    	EditText ingredientField = (EditText)activity.findViewById(R.id.IngredientField);
+    	assertNotNull(ingredientField);
+    	assertTrue("Ingredient should start blank", 
+    			ingredientField.getText().toString().isEmpty());
+    	
+    	// Add the blank ingredient and add the recipe
+    	// Should not add the ingredient, and thus will not add the recipe
+    	addIngrBtn.performClick();
+    	addRecipe.performClick();
+    	
+    	// Make sure the recipe was not created.
+    	DatabaseHandler db = new DatabaseHandler(activity.getApplicationContext());
+    	List<Recipe> list = db.getAllRecipes();
+    	Recipe addedItem = findRecipeInList(list, "TESTNAMETEST");
+    	assertNull(addedItem);
+    	
+    	// Make sure intent was not sent
+    	Intent addIntent = getStartedActivityIntent();
+    	assertNull(addIntent);
     }
     
     public void testAddValidRecipe() {
@@ -149,5 +265,4 @@ public class AddRecipeActivityTest
     	}
     	return addedItem;
     }
-    //TODO Write Tests
 }

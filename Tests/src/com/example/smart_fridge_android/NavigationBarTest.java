@@ -84,12 +84,6 @@ public class NavigationBarTest extends AndroidTestCase{
 
 	/* Test whether logout button works */
 	public static void logoutBtnTest(Activity activity, ActivityUnitTestCase<?> current) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/* Test whether add button works */
-	public static void addBtnTest(Activity activity, ActivityUnitTestCase<?> current) {
 		Button logoutBtn = (Button)activity.findViewById(R.id.logoutBtn);
 
     	assertNotNull(logoutBtn);
@@ -108,5 +102,10 @@ public class NavigationBarTest extends AndroidTestCase{
     	assertEquals("Intent.FLAG_ACTIVIT_NEW_TASK should be set", 
     			Intent.FLAG_ACTIVITY_NEW_TASK, logoutIntent.getFlags());
     */
+	}
+	
+	/* Test whether add button works */
+	public static void addBtnTest(Activity activity, ActivityUnitTestCase<?> current) {
+		// TODO
 	}
 }

@@ -79,6 +79,10 @@ public class AddRecipeActivity extends Activity {
                     Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
                     break;
                 }
+                if(name.contains("<") && name.contains(">")){
+                    Toast.makeText(getApplicationContext(), "No tags (<>) allowed", Toast.LENGTH_LONG).show();
+                    break;
+                }
                 recipe.setName(name);
 
                 String directions = ((EditText)findViewById(R.id.InstructionsField)).getText().toString();
