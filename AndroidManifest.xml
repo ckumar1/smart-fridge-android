@@ -26,15 +26,7 @@
         <activity android:name="com.example.smart_fridge_android.RegisterActivity" />
         <activity android:name="com.example.smart_fridge_android.AddRecipeActivity" />
         <activity android:name="com.example.smart_fridge_android.MainActivity" />
-        <activity 
-            android:name="com.example.smart_fridge_android.AddFoodActivity" >
-            <intent-filter>
-        		<action android:name="android.intent.action.VIEW"/>
-        		<category android:name="android.intent.category.DEFAULT"/>
-        		<category android:name="android.intent.category.BROWSABLE"/>
-        		<data android:scheme="http" android:host="zxing.appspot.com" android:path="/scan"/>
-      		</intent-filter>
-            </activity>
+        <activity android:name="com.example.smart_fridge_android.AddFoodActivity" />
         <activity android:name="com.example.smart_fridge_android.IndividualRecipeActivity" />
         <activity android:name="com.example.smart_fridge_android.Individual_Food_Item" />
         
