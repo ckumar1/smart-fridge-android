@@ -10,21 +10,23 @@ public class Recipe {
     private String directions;
     private String notes;
     private String ingredients;
+    private String imagePath;
 
     public Recipe(){
 
     }
 
-    public Recipe(String name, String directions, String notes, List<String>ingredients){
-    	this(name, directions, notes, "");
+    public Recipe(String name, String directions, String notes, List<String>ingredients, String imagePath){
+    	this(name, directions, notes, imagePath, "");
     	this.setIngredientsList(ingredients);
     }
     
-    public Recipe(String name, String directions, String notes, String ingredients) {
+    public Recipe(String name, String directions, String notes, String ingredients, String imagePath) {
         this.name = name;
         this.directions = directions;
         this.notes = notes;
         this.ingredients = ingredients;
+        this.imagePath = imagePath;
     }
 
     public int getId() {
@@ -55,6 +57,14 @@ public class Recipe {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
     
     public String getIngredients() {
