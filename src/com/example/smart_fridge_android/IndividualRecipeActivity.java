@@ -42,8 +42,9 @@ public class IndividualRecipeActivity extends Activity {
 	public void onButtonClick(View v) {
 		NavigationBar navBar = new NavigationBar();
 		navBar.onButtonClick(v,  getApplicationContext());
-		
-		switch (v.getId()) {
+        NavigationBar.onTabsClicked(v, this);
+
+        switch (v.getId()) {
 		
 		case R.id.IndRecipeDeleteButton:
 			db.deleteRecipe(recipe);

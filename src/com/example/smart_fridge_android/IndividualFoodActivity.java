@@ -46,6 +46,7 @@ public class IndividualFoodActivity extends Activity {
 		
 		NavigationBar navBar = new NavigationBar();
         navBar.onButtonClick(v, getApplicationContext());
+        NavigationBar.onTabsClicked(v, this);
                            
                     
         switch (v.getId()){
