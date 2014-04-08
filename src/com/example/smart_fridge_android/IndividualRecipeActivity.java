@@ -2,6 +2,7 @@ package com.example.smart_fridge_android;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.app.Activity;
 import android.content.Intent;
@@ -54,6 +55,14 @@ public class IndividualRecipeActivity extends Activity {
             i.putExtra(STARTING_TAB, "recipe");
 			this.startActivity(i);
         	break; 
+        
+		case R.id.IMadeThisButton:
+			setContentView(R.layout.i_made_this);
+			TextView nameText = (TextView) findViewById(R.id.IMadethisRecipeName);
+	        nameText.setText(recipe.getName());
+	        break;	       
+			
+			
 		}
 	}
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/main_nav_bar" />
+
+    <TextView
+        android:id="@+id/IMadethisRecipeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="RecipeName" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/IMadethisRecipeName"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="61dp"
+        android:layout_toLeftOf="@+id/IMadethisRecipeName"
+        android:text="Ingredient: " />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_toRightOf="@+id/IMadethisRecipeName"
+        android:text="Amount used: " />
+
+
+     
+    <TextView
+                    android:id="@+id/IndRecipeIngredientsField"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="18dp"
+                    android:layout_toRightOf="@+id/IndRecipeIngredients"
+                    android:text="ingredientsField"
+                    android:textSize="20sp" />
+
+</RelativeLayout>
+
