@@ -24,42 +24,13 @@ public class AddRecipeActivity extends Activity {
         removeAddButton();
 	}
 
-	public void onButtonClick(View v) {
+	public void onButtonClick(View view) {
 		
 		NavigationBar navBar = new NavigationBar();
-        navBar.onButtonClick(v, getApplicationContext());
-        switch (v.getId()){
+        navBar.onButtonClick(view, getApplicationContext());
+        navBar.onTabsClicked(view, getApplicationContext());
+        switch (view.getId()){
 
-            case R.id.tabFood:
-
-                Intent tabFoodIntent = new Intent(getApplicationContext(), MainActivity.class);
-                tabFoodIntent.putExtra(STARTING_TAB, "food");
-
-                tabFoodIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(tabFoodIntent);
-
-                break;
-
-            case R.id.tabRecipes:
-
-                Intent tabRecipesIntent = new Intent(getApplicationContext(), MainActivity.class);
-                tabRecipesIntent.putExtra(STARTING_TAB, "recipes");
-
-                tabRecipesIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(tabRecipesIntent);
-
-                break;
-
-            case R.id.tabSettings:
-
-                Intent tabSettingsIntent = new Intent(getApplicationContext(), MainActivity.class);
-                tabSettingsIntent.putExtra(STARTING_TAB, "settings");
-
-                tabSettingsIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(tabSettingsIntent);
-
-                break;
-        
             case R.id.addingred:
 
                 EditText mEdit;

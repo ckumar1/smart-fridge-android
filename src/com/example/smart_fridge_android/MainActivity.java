@@ -63,8 +63,6 @@ public class MainActivity extends ListActivity  {
             Button advancedRecipeSearch = (Button) findViewById(R.id.btnAdvancedRecipeSearch);
             ViewGroup layout = (ViewGroup) advancedRecipeSearch.getParent();
             layout.removeView(advancedRecipeSearch);
-
-
         } else if (startingTab.equals("recipes")){
             foodTab = false;
             TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
