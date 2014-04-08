@@ -52,7 +52,37 @@ public class AddRecipeActivityTest
     }
 
     public void testViewIngredientList() {
-    	// TODO Test the showlist Button. May be challenging
+    	startActivity(launchIntent, null, null);
+    	Activity activity = getActivity();
+    	assertNotNull(activity);
+    	
+    	Button addIngred = (Button)activity.findViewById(R.id.addingred);
+    	assertNotNull(addIngred);
+    	
+    	EditText ingredientField = (EditText)activity.findViewById(R.id.IngredientField);
+    	assertNotNull(ingredientField);
+    	assertTrue("Ingredient should start blank", 
+    			ingredientField.getText().toString().isEmpty());
+    	ingredientField.setText("macaroni");
+    	assertEquals("Ingredient should have macaroni", "macaroni",
+    			ingredientField.getText().toString());
+    	
+    	// Add the ingredient and check that the field is blank
+    	addIngred.performClick();
+    	assertTrue("Ingredient should be blank again", 
+    			ingredientField.getText().toString().isEmpty());
+    	
+    	Button showList = (Button)activity.findViewById(R.id.showlist);
+    	assertNotNull(showList);
+    	try {
+    	showList.performClick();
+    	} catch (IllegalStateException e) { 
+    		// Trying to show the AlertDialog throws an exception.
+    		// This is a well-known bug 
+    		// https://code.google.com/p/android/issues/detail?id=14616
+    	}
+    	// Incomplete
+    	// I cannot access the elements of AlertDialog.Builder, nor see if it shows
     }
     
     public void testAddInvalidRecipeName() {
