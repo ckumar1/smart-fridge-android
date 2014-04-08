@@ -178,70 +178,9 @@ public class AddFoodActivityTest
     	Activity activity = getActivity();
     	assertNotNull(activity);
     	
-    	TextView tabFood = (TextView)activity.findViewById(R.id.tabFood);
-    	TextView tabRecipes = (TextView)activity.findViewById(R.id.tabRecipes);
-    	TextView tabSettings = (TextView)activity.findViewById(R.id.tabSettings);
-    	Button logoutBtn = (Button)activity.findViewById(R.id.logoutBtn);
-    	assertNotNull(tabFood);
-    	assertNotNull(tabRecipes);
-    	assertNotNull(tabSettings);
-    	assertNotNull(logoutBtn);
-    	
-    	tabFood.performClick();
-    	
-    	// Check for correct tabfood Intent params
-    	Intent tabFoodIntent = getStartedActivityIntent();
-    	assertNotNull(tabFoodIntent);
-    	assertEquals(".MainActivity class should be set in Intent",
-    			".MainActivity",tabFoodIntent.getComponent().getShortClassName());
-    	assertTrue("Starting tab extra should be set", 
-    			tabFoodIntent.hasExtra(STARTING_TAB));
-    	assertEquals("Starting tab should be set to food", 
-    			"food", tabFoodIntent.getStringExtra(STARTING_TAB));
-    	assertEquals("Clear top flag should be set", 
-    			Intent.FLAG_ACTIVITY_CLEAR_TOP, tabFoodIntent.getFlags());
-
-    	tabRecipes.performClick();
-    	
-    	// Check for correct tabRecipe Intent params
-    	Intent tabRecipeIntent = getStartedActivityIntent();
-    	assertNotNull(tabRecipeIntent);
-    	assertEquals(".MainActivity class should be set in Intent",
-    			".MainActivity",tabRecipeIntent.getComponent().getShortClassName());
-    	assertTrue("Starting tab extra should be set", 
-    			tabRecipeIntent.hasExtra(STARTING_TAB));
-    	assertEquals("Starting tab should be set to recipes", 
-    			"recipes", tabRecipeIntent.getStringExtra(STARTING_TAB));
-    	assertEquals("Clear top flag should be set", 
-    			Intent.FLAG_ACTIVITY_CLEAR_TOP, tabRecipeIntent.getFlags());
-    	
-    	tabSettings.performClick();
-    	
-    	// Check for correct tabSettings Intent params
-    	Intent tabSettingsIntent = getStartedActivityIntent();
-    	assertNotNull(tabSettingsIntent);
-    	assertEquals(".MainActivity class should be set in Intent",
-    			".MainActivity",tabSettingsIntent.getComponent().getShortClassName());
-    	assertTrue("Starting tab extra should be set", 
-    			tabSettingsIntent.hasExtra(STARTING_TAB));
-    	assertEquals("Starting tab should be set to settings", 
-    			"settings", tabSettingsIntent.getStringExtra(STARTING_TAB));
-    	assertEquals("Intent.FLAG_ACTIVITY_CLEAR_TOP should be set", 
-    			Intent.FLAG_ACTIVITY_CLEAR_TOP, tabSettingsIntent.getFlags());
-
-    	/*
-    	 * TODO Figure out how to test add and logout buttons
-    	logoutBtn.performClick();
-    	
-    	//Check for correct logout function
-    	//TODO check session manager?
-    	Intent logoutIntent = getApplicationContext().getStartedActivityIntent();
-    	assertFalse(logoutIntent.equals(tabSettingsIntent));
-    	assertNotNull(logoutIntent);
-    	assertEquals(".LoginActivity class should be set in Intent",
-    			".LoginActivity", logoutIntent.getComponent().getShortClassName());
-    	assertEquals("Intent.FLAG_ACTIVIT_NEW_TASK should be set", 
-    			Intent.FLAG_ACTIVITY_NEW_TASK, logoutIntent.getFlags());
-    */
+    	NavigationBarTest.tabFoodTest(activity, this);
+    	NavigationBarTest.tabRecipesTest(activity, this);
+    	NavigationBarTest.tabSettingsTest(activity, this);
+    	NavigationBarTest.logoutBtnTest(activity, this);
     }
 }
