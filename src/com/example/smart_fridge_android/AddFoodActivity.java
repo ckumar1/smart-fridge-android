@@ -13,6 +13,7 @@ import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -69,7 +70,13 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 			});
 			break;
 		case R.id.imageBtn:
-			dispatchTakePictureIntent();
+            //only make intent if phone has a camera
+            if (Camera.getNumberOfCameras() > 0) {
+                dispatchTakePictureIntent();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "No camera found", Toast.LENGTH_LONG).show();
+            }
 			break;
 		case R.id.addMan:
 			Food food = new Food();
