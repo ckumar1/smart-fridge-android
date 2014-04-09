@@ -72,9 +72,9 @@ public class IndividualRecipeActivity extends Activity {
 		switch (v.getId()) {
 		
 		case R.id.IndRecipeDeleteButton:
-            //delete image from phone only if device has camera
-            if (Camera.getNumberOfCameras() > 0) {
-                File recipe_image = new File(recipe.getImagePath());
+            String recipeImgPath = recipe.getImagePath();
+            if (recipeImgPath != null && !recipeImgPath.isEmpty()) {
+                File recipe_image = new File(recipeImgPath);
                 Boolean deleted = recipe_image.delete(); //Delete the photo from your phone
                 if (!deleted)
                     Log.w("Delete Recipe", "Recipe Image wasn't deleted");

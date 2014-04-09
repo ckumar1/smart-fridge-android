@@ -75,9 +75,9 @@ public class IndividualFoodActivity extends Activity {
         switch (v.getId()){
         
         case R.id.DeleteButton:
-            //delete image from phone only if device has camera
-            if (Camera.getNumberOfCameras() > 0) {
-                File food_image = new File(food.getImagePath());
+            String foodImgPath = food.getImagePath();
+            if (foodImgPath != null && !foodImgPath.isEmpty()) {
+                File food_image = new File(foodImgPath);
                 Boolean deleted = food_image.delete(); //Delete the photo from your phone
                 if (!deleted)
                     Log.w("Delete Food", "Food Image wasn't deleted");
