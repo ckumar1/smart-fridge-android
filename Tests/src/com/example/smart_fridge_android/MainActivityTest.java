@@ -217,6 +217,63 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
         assertNull(advancedRecipeSearch);  
     }
     
+    public void testClickAdvancedRecipeSearchButton() {
+    	launchIntent.putExtra(STARTING_TAB, "recipes");
+    	startActivity(launchIntent, null, null);
+    	Activity activity = getActivity();
+    	assertNotNull(activity);
+    	
+    	Button advRecipeSearchBtn = (Button) activity.findViewById(R.id.btnAdvancedRecipeSearch);
+    	assertNotNull(advRecipeSearchBtn);
+    	
+    	advRecipeSearchBtn.performClick();
+    	
+    	// Check the correct Intent was created
+    	Intent addIntent = getStartedActivityIntent();
+    	assertNotNull(addIntent);
+    	assertEquals(".AdvancedSearchRecipeActivity class should be set in Intent",
+    			".AdvancedSearchRecipeActivity", addIntent.getComponent().getShortClassName());
+    }
+    
+    public void testClickCheckBoxNotifications() {
+    	launchIntent.putExtra(STARTING_TAB, "settings");
+    	startActivity(launchIntent, null, null);
+    	Activity activity = getActivity();
+    	assertNotNull(activity);
+    	
+    	CheckBox notifications = (CheckBox)activity.findViewById(R.id.checkBoxNotifications);
+    	assertNotNull(notifications);
+    	if(notifications.isChecked()) {
+    		notifications.performClick();
+    	}
+    	
+    	// Create and check the session values
+    	SessionManager session = new SessionManager(activity.getApplicationContext());
+    	assertNotNull(session);
+    	assertFalse("Should not want notifications", session.wantsNotifications());
+    	assertFalse("Should not want notifications", notifications.isChecked());
+    	
+    	notifications.performClick();
+    	
+    	// Create and check the session values
+    	session = new SessionManager(activity.getApplicationContext());
+    	assertNotNull(session);
+    	assertTrue("Should want notifications", session.wantsNotifications());
+    	assertTrue("Should want notifications", notifications.isChecked());
+    }
+    
+    public void testClickChangePassword() {
+    	launchIntent.putExtra(STARTING_TAB, "settings");
+    	startActivity(launchIntent, null, null);
+    	Activity activity = getActivity();
+    	assertNotNull(activity);
+    	
+    	Button changePass = (Button)activity.findViewById(R.id.btnChangePassword);
+    	assertNotNull(changePass);
+    	changePass.performClick();
+    	//TODO check when code is implemented
+    }
+    
     public void checkTabs(Activity activity) {
     	TextView foodView = (TextView) activity.findViewById(R.id.tabFood);
     	TextView recipesView = (TextView) activity.findViewById(R.id.tabRecipes);

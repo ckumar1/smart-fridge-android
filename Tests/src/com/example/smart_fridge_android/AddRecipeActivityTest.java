@@ -281,7 +281,7 @@ public class AddRecipeActivityTest
     	assertTrue("Starting tab extra should be set", 
     			addIntent.hasExtra(STARTING_TAB));
     	assertEquals("Starting tab should be set to recipe", 
-    			"recipe", addIntent.getStringExtra(STARTING_TAB));
+    			"recipes", addIntent.getStringExtra(STARTING_TAB));
     	assertEquals("Clear top flag should be set", 
     			Intent.FLAG_ACTIVITY_CLEAR_TOP, addIntent.getFlags());
     }
