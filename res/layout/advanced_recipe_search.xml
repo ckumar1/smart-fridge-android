@@ -9,6 +9,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             layout="@layout/main_nav_bar" android:id="@+id/include"/>
+
+    <ListView
+            android:id="@android:id/list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
     <TextView
             android:id="@+id/textViewAdvancedRecipeSearch"
             android:layout_width="wrap_content"

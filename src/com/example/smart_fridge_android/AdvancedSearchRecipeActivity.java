@@ -81,7 +81,13 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
     private void parseJson(){
         try {
             JSONArray recipesArray = json.getJSONArray("matches");
-            JSONObject recipe = userArray.getJSONObject(0);
+            JSONObject recipe = recipesArray.getJSONObject(0);
+            String name = recipe.get("recipeName").toString();
+            List<String> names = new ArrayList<String>();
+            names.add(name);
+
+            setResultsAdapter(names);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
