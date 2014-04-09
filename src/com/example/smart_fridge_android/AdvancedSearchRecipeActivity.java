@@ -1,6 +1,5 @@
 package com.example.smart_fridge_android;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -20,9 +19,10 @@ import java.util.List;
 
 public class AdvancedSearchRecipeActivity extends ListActivity {
 
-    private static final String STARTING_TAB = "startingTab";
-    private static final String TAG_RECIPE_ID = "recipe_id";
     private static final String TAG_RECIPE_NAME = "name";
+    private static final String TAG_RECIPE_INGREDIENTS = "ingredients";
+    private static final String APP_ID = "_app_id";
+    private static final String APP_KEY = "_app_key";
 
     // Progress Dialog
     private ProgressDialog pDialog;
@@ -39,7 +39,7 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
 
     // url to yummly api
     // Using Carl's api id and api key for now.
-    private static String url_yummly = "http://api.yummly.com/v1/api/recipes?_app_id=5780cd3c&_app_key=c2d2c46e25e5051ee5f51ebedcdd16fd";
+    private static String url_yummly = "http://api.yummly.com/v1/api/recipes";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,8 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
             case R.id.btnSearchRecipes:
                 prepareSearch();
                 new GetRecipes().execute();
+
+                //parseJson();
 
                 setContentView(R.layout.recipe_search_results);
                 break;
@@ -78,33 +80,19 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
         recipeNameEditText = (EditText) findViewById(R.id.editTextRecipeName);
     }
 
-    private void parseJson(){
-        try {
-            JSONArray recipesArray = json.getJSONArray("matches");
-            JSONObject recipe = recipesArray.getJSONObject(0);
-            String name = recipe.get("recipeName").toString();
-            List<String> names = new ArrayList<String>();
-            names.add(name);
-
-            setResultsAdapter(names);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * Shows the recipe results list
      **/
-    private void setResultsAdapter(List<String> recipeNames){
+    private void setResultsAdapter(List<Recipe> recipes){
 
         List<HashMap<String, String>> recipesList = new ArrayList<HashMap<String, String>>();
 
-        for (String recipe : recipeNames){
+        for (Recipe recipe : recipes){
 
             HashMap<String, String> map = new HashMap<String, String>();
 
-            map.put(TAG_RECIPE_NAME, recipe);
+            map.put(TAG_RECIPE_NAME, recipe.getName());
+            map.put(TAG_RECIPE_INGREDIENTS, recipe.getIngredients());
             recipesList.add(map);
         }
 
@@ -112,13 +100,13 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
                 new String[] {TAG_RECIPE_NAME}, new int[] {R.id.recipe_name});
 
         setListAdapter(adapter);
-        setListView();
+        setListView(recipes);
     }
 
     /**
-     * Sets the proper ListView for the results being viewed.
+     * Displays the proper information for the results being viewed.
      */
-    private void setListView(){
+    private void setListView(final List<Recipe> recipes){
         ListView listView = getListView();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -126,7 +114,12 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id)
             {
+                setContentView(R.layout.recipe_result);
+                TextView name = (TextView) findViewById(R.id.textViewRecipeResultName);
+                TextView ingredients = (TextView) findViewById(R.id.textViewIngredientsResultList);
 
+                name.setText(recipes.get(position).getName());
+                ingredients.setText(recipes.get(position).getIngredients());
             }
         });
     }
@@ -135,6 +128,8 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
      * Background Async Task to execute the yummly query
      * */
     class GetRecipes extends AsyncTask<String, String, String> {
+
+        List<Recipe> recipes = new ArrayList<Recipe>();
 
         /**
          * Before starting background thread Show Progress Dialog
@@ -159,7 +154,11 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 
+            params.add(new BasicNameValuePair(APP_ID, "5780cd3c"));
+            params.add(new BasicNameValuePair(APP_KEY, "c2d2c46e25e5051ee5f51ebedcdd16fd"));
             params.add(new BasicNameValuePair("q", recipeName));
+            params.add(new BasicNameValuePair("maxResult", Integer.toString(20)));
+            params.add(new BasicNameValuePair("start", Integer.toString(20)));
 
             // getting JSON Object
             json = jsonParser.makeHttpRequest(url_yummly,
@@ -168,6 +167,32 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
             // check log cat for response
             Log.d("Create Response", json.toString());
 
+            try {
+                JSONArray recipesArray = json.getJSONArray("matches");
+
+                for (int i = 0; i < recipesArray.length(); i++) {
+                    JSONObject recipe = recipesArray.getJSONObject(i);
+
+                    String name = recipe.get("recipeName").toString();
+
+                    JSONArray ingredientsArray = recipe.getJSONArray("ingredients");
+
+                    String ingredients = "";
+
+                    for (int k = 0; k < ingredientsArray.length(); k++){
+                        ingredients += ingredientsArray.get(k) + "\n";
+                    }
+
+                    Recipe r = new Recipe();
+                    r.setName(name);
+                    r.setIngredients(ingredients);
+                    recipes.add(r);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
             return null;
         }
 
@@ -175,6 +200,9 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
          * After completing background task dismiss the progress dialog
          * **/
         protected void onPostExecute(String file_url) {
+
+            setResultsAdapter(recipes);
+
             // dismiss the dialog once done
             pDialog.dismiss();
         }

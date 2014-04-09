@@ -8,12 +8,14 @@
     <include
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            layout="@layout/main_nav_bar" android:id="@+id/include"/>
+            layout="@layout/main_nav_bar"
+            android:id="@+id/include"/>
 
     <ListView
             android:id="@android:id/list"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="0dp"/>
+
     <TextView
             android:id="@+id/textViewAdvancedRecipeSearch"
             android:layout_width="wrap_content"
@@ -41,8 +43,7 @@
             android:ems="9"
             android:layout_alignBottom="@id/textViewRecipeName"
             android:layout_alignParentRight="true"
-            android:layout_alignBaseline="@id/textViewRecipeName"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignBaseline="@id/textViewRecipeName"/>
 
     <TextView
             android:id="@+id/textViewUseIngredients"
@@ -72,7 +73,6 @@
             android:ems="3"
             android:layout_alignBottom="@id/textViewUseIngredients"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:layout_alignBaseline="@id/textViewUseIngredients"
             android:onClick="onButtonClick"/>
 
@@ -152,14 +152,15 @@
             android:layout_alignParentRight="true"
             android:layout_alignLeft="@id/btnCalorieCount"
             android:layout_alignStart="@id/btnCalorieCount"
-            android:layout_alignBaseline="@id/textViewCategory"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignBaseline="@id/textViewCategory"/>
+
     <Button
             android:id="@+id/btnSearchRecipes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Search"
-            android:layout_alignParentBottom="true"
+            android:onClick="onButtonClick"
+            android:layout_below="@+id/editTextCategory"
             android:layout_centerHorizontal="true"
-            android:onClick="onButtonClick"/>
+            android:layout_marginTop="100dp"/>
 </RelativeLayout>

@@ -46,7 +46,7 @@
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="42dp"
         android:layout_marginTop="23dp"
-        android:text="@string/AddFoodName" android:textSize="20sp"/>
+        android:text="@string/AddFoodName"/>
 
     <EditText
         android:id="@+id/nameField"
@@ -87,8 +87,7 @@
         android:layout_alignRight="@+id/addMan"
         android:layout_below="@+id/include1"
         android:layout_marginTop="14dp"
-        android:text="@string/AddFood"
-        android:textSize="20sp"/>
+        android:text="@string/AddFood"/>
 
     <TextView
         android:id="@+id/dateSelector"

@@ -52,7 +52,7 @@ public class IndividualRecipeActivity extends Activity {
 			
 			Intent i = new Intent(this, MainActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            i.putExtra(STARTING_TAB, "recipe");
+            i.putExtra(STARTING_TAB, "recipes");
 			this.startActivity(i);
         	break; 
         
