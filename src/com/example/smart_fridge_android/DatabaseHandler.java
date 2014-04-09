@@ -87,7 +87,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_RECIPE_DIRECTIONS + " TEXT,"
                 + KEY_RECIPE_NOTES + " TEXT,"
                 + KEY_RECIPE_INGREDIENTS + " TEXT,"
-                + KEY_RECIPE_PHOTO + " BLOB"
+                + KEY_RECIPE_PHOTO + " TEXT"
                 + ")";
 
         db.execSQL(CREATE_USERS_TABLE);
@@ -122,7 +122,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_FOOD_CATEGORY, food.getCategory()); // Food Category
         values.put(KEY_FOOD_CALORIES, food.getCalories()); // Food Calories
         values.put(KEY_FOOD_QUANTITY, food.getQuantity()); // Food Quantity
-        values.put(KEY_FOOD_PHOTO, food.getImagePath());
+        values.put(KEY_FOOD_PHOTO, food.getImagePath()); //Food Image File Path
 
         // Inserting Row
         long insertId = db.insert(TABLE_FOOD, null, values);
@@ -228,6 +228,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_RECIPE_DIRECTIONS, recipe.getDirections()); // Recipe Directions
         values.put(KEY_RECIPE_NOTES, recipe.getNotes()); // Recipe Notes
         values.put(KEY_RECIPE_INGREDIENTS, recipe.getIngredients()); // Recipe Ingredients
+        values.put(KEY_RECIPE_PHOTO, recipe.getImagePath()); //Recipe Image File Path
 
         // Inserting Row
         long insertId = db.insert(TABLE_RECIPES, null, values);
@@ -244,14 +245,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_RECIPES, new String[] { KEY_RECIPE_ID,
-                KEY_RECIPE_NAME, KEY_RECIPE_DIRECTIONS, KEY_RECIPE_NOTES, KEY_RECIPE_INGREDIENTS },
+                KEY_RECIPE_NAME, KEY_RECIPE_DIRECTIONS, KEY_RECIPE_NOTES, KEY_RECIPE_INGREDIENTS, KEY_RECIPE_PHOTO },
                 KEY_RECIPE_ID + "= ?", // '?' is replaced by selection args
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
         Recipe recipe = new Recipe(cursor.getString(1),
-                cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
         recipe.setId(Integer.parseInt(cursor.getString(0)));
         // return recipe
         return recipe;
@@ -275,6 +276,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 recipe.setDirections(cursor.getString(2));
                 recipe.setNotes(cursor.getString(3));
                 recipe.setIngredients(cursor.getString(4));
+                recipe.setImagePath(cursor.getString(5));
 
                 // Adding recipe to list
                 recipesList.add(recipe);
@@ -294,6 +296,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_RECIPE_DIRECTIONS, recipe.getDirections());
         values.put(KEY_RECIPE_NOTES, recipe.getNotes());
         values.put(KEY_RECIPE_INGREDIENTS, recipe.getIngredients());
+        values.put(KEY_RECIPE_PHOTO, recipe.getImagePath());
 
         // updating row
         return db.update(TABLE_RECIPES, values, KEY_RECIPE_ID + " = ?",

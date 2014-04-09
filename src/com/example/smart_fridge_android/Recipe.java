@@ -98,6 +98,7 @@ public class Recipe {
                 ", directions='" + directions + '\'' +
                 ", notes='" + notes + '\'' +
                 ", ingredients='" + ingredients + '\'' +
+                ", imagePath=" + imagePath +
                 '}';
     }
 
@@ -113,6 +114,7 @@ public class Recipe {
         if (ingredients != null ? !ingredients.equals(recipe.ingredients) : recipe.ingredients != null) return false;
         if (name != null ? !name.equals(recipe.name) : recipe.name != null) return false;
         if (notes != null ? !notes.equals(recipe.notes) : recipe.notes != null) return false;
+        if (imagePath != null ? !imagePath.equals(recipe.imagePath) : recipe.imagePath != null) return false;
 
         return true;
     }
