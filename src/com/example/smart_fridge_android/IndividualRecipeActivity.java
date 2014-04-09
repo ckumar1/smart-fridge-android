@@ -49,12 +49,12 @@ public class IndividualRecipeActivity extends Activity {
             Log.w("Image", "Image Exists!");
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             ImageView myImage = (ImageView) findViewById(R.id.imgView); //fix this
-            myImage.setImageBitmap(myBitmap);
+
             Matrix matrix = new Matrix();
-            myImage.setScaleType(ImageView.ScaleType.MATRIX);
-            matrix.postRotate((float) 180, myImage.getDrawable().getBounds().width()/2,
-                    myImage.getDrawable().getBounds().height()/2);
-            myImage.setImageMatrix(matrix);
+            matrix.postRotate(90);
+            Bitmap rotatedBitmap = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(),
+                myBitmap.getHeight(), matrix, true);
+            myImage.setImageBitmap(rotatedBitmap);
 
 
         }**/

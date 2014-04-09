@@ -25,11 +25,9 @@
         android:id="@+id/FoodName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/individualFoodItemName"
-        android:layout_alignBottom="@+id/individualFoodItemName"
-        android:layout_toRightOf="@+id/DeleteButton"
         android:text="name"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_toRightOf="@+id/DeleteButton" android:layout_alignTop="@+id/individualFoodItemName"/>
 
     <TextView
         android:id="@+id/FoodQuantity"
@@ -56,22 +54,18 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="45dp"
-        android:layout_marginLeft="74dp"
+        android:layout_marginBottom="58dp"
         android:onClick="onButtonClick"
-        android:text="Delete Item" />
+        android:text="Delete Item" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" android:layout_marginLeft="99dp"/>
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/individualFoodItemNutritionalInfo"
-        android:layout_alignBottom="@+id/individualFoodItemNutritionalInfo"
-        android:layout_toRightOf="@+id/DeleteButton"
         android:text="nutringgoeshere"
-        android:textSize="20sp" />
+        android:textSize="20sp" android:layout_below="@+id/individualFoodItemExpirationDate"
+        android:layout_alignLeft="@+id/ExpDate" android:layout_alignStart="@+id/ExpDate"/>
 
     <TextView
         android:id="@+id/individualFoodItemQuantity"
@@ -117,6 +111,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/FoodQuantity"
-        android:layout_alignTop="@+id/textView1" />
+        android:layout_alignTop="@+id/textView1"   />
 
 </RelativeLayout>
