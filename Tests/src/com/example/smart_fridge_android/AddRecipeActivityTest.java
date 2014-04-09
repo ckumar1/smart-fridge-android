@@ -75,7 +75,7 @@ public class AddRecipeActivityTest
     	Button showList = (Button)activity.findViewById(R.id.showlist);
     	assertNotNull(showList);
     	try {
-    	showList.performClick();
+    		showList.performClick();
     	} catch (IllegalStateException e) { 
     		// Trying to show the AlertDialog throws an exception.
     		// This is a well-known bug 

@@ -24,8 +24,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="20sp"
-                android:text="Recipe" />
+                android:text="Recipe"
+                android:textSize="20sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -50,7 +50,6 @@
                     android:layout_toRightOf="@+id/IndRecipeName"
                     android:text="nameField"
                     android:textSize="20sp" />
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -64,8 +63,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="14dp"
-                    android:textSize="20sp"
-                    android:text="Instructions:" />
+                    android:text="Instructions:"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/IndRecipeInstructionsField"
@@ -76,7 +75,6 @@
                     android:layout_toRightOf="@+id/IndRecipeInstructions"
                     android:text="instructionsField"
                     android:textSize="20sp" />
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -102,7 +100,6 @@
                     android:layout_toRightOf="@+id/IndRecipeIngredients"
                     android:text="ingredientsField"
                     android:textSize="20sp" />
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -128,27 +125,28 @@
                     android:layout_marginLeft="32dp"
                     android:text="Nutritional\nInfo:"
                     android:textSize="20sp" />
-
             </RelativeLayout>
 
-            <Button
-                android:id="@+id/IndRecipeDeleteButton"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Delete Recipe"
-                android:onClick="onButtonClick" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
+                <Button
+                    android:id="@+id/IndRecipeDeleteButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onButtonClick"
+                    android:text="Delete Recipe" />
+
+                <Button
+                    android:id="@+id/IMadeThisButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onButtonClick"
+                    android:text="I Made This!" />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/IMadeThisButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onButtonClick"
-        android:text="I Made This!" />
-
-</LinearLayout>  
-
+</LinearLayout>
