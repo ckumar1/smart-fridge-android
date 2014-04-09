@@ -41,7 +41,7 @@ public class MainActivity extends ListActivity  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
+        setTabListeners();
         session = new SessionManager(getApplicationContext());
 
         db = new DatabaseHandler(this);
@@ -52,10 +52,12 @@ public class MainActivity extends ListActivity  {
 
         Intent intent = getIntent();
         startingTab = intent.getStringExtra(STARTING_TAB);
-
+        if(startingTab == null) {
+        	startingTab = "food";
+        }
+        
         if (startingTab.equals("food")){
             foodTab = true;
-            TextView foodView = (TextView) findViewById(R.id.tabFood);
             foodView.setBackgroundColor(Color.BLUE);
             setFoodAdapter();
             setListView();
@@ -65,7 +67,6 @@ public class MainActivity extends ListActivity  {
             layout.removeView(advancedRecipeSearch);
         } else if (startingTab.equals("recipes")){
             foodTab = false;
-            TextView recipesView = (TextView) findViewById(R.id.tabRecipes);
             recipesView.setBackgroundColor(Color.BLUE);
             setRecipeAdapter();
             setListView();
