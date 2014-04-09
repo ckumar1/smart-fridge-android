@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.Activity;
 import android.content.Intent;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -43,21 +44,22 @@ public class IndividualRecipeActivity extends Activity {
         TextView ingredients = (TextView) findViewById(R.id.IndRecipeIngredientsField);
         ingredients.setText(recipe.getIngredients().replace("<b>", "\n"));
 
-       /** String path = recipe.getImagePath();
-        File imgFile = new  File(path);
-        if(imgFile.exists()){
-            Log.w("Image", "Image Exists!");
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            ImageView myImage = (ImageView) findViewById(R.id.imgView); //fix this
+       String path = recipe.getImagePath();
+        if (path != null && !path.isEmpty()) {
+             File imgFile = new  File(path);
+            if(imgFile.exists()) {
+                Log.w("Image", "Image Exists!");
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                ImageView myImage = (ImageView) findViewById(R.id.imgViewRecipe); //fix this
 
-            Matrix matrix = new Matrix();
-            matrix.postRotate(90);
-            Bitmap rotatedBitmap = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(),
-                myBitmap.getHeight(), matrix, true);
-            myImage.setImageBitmap(rotatedBitmap);
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                Bitmap rotatedBitmap = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(),
+                        myBitmap.getHeight(), matrix, true);
+                myImage.setImageBitmap(rotatedBitmap);
+            }
 
-
-        }**/
+        }
         
         TextView nutriInfo = (TextView) findViewById(R.id.IndRecipeNutrInfoField);
         nutriInfo.setText(""); // To be added in Iteration 2
