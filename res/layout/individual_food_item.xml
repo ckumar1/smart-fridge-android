@@ -51,7 +51,7 @@
         android:text="Nutritional\nInformation: "
         android:textSize="20sp" />
 
-    <TextView
+    <EditText
         android:id="@+id/FoodName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
         android:text="name"
         android:textSize="20sp" />
 
-    <TextView
+    <EditText
         android:id="@+id/FoodQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,16 +69,6 @@
         android:layout_alignBottom="@+id/individualFoodItemQuantity"
         android:layout_toRightOf="@+id/individualFoodItemName"
         android:text="quantity"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/ExpDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/individualFoodItemExpirationDate"
-        android:layout_alignBottom="@+id/individualFoodItemExpirationDate"
-        android:layout_toRightOf="@+id/individualFoodItemName"
-        android:text="expirationdate"
         android:textSize="20sp" />
 
     <Button
@@ -93,8 +83,8 @@
         android:onClick="onButtonClick"
         android:text="Delete Item" />
 
-    <TextView
-        android:id="@+id/textView8"
+    <EditText
+        android:id="@+id/nutritionalInformationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/individualFoodItemNutritionalInfo"
@@ -102,5 +92,25 @@
         android:layout_toRightOf="@+id/DeleteButton"
         android:text="nutringgoeshere"
         android:textSize="20sp" />
+
+        <requestFocus />
+
+        <TextView
+            android:id="@+id/ExpDate"
+            style="@android:style/Widget.DeviceDefault.Spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/individualFoodItemExpirationDate"
+            android:layout_alignParentRight="true"
+            android:ems="10" />
+
+        <Button
+            android:id="@+id/update_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/FoodQuantity"
+            android:layout_alignTop="@+id/DeleteButton"
+            android:onClick="onButtonClick"
+            android:text="Update" />
 
 </RelativeLayout>
