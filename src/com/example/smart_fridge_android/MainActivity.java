@@ -108,6 +108,7 @@ public class MainActivity extends ListActivity  {
 
             case R.id.tabSettings:
 
+            	foodTab = false;
                 prepareSettingsView();
                 break;
 
