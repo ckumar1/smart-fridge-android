@@ -46,20 +46,21 @@ public class IndividualFoodActivity extends Activity {
         expDateText.setText(expDate);
         
         String path = food.getImagePath();
-        File imgFile = new  File(path);
-        if(imgFile.exists()){
-        	Log.w("Image", "Image Exists!");
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            ImageView myImage = (ImageView) findViewById(R.id.imgView);
+        if (path != null && !path.isEmpty()) {
+            File imgFile = new File(path);
+            if (imgFile.exists()) {
+                Log.w("Image", "Image Exists!");
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                ImageView myImage = (ImageView) findViewById(R.id.imgView);
 
-            Matrix matrix = new Matrix();
-            matrix.postRotate(90);
-            Bitmap rotatedBitmap = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(),
-                    myBitmap.getHeight(), matrix, true);
-            myImage.setImageBitmap(rotatedBitmap);
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                Bitmap rotatedBitmap = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(),
+                        myBitmap.getHeight(), matrix, true);
+                myImage.setImageBitmap(rotatedBitmap);
 
+            }
         }
-        
         
         //add in nutritional information Iteration 2
 	}

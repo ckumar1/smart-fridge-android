@@ -118,11 +118,11 @@ public class AddRecipeActivity extends Activity {
 			}
 			recipe.setIngredientsList(ingredlist);
 
-            if (imagePath.equals("")) {
-                recipe.setImagePath("");
+            if (imagePath != null && !imagePath.isEmpty()) {
+                recipe.setImagePath(imagePath);
             }
             else {
-                recipe.setImagePath(imagePath);
+                recipe.setImagePath("");
             }
         	
 			DatabaseHandler db = new DatabaseHandler(getApplicationContext());

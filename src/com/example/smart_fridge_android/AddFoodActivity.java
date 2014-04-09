@@ -91,11 +91,12 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
             }
 			food.setName(name);
 			food.setExpirationDate(((TextView)findViewById(R.id.dateSelector)).getText().toString());
-			
-			if (imagePath.equals("")) {
+
+            if (imagePath != null && !imagePath.isEmpty()) {
+                food.setImagePath(imagePath);
+			}
+            else {
 				food.setImagePath("");
-			} else {
-				food.setImagePath(imagePath);
 			}
 			
 			try {
