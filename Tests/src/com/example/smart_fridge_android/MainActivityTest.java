@@ -154,6 +154,32 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     	settingsView.performClick();
     	
     	checkSettingsTabState(activity);
+    	
+    	// Swap radioButton State
+    	RadioButton metric = (RadioButton)activity.findViewById(R.id.radioButtonMetric);
+        RadioButton imperial = (RadioButton)activity.findViewById(R.id.radioButtonImperial);
+    	assertNotNull(metric);
+    	assertNotNull(imperial);
+    	if(metric.isChecked()) {
+    		imperial.performClick();
+    	}
+    	else {
+    		metric.performClick();
+    	}
+    	
+    	// Swap the notifications
+    	CheckBox notifications = (CheckBox)activity.findViewById(R.id.checkBoxNotifications);
+    	assertNotNull(notifications);
+    	notifications.performClick();
+    	
+    	// Change to a different tab
+    	TextView recipeView = (TextView) activity.findViewById(R.id.tabRecipes);
+    	assertNotNull(recipeView);
+    	recipeView.performClick();
+    	
+    	// Change back to test changes
+    	settingsView.performClick();
+    	checkSettingsTabState(activity);
     }
     
     public void checkSettingsTabState(Activity activity) {
@@ -229,10 +255,10 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     	advRecipeSearchBtn.performClick();
     	
     	// Check the correct Intent was created
-    	Intent addIntent = getStartedActivityIntent();
-    	assertNotNull(addIntent);
+    	Intent advIntent = getStartedActivityIntent();
+    	assertNotNull(advIntent);
     	assertEquals(".AdvancedSearchRecipeActivity class should be set in Intent",
-    			".AdvancedSearchRecipeActivity", addIntent.getComponent().getShortClassName());
+    			".AdvancedSearchRecipeActivity", advIntent.getComponent().getShortClassName());
     }
     
     public void testClickCheckBoxNotifications() {
@@ -271,7 +297,109 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     	Button changePass = (Button)activity.findViewById(R.id.btnChangePassword);
     	assertNotNull(changePass);
     	changePass.performClick();
-    	//TODO check when code is implemented
+    	//TODO write when the ChangePassword code is implemented
+    }
+    
+    public void testClickMetricRadioButton() {
+    	launchIntent.putExtra(STARTING_TAB, "settings");
+    	startActivity(launchIntent, null, null);
+    	Activity activity = getActivity();
+    	assertNotNull(activity);
+    	
+    	// Check that the radio buttons are there
+    	RadioButton metric = (RadioButton)activity.findViewById(R.id.radioButtonMetric);
+    	RadioButton imperial = (RadioButton)activity.findViewById(R.id.radioButtonImperial);
+    	assertNotNull(metric);
+    	assertNotNull(imperial);
+    	
+    	metric.performClick();
+    	
+    	// Check the session manager is set correctly.
+    	SessionManager session = new SessionManager(activity.getApplicationContext());
+    	assertNotNull(session);
+    	assertEquals("Metric", session.getUnits());
+    	
+    	assertTrue(metric.isChecked());
+    	assertFalse(imperial.isChecked());
+    }
+    
+    public void testClickImperialRadioButton() {
+    	launchIntent.putExtra(STARTING_TAB, "settings");
+    	startActivity(launchIntent, null, null);
+    	Activity activity = getActivity();
+    	assertNotNull(activity);
+    	
+    	// Check that the radio buttons are there
+    	RadioButton metric = (RadioButton)activity.findViewById(R.id.radioButtonMetric);
+    	RadioButton imperial = (RadioButton)activity.findViewById(R.id.radioButtonImperial);
+    	assertNotNull(metric);
+    	assertNotNull(imperial);
+    	
+    	imperial.performClick();
+    	
+    	// Check the session manager is set correctly.
+    	SessionManager session = new SessionManager(activity.getApplicationContext());
+    	assertNotNull(session);
+    	assertEquals("Imperial", session.getUnits());
+    	
+    	assertFalse(metric.isChecked());
+    	assertTrue(imperial.isChecked());
+    }
+    
+    public void testClickIndividualFood() {
+    	launchIntent.putExtra(STARTING_TAB, "food");
+    	startActivity(launchIntent, null, null);
+    	ListActivity activity = getActivity();
+    	assertNotNull(activity);
+    	
+    	assertTrue("foodTab should be true", MainActivity.foodTab);
+    	
+    	// Check the listView exists.
+    	ListView listView = activity.getListView();
+    	assertNotNull(listView);
+    	assertNotNull(listView.getOnItemClickListener());
+    	
+    	// Get the first food item if it exists
+    	if(listView.getCount() > 0) {
+    		listView.performItemClick( listView.getAdapter().getView(0, null, null),
+    		        0, listView.getAdapter().getItemId(0));
+    		
+    		// Check the correct Intent was created
+        	Intent indIntent = getStartedActivityIntent();
+        	assertNotNull(indIntent);
+        	assertEquals(".IndividualFoodActivity class should be set in Intent",
+        			".IndividualFoodActivity", indIntent.getComponent().getShortClassName());
+        	assertTrue("fid extra should be set", 
+        			indIntent.hasExtra("fid"));
+    	}
+    }
+    
+    public void testClickIndividualRecipe() {
+    	launchIntent.putExtra(STARTING_TAB, "recipes");
+    	startActivity(launchIntent, null, null);
+    	ListActivity activity = getActivity();
+    	assertNotNull(activity);
+    	
+    	assertFalse("foodTab should be false", MainActivity.foodTab);
+    	
+    	// Check the listView exists.
+    	ListView listView = activity.getListView();
+    	assertNotNull(listView);
+    	assertNotNull(listView.getOnItemClickListener());
+    	
+    	// Get the first food item if it exists
+    	if(listView.getCount() > 0) {
+    		listView.performItemClick( listView.getAdapter().getView(0, null, null),
+    		        0, listView.getAdapter().getItemId(0));
+    		
+    		// Check the correct Intent was created
+        	Intent indIntent = getStartedActivityIntent();
+        	assertNotNull(indIntent);
+        	assertEquals(".IndividualRecipeActivity class should be set in Intent",
+        			".IndividualRecipeActivity", indIntent.getComponent().getShortClassName());
+        	assertTrue("rid extra should be set", 
+        			indIntent.hasExtra("rid"));
+    	}
     }
     
     public void checkTabs(Activity activity) {
