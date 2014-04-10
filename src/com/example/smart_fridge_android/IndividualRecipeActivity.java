@@ -1,9 +1,5 @@
 package com.example.smart_fridge_android;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,22 +7,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class IndividualRecipeActivity extends Activity {
 
-    private static final String STARTING_TAB = "startingTab";
-
-    DatabaseHandler db;
-	Recipe recipe;
+	private static final String STARTING_TAB = "startingTab";
+	private static final String TAG_INGREDIENT_ID = "recipe_id";
+	private static final String TAG_INGREDIENT_NAME = "name";
+	// maybe quantity
 	
+	DatabaseHandler db;
+	Recipe recipe;
+	ArrayList<HashMap<String, String>> ingredList;
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.individual_recipe_item);
-		
+
 		Intent intent = getIntent();
         String id = intent.getStringExtra("rid");
         
@@ -60,18 +66,17 @@ public class IndividualRecipeActivity extends Activity {
             }
 
         }
-        
-        TextView nutriInfo = (TextView) findViewById(R.id.IndRecipeNutrInfoField);
-        nutriInfo.setText(""); // To be added in Iteration 2
 	}
-	
+
+
+
 	public void onButtonClick(View v) {
 		NavigationBar navBar = new NavigationBar();
 		navBar.onButtonClick(v,  getApplicationContext());
-        NavigationBar.onTabsClicked(v, this);
+		NavigationBar.onTabsClicked(v, this);
 
-        switch (v.getId()) {
-		
+		switch (v.getId()) {
+
 		case R.id.IndRecipeDeleteButton:
             String recipeImgPath = recipe.getImagePath();
             if (recipeImgPath != null && !recipeImgPath.isEmpty()) {
@@ -81,20 +86,56 @@ public class IndividualRecipeActivity extends Activity {
                     Log.w("Delete Recipe", "Recipe Image wasn't deleted");
             }
 			db.deleteRecipe(recipe);
-			
+
 			Intent i = new Intent(this, MainActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
             i.putExtra(STARTING_TAB, "recipes");
+
 			this.startActivity(i);
-        	break; 
-        
+			break; 
+
 		case R.id.IMadeThisButton:
 			setContentView(R.layout.i_made_this);
+			//TextView nameText = (TextView) findViewById(R.id.IMadethisRecipeName);
+			//nameText.setText(recipe.getName());
+			/*
+	    	List<String> list = new ArrayList<String>();
+	        list = recipe.getIngredientList(); 
+	        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.i_made_this, list);
+
+	       ListView listViewItems = new ListView(this);
+	       listViewItems.setAdapter(adp);
+			 */		    
 			TextView nameText = (TextView) findViewById(R.id.IMadethisRecipeName);
-	        nameText.setText(recipe.getName());
-	        break;	       
-			
-			
+			nameText.setText(recipe.getName());
+
+			break;	
+		
+		case R.id.UpdateButton:
+		      	String recipeName = ((TextView)findViewById(R.id.IndRecipeNameField)).getText().toString();
+	        	if(recipeName.isEmpty()) {
+	                Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
+	                break;
+	            }
+	            if(recipeName.contains("<") && recipeName.contains(">")){
+	                Toast.makeText(getApplicationContext(), "No tags (<>) allowed", Toast.LENGTH_LONG).show();
+	                break;
+	            }
+	        	recipe.setName(recipeName);
+	            
+	        	String directionsNew = ((TextView)findViewById(R.id.IndRecipeInstructionsField)).getText().toString();
+	        	recipe.setDirections(directionsNew);
+	        	
+	        	String ingredientsNew = ((TextView)findViewById(R.id.IndRecipeIngredientsField)).getText().toString();
+	        	recipe.setIngredients(ingredientsNew);
+	        	
+	        	db.updateRecipe(recipe);
+	        	break;
 		}
 	}
+
+	
+
+
 }

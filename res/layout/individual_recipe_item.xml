@@ -41,15 +41,20 @@
                     android:text="Name:"
                     android:textSize="20sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/IndRecipeNameField"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="18dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_toRightOf="@+id/IndRecipeName"
+                    android:ems="10"
                     android:text="nameField"
-                    android:textSize="20sp" />
+                    android:textSize="20sp" >
+
+                    <requestFocus />
+                </EditText>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -66,7 +71,7 @@
                     android:text="Instructions:"
                     android:textSize="20sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/IndRecipeInstructionsField"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,7 +96,7 @@
                     android:text="Ingredients:"
                     android:textSize="20sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/IndRecipeIngredientsField"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -106,25 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
-                <TextView
-                    android:id="@+id/IndRecipeNutrInfoField"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="18dp"
-                    android:layout_toRightOf="@+id/IndRecipeNutrInfo"
-                    android:text="nutrInfoField"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/IndRecipeNutrInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="32dp"
-                    android:text="Nutritional\nInfo:"
-                    android:textSize="20sp" />
+                
             </RelativeLayout>
 
             <RelativeLayout
@@ -156,8 +143,14 @@
                     android:layout_height="wrap_content"
                     android:onClick="onButtonClick"
                     android:text="I Made This!" />
-            
+
+                <Button
+                    android:id="@+id/UpdateButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onButtonClick"
+                    android:text="Update" />
+
             </LinearLayout>
-            
     </ScrollView>
     </LinearLayout>
