@@ -41,16 +41,6 @@
         android:text="Expiration\nDate: "
         android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/individualFoodItemNutritionalInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/individualFoodItemExpirationDate"
-        android:layout_below="@+id/individualFoodItemExpirationDate"
-        android:layout_marginTop="31dp"
-        android:text="Nutritional\nInformation: "
-        android:textSize="20sp" />
-
     <EditText
         android:id="@+id/FoodName"
         android:layout_width="wrap_content"
@@ -70,18 +60,6 @@
         android:layout_toRightOf="@+id/individualFoodItemName"
         android:text="quantity"
         android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/DeleteButton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="45dp"
-        android:layout_marginLeft="74dp"
-        android:onClick="onButtonClick"
-        android:text="Delete Item" />
 
     <EditText
         android:id="@+id/nutritionalInformationText"
@@ -104,13 +82,37 @@
             android:layout_alignParentRight="true"
             android:ems="10" />
 
+        <TextView
+            android:id="@+id/individualFoodItemNutritionalInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/individualFoodItemQuantity"
+            android:layout_below="@+id/individualFoodItemExpirationDate"
+            android:layout_marginTop="28dp"
+            android:text="Nutritional\nInformation: "
+            android:textSize="20sp" />
+
         <Button
             android:id="@+id/update_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/FoodQuantity"
-            android:layout_alignTop="@+id/DeleteButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="18dp"
+            android:layout_marginRight="33dp"
             android:onClick="onButtonClick"
             android:text="Update" />
+
+        <Button
+            android:id="@+id/DeleteButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/update_button"
+            android:layout_alignBottom="@+id/update_button"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="55dp"
+            android:onClick="onButtonClick"
+            android:text="Delete Item" />
 
 </RelativeLayout>
