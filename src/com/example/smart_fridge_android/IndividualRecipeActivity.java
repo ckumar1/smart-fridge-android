@@ -107,9 +107,9 @@ public class IndividualRecipeActivity extends Activity {
 	       ListView listViewItems = new ListView(this);
 	       listViewItems.setAdapter(adp);
 			 */		    
+
 			TextView nameText = (TextView) findViewById(R.id.IMadethisRecipeName);
 			nameText.setText(recipe.getName());
-
 			break;	
 		
 		case R.id.UpdateButton:
