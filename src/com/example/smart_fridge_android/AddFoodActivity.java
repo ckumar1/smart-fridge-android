@@ -39,6 +39,7 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
     String upc_name = "";
+    private static final String STARTING_TAB = "startingTab";
 
 	
 	@Override
@@ -131,27 +132,32 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
 				}
 			});
 			break;
-		case R.id.addMan:
-			Food food = new Food();
-			String name = ((TextView)findViewById(R.id.nameField)).getText().toString();
-			if(name.isEmpty()) {
-				Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
-				break;
-			}
-			food.setName(name);
-			food.setExpirationDate(((TextView)findViewById(R.id.dateSelector)).getText().toString());
-			try {
-				int quantity = Integer.parseInt(((TextView)findViewById(R.id.quantityField)).getText().toString());
-				food.setQuantity(quantity);
-			} catch(NumberFormatException e) {	}
-			food.setCategory(((TextView)findViewById(R.id.foodgroupField)).getText().toString());
-			DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-			db.addFood(food);
-			
-			Intent i = new Intent(this, MainActivity.class);
-			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			this.startActivity(i);
-			break;
+        case R.id.addMan:
+            Food food = new Food();
+            String name = ((TextView)findViewById(R.id.nameField)).getText().toString();
+            if(name.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
+                break;
+            }
+            if(name.contains("<") && name.contains(">")){
+                Toast.makeText(getApplicationContext(), "No tags (<>) allowed", Toast.LENGTH_LONG).show();
+                break;
+            }
+            food.setName(name);
+            food.setExpirationDate(((TextView)findViewById(R.id.dateSelector)).getText().toString());
+            try {
+                int quantity = Integer.parseInt(((TextView)findViewById(R.id.quantityField)).getText().toString());
+                food.setQuantity(quantity);
+            } catch(NumberFormatException e) {	}
+            food.setCategory(((TextView)findViewById(R.id.foodgroupField)).getText().toString());
+            DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+            db.addFood(food);
+
+            Intent i = new Intent(this, MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.putExtra(STARTING_TAB, "food");
+            this.startActivity(i);
+            break;
 		case R.id.scanBtn:
 			scanBarcode();
 			break;
