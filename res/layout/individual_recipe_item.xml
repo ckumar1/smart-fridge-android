@@ -31,19 +31,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
-                <ImageView
-                        android:id="@+id/imgViewRecipe"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_alignParentTop = "true"   />
-
                 <TextView
                     android:id="@+id/IndRecipeName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignBottom="@id/imgViewRecipe"
+                    android:layout_alignParentTop="true"
                     android:layout_marginLeft="69dp"
                     android:text="Name:"
                     android:textSize="20sp" />
@@ -52,7 +45,7 @@
                     android:id="@+id/IndRecipeNameField"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/imgViewRecipe"
+                    android:layout_alignParentTop="true"
                     android:layout_marginLeft="18dp"
                     android:layout_toRightOf="@+id/IndRecipeName"
                     android:text="nameField"
@@ -135,6 +128,20 @@
                     android:layout_marginLeft="32dp"
                     android:text="Nutritional\nInfo:"
                     android:textSize="20sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+            <ImageView
+                    android:id="@+id/imgViewRecipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_alignParentBottom = "true"
+                    android:layout_marginTop="20dp"/>
 
             </RelativeLayout>
 
