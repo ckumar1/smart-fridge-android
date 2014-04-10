@@ -140,15 +140,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 KEY_FOOD_CATEGORY, KEY_FOOD_CALORIES, KEY_FOOD_QUANTITY },
                 KEY_FOOD_ID + "= ?", // '?' is replaced by selection args
                 new String[] { String.valueOf(id) }, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
+        if (cursor != null && cursor.moveToFirst()) {
 
-        Food food = new Food(cursor.getString(1),
-                cursor.getString(2), cursor.getString(3), cursor.getString(4),
-                Integer.parseInt(cursor.getString(5)), Integer.parseInt(cursor.getString(6)));
-        food.setId(Integer.parseInt(cursor.getString(0))); // Set the id
-        // return food
-        return food;
+        	Food food = new Food(cursor.getString(1),
+        			cursor.getString(2), cursor.getString(3), cursor.getString(4),
+        			Integer.parseInt(cursor.getString(5)), Integer.parseInt(cursor.getString(6)));
+        	food.setId(Integer.parseInt(cursor.getString(0))); // Set the id
+        	// return food
+        	return food;
+        }
+        // No food with Id found
+        return null;
     }
 
     // Getting All Food
@@ -244,14 +246,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 KEY_RECIPE_NAME, KEY_RECIPE_DIRECTIONS, KEY_RECIPE_NOTES, KEY_RECIPE_INGREDIENTS },
                 KEY_RECIPE_ID + "= ?", // '?' is replaced by selection args
                 new String[] { String.valueOf(id) }, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
+        if (cursor != null && cursor.moveToFirst()) {
 
-        Recipe recipe = new Recipe(cursor.getString(1),
-                cursor.getString(2), cursor.getString(3), cursor.getString(4));
-        recipe.setId(Integer.parseInt(cursor.getString(0)));
-        // return recipe
-        return recipe;
+        	Recipe recipe = new Recipe(cursor.getString(1),
+        			cursor.getString(2), cursor.getString(3), cursor.getString(4));
+        	recipe.setId(Integer.parseInt(cursor.getString(0)));
+        	// return recipe
+        	return recipe;
+        }
+        // No food with Id found
+        return null;
     }
 
     // Getting all Recipe
