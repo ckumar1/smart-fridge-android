@@ -1,10 +1,19 @@
 package com.example.smart_fridge_android;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.hardware.Camera;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.Activity;
 import android.content.Intent;
+import android.widget.Toast;
+
+import java.io.File;
 
 public class IndividualRecipeActivity extends Activity {
 
@@ -34,6 +43,23 @@ public class IndividualRecipeActivity extends Activity {
         
         TextView ingredients = (TextView) findViewById(R.id.IndRecipeIngredientsField);
         ingredients.setText(recipe.getIngredients().replace("<b>", "\n"));
+
+       String path = recipe.getImagePath();
+        if (path != null && !path.isEmpty()) {
+             File imgFile = new  File(path);
+            if(imgFile.exists()) {
+                Log.w("Image", "Image Exists!");
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                ImageView myImage = (ImageView) findViewById(R.id.imgViewRecipe); //fix this
+
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                Bitmap rotatedBitmap = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(),
+                        myBitmap.getHeight(), matrix, true);
+                myImage.setImageBitmap(rotatedBitmap);
+            }
+
+        }
         
         TextView nutriInfo = (TextView) findViewById(R.id.IndRecipeNutrInfoField);
         nutriInfo.setText(""); // To be added in Iteration 2
@@ -47,6 +73,13 @@ public class IndividualRecipeActivity extends Activity {
         switch (v.getId()) {
 		
 		case R.id.IndRecipeDeleteButton:
+            String recipeImgPath = recipe.getImagePath();
+            if (recipeImgPath != null && !recipeImgPath.isEmpty()) {
+                File recipe_image = new File(recipeImgPath);
+                Boolean deleted = recipe_image.delete(); //Delete the photo from your phone
+                if (!deleted)
+                    Log.w("Delete Recipe", "Recipe Image wasn't deleted");
+            }
 			db.deleteRecipe(recipe);
 			
 			Intent i = new Intent(this, MainActivity.class);

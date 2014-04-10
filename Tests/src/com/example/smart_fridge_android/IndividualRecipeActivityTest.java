@@ -28,7 +28,7 @@ public class IndividualRecipeActivityTest
         		.getTargetContext());
         testRecipe = db.addRecipe(new Recipe("TESTMACNCHEESETEST", 
         		"Boil noodles. Add cheese", "Add lots of cheese", 
-        		"macaroni<b>cheese"));
+        		"macaroni<b>cheese", ""));
         assertNotNull(testRecipe);
         
         launchIntent.putExtra("rid", Integer.toString(testRecipe.getId()));

@@ -127,26 +127,37 @@
                     android:textSize="20sp" />
             </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <Button
-                    android:id="@+id/IndRecipeDeleteButton"
+            <ImageView
+                    android:id="@+id/imgViewRecipe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="onButtonClick"
-                    android:text="Delete Recipe" />
+                    android:layout_gravity="center"
+                    android:layout_alignParentBottom = "true"
+                    android:layout_marginTop="20dp"/>
 
-                <Button
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/IndRecipeDeleteButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Delete Recipe"
+                android:onClick="onButtonClick" />
+            
+            <Button
                     android:id="@+id/IMadeThisButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onButtonClick"
                     android:text="I Made This!" />
-
+            
             </LinearLayout>
-        </LinearLayout>
+            
     </ScrollView>
-
-</LinearLayout>
+    </LinearLayout>

@@ -1,116 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical" >
 
     <include
-        android:id="@+id/foodItemNavBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/main_nav_bar" />
-
-    <TextView
-        android:id="@+id/individualFoodItemName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/foodItemNavBar"
-        android:layout_marginRight="43dp"
-        android:layout_marginTop="37dp"
-        android:layout_toLeftOf="@+id/FoodName"
-        android:text="Name: "
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/individualFoodItemQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/individualFoodItemName"
-        android:layout_below="@+id/individualFoodItemName"
-        android:layout_marginTop="32dp"
-        android:text="Quantity: "
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/individualFoodItemExpirationDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/individualFoodItemQuantity"
-        android:layout_below="@+id/individualFoodItemQuantity"
-        android:layout_marginTop="33dp"
-        android:text="Expiration\nDate: "
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/individualFoodItemNutritionalInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/individualFoodItemExpirationDate"
-        android:layout_below="@+id/individualFoodItemExpirationDate"
-        android:layout_marginTop="31dp"
-        android:text="Nutritional\nInformation: "
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/FoodName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/individualFoodItemName"
-        android:layout_alignBottom="@+id/individualFoodItemName"
-        android:layout_toRightOf="@+id/DeleteButton"
-        android:text="name"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/FoodQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/individualFoodItemQuantity"
-        android:layout_alignBottom="@+id/individualFoodItemQuantity"
-        android:layout_toRightOf="@+id/individualFoodItemName"
-        android:text="quantity"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/DeleteButton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="45dp"
-        android:layout_marginLeft="74dp"
-        android:onClick="onButtonClick"
-        android:text="Delete Item" />
-
-    <EditText
-        android:id="@+id/nutritionalInformationText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/individualFoodItemNutritionalInfo"
-        android:layout_alignBottom="@+id/individualFoodItemNutritionalInfo"
-        android:layout_toRightOf="@+id/DeleteButton"
-        android:text="nutringgoeshere"
-        android:textSize="20sp" />
-
-        <requestFocus />
-
-        <TextView
-            android:id="@+id/ExpDate"
-            style="@android:style/Widget.DeviceDefault.Spinner"
+            android:id="@+id/foodItemNavBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/individualFoodItemExpirationDate"
-            android:layout_alignParentRight="true"
-            android:ems="10" />
+            layout="@layout/main_nav_bar" />
 
-        <Button
-            android:id="@+id/update_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/FoodQuantity"
-            android:layout_alignTop="@+id/DeleteButton"
-            android:onClick="onButtonClick"
-            android:text="Update" />
+    <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-</RelativeLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                <TextView
+                        android:id="@+id/individualFoodItemName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name: "
+                        android:textSize="20sp"
+                        android:layout_marginLeft="73dp" android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
+
+                <EditText
+                        android:id="@+id/FoodName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="name"
+                        android:textSize="20sp"
+                        android:layout_alignTop="@+id/individualFoodItemName"
+                        android:layout_toRightOf="@+id/individualFoodItemName" android:layout_marginLeft="70dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                <TextView
+                        android:id="@+id/individualFoodItemQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Quantity: "
+                        android:textSize="20sp" android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+                        android:layout_marginLeft="49dp"/>
+
+                <EditText
+                        android:id="@+id/FoodQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="quantity"
+                        android:textSize="20sp"
+                        android:layout_alignParentTop="true" android:layout_toRightOf="@+id/individualFoodItemQuantity"
+                        android:layout_marginLeft="65dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                <TextView
+                        android:id="@+id/individualFoodItemExpirationDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Expiration\nDate: "
+                        android:textSize="20sp" android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+                        android:layout_marginLeft="44dp"/>
+
+                <TextView
+                        android:id="@+id/ExpDate"
+                        style="@android:style/Widget.DeviceDefault.Spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10" android:layout_centerVertical="true" android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                <TextView
+                        android:id="@+id/individualFoodItemNutritionalInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nutritional\nInformation: "
+                        android:textSize="20sp"
+                        android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" android:layout_marginLeft="36dp"/>
+
+                <EditText
+                        android:id="@+id/nutritionalInformationText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="nutringgoeshere"
+                        android:textSize="20sp"
+                        android:layout_alignParentTop="true" android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"/>
+                </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Image:"
+                        android:textAppearance="?android:attr/textAppearanceMedium" android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/imgView" android:layout_marginLeft="44dp"/>
+
+                <ImageView
+                        android:id="@+id/imgView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"/>
+            </RelativeLayout>
+
+
+
+            <Button
+                    android:id="@+id/DeleteButton"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="45dp"
+                    android:layout_marginLeft="74dp"
+                    android:onClick="onButtonClick"
+                    android:text="Delete Item" android:layout_gravity="center_horizontal"/>
+
+            <Button
+                    android:id="@+id/update_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/FoodQuantity"
+                    android:layout_alignTop="@+id/DeleteButton"
+                    android:onClick="onButtonClick"
+                    android:text="Update" android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

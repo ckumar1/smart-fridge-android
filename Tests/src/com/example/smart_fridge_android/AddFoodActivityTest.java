@@ -1,9 +1,6 @@
 package com.example.smart_fridge_android;
 
 import java.util.List;
-import android.app.Activity;
-import android.app.DialogFragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
 import android.view.View;

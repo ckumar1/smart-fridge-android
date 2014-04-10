@@ -329,32 +329,53 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     
     public void testClickIndividualFood() {
     	launchIntent.putExtra(STARTING_TAB, "food");
+    	// Add a test food so that there is at least 1 item in the list
+        DatabaseHandler db = new DatabaseHandler(getInstrumentation()
+        		.getTargetContext());
+        Food testFood = db.addFood(new Food("TESTAPPLETEST", "Red", "1/1/15", 
+        		"Fruit", "", 100, 1));
+        assertNotNull(testFood);
     	activityStart();
     	
     	assertTrue("foodTab should be true", MainActivity.foodTab);
-    	
+
     	// Check the listView exists.
     	ListView listView = activity.getListView();
     	assertNotNull(listView);
     	assertNotNull(listView.getOnItemClickListener());
-    	
+
     	// Get the first food item if it exists
-    	if(listView.getCount() > 0) {
-    		listView.performItemClick( listView.getAdapter().getView(0, null, null),
-    		        0, listView.getAdapter().getItemId(0));
-    		
-    		// Check the correct Intent was created
-        	Intent indIntent = getStartedActivityIntent();
-        	assertNotNull(indIntent);
-        	assertEquals(".IndividualFoodActivity class should be set in Intent",
-        			".IndividualFoodActivity", indIntent.getComponent().getShortClassName());
-        	assertTrue("fid extra should be set", 
-        			indIntent.hasExtra("fid"));
-    	}
+    	listView.performItemClick( listView.getAdapter().getView(0, null, null),
+    			0, listView.getAdapter().getItemId(0));
+
+    	// Check the correct Intent was created
+    	Intent indIntent = getStartedActivityIntent();
+    	assertNotNull(indIntent);
+    	assertEquals(".IndividualFoodActivity class should be set in Intent",
+    			".IndividualFoodActivity", indIntent.getComponent().getShortClassName());
+    	assertTrue("fid extra should be set", 
+    			indIntent.hasExtra("fid"));
+
+    	db = new DatabaseHandler(activity.getApplicationContext());
+
+    	// Check to make sure the food is still in the database
+    	assertNotNull(db.getFoodById(testFood.getId()));
+
+    	// Delete the food and check to make sure the food is gone
+    	db.deleteFood(testFood);
+    	assertNull(db.getFoodById(testFood.getId()));
     }
     
     public void testClickIndividualRecipe() {
     	launchIntent.putExtra(STARTING_TAB, "recipes");
+    	// Add a test recipe so that the list isn't empty
+        DatabaseHandler db = new DatabaseHandler(getInstrumentation()
+        		.getTargetContext());
+        Recipe testRecipe = db.addRecipe(new Recipe("TESTMACNCHEESETEST", 
+        		"Boil noodles. Add cheese", "Add lots of cheese", 
+        		"macaroni<b>cheese", ""));
+        assertNotNull(testRecipe);
+        
     	activityStart();
     	
     	assertFalse("foodTab should be false", MainActivity.foodTab);
@@ -363,20 +384,27 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     	ListView listView = activity.getListView();
     	assertNotNull(listView);
     	assertNotNull(listView.getOnItemClickListener());
-    	
-    	// Get the first food item if it exists
-    	if(listView.getCount() > 0) {
-    		listView.performItemClick( listView.getAdapter().getView(0, null, null),
-    		        0, listView.getAdapter().getItemId(0));
-    		
-    		// Check the correct Intent was created
-        	Intent indIntent = getStartedActivityIntent();
-        	assertNotNull(indIntent);
-        	assertEquals(".IndividualRecipeActivity class should be set in Intent",
-        			".IndividualRecipeActivity", indIntent.getComponent().getShortClassName());
-        	assertTrue("rid extra should be set", 
-        			indIntent.hasExtra("rid"));
-    	}
+
+    	// Get the first food item 
+    	listView.performItemClick( listView.getAdapter().getView(0, null, null),
+    			0, listView.getAdapter().getItemId(0));
+
+    	// Check the correct Intent was created
+    	Intent indIntent = getStartedActivityIntent();
+    	assertNotNull(indIntent);
+    	assertEquals(".IndividualRecipeActivity class should be set in Intent",
+    			".IndividualRecipeActivity", indIntent.getComponent().getShortClassName());
+    	assertTrue("rid extra should be set", 
+    			indIntent.hasExtra("rid"));
+
+    	db = new DatabaseHandler(activity.getApplicationContext());
+
+    	// Check to make sure the recipe is still in the database
+    	assertNotNull(db.getRecipeById(testRecipe.getId()));
+
+    	// Delete the recipe and check to make sure the recipe is gone
+    	db.deleteRecipe(testRecipe);
+    	assertNull(db.getRecipeById(testRecipe.getId()));
     }
     
     public void checkTabs(Activity activity) {
