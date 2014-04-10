@@ -2,6 +2,8 @@ package com.example.smart_fridge_android;
 
 import java.util.List;
 import android.app.Activity;
+import android.app.DialogFragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
 import android.view.View;
@@ -14,7 +16,7 @@ public class AddFoodActivityTest
 	
     private static final String STARTING_TAB = "startingTab";
 	Intent launchIntent;
-	Activity activity;
+	AddFoodActivity activity;
 	
 	public AddFoodActivityTest() {
 		super(AddFoodActivity.class);
@@ -38,6 +40,37 @@ public class AddFoodActivityTest
     	assertNotNull(addButton);
     	assertEquals("addButton should be not visible", 
     			View.INVISIBLE, addButton.getVisibility());
+    }
+    
+    public void testDatePickerSelection() {
+    	Button manualBtn = (Button)activity.findViewById(R.id.manualBtn);
+    	assertNotNull(manualBtn);
+    	
+    	manualBtn.performClick();
+    	
+    	TextView dateSelector = (TextView)activity.findViewById(R.id.dateSelector);
+    	assertNotNull(dateSelector);
+    	assertTrue("dateSelector onClickListener needs to be set", 
+    			dateSelector.hasOnClickListeners());
+    	
+    	// Replace the onClickListener to test onDateSet
+    	dateSelector.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                activity.onDateSet(null, 2014, 2, 3);
+            }
+        });
+    	
+    	assertTrue("dateSelector onClickListener needs to be set", 
+    			dateSelector.hasOnClickListeners());
+    	
+    	// Click the selector and see if the date was set correctly.
+    	dateSelector.performClick();
+    	
+    	// Months are offset by 1
+    	assertEquals("dateSelector should be set to 03/03/2014", 
+    			"03/03/2014", dateSelector.getText().toString());
     }
     
     public void testManualAddValidFood() {
