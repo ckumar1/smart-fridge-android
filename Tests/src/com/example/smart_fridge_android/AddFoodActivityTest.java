@@ -14,6 +14,7 @@ public class AddFoodActivityTest
 	
     private static final String STARTING_TAB = "startingTab";
 	Intent launchIntent;
+	Activity activity;
 	
 	public AddFoodActivityTest() {
 		super(AddFoodActivity.class);
@@ -23,6 +24,9 @@ public class AddFoodActivityTest
         super.setUp();
         launchIntent = new Intent(getInstrumentation()
                 .getTargetContext(), AddFoodActivity.class);
+        startActivity(launchIntent, null, null);
+    	activity = getActivity();
+    	assertNotNull(activity);
     }
 
     protected void tearDown() throws Exception{
@@ -30,10 +34,6 @@ public class AddFoodActivityTest
     }
     
     public void testAddButtonGone() {
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
-    	
     	Button addButton = (Button) activity.findViewById(R.id.addBtn);
     	assertNotNull(addButton);
     	assertEquals("addButton should be not visible", 
@@ -41,10 +41,6 @@ public class AddFoodActivityTest
     }
     
     public void testManualAddValidFood() {
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
-    	
     	Button manualBtn = (Button)activity.findViewById(R.id.manualBtn);
     	assertNotNull(manualBtn);
     	
@@ -121,10 +117,6 @@ public class AddFoodActivityTest
     }
     
     public void testManualAddInvalidFood() {
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
-    	
     	Button manualBtn = (Button)activity.findViewById(R.id.manualBtn);
     	assertNotNull(manualBtn);
     	
@@ -178,10 +170,6 @@ public class AddFoodActivityTest
     }
     
     public void testNavButtons() {
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
-    	
     	NavigationBarTest.tabFoodTest(activity, this);
     	NavigationBarTest.tabRecipesTest(activity, this);
     	NavigationBarTest.tabSettingsTest(activity, this);

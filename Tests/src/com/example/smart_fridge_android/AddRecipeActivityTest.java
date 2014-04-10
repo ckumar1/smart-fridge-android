@@ -14,6 +14,7 @@ public class AddRecipeActivityTest
 	
 	private static final String STARTING_TAB = "startingTab";
 	Intent launchIntent;
+	Activity activity;
 	
 	public AddRecipeActivityTest() {
 		super(AddRecipeActivity.class);
@@ -23,6 +24,9 @@ public class AddRecipeActivityTest
         super.setUp();
         launchIntent = new Intent(getInstrumentation()
                 .getTargetContext(), AddRecipeActivity.class);
+        startActivity(launchIntent, null, null);
+    	activity = getActivity();
+    	assertNotNull(activity);
     }
 
     protected void tearDown() throws Exception{
@@ -30,10 +34,6 @@ public class AddRecipeActivityTest
     }
     
     public void testAddButtonGone() {
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
-    	
     	Button addButton = (Button) activity.findViewById(R.id.addBtn);
     	assertNotNull(addButton);
     	assertEquals("addButton should be not visible", 
@@ -41,10 +41,6 @@ public class AddRecipeActivityTest
     }
     
     public void testNavButtons() {
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
-    	
     	NavigationBarTest.tabFoodTest(activity, this);
     	NavigationBarTest.tabRecipesTest(activity, this);
     	NavigationBarTest.tabSettingsTest(activity, this);
@@ -52,10 +48,6 @@ public class AddRecipeActivityTest
     }
 
     public void testViewIngredientList() {
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
-    	
     	Button addIngred = (Button)activity.findViewById(R.id.addingred);
     	assertNotNull(addIngred);
     	
@@ -86,10 +78,6 @@ public class AddRecipeActivityTest
     }
     
     public void testAddInvalidRecipeName() {
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
-    	
     	Button addRecipe = (Button)activity.findViewById(R.id.addrec);
     	assertNotNull(addRecipe);
     	
@@ -128,10 +116,6 @@ public class AddRecipeActivityTest
     }
     
     public void testAddInvalidRecipeDirections() {
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
-    	
     	Button addRecipe = (Button)activity.findViewById(R.id.addrec);
     	assertNotNull(addRecipe);
     	
@@ -160,10 +144,6 @@ public class AddRecipeActivityTest
     }
     
     public void testAddInvalidRecipeIngredients() {
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
-    	
     	Button addRecipe = (Button)activity.findViewById(R.id.addrec);
     	assertNotNull(addRecipe);
     	
@@ -206,10 +186,6 @@ public class AddRecipeActivityTest
     }
     
     public void testAddValidRecipe() {
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
-    	
     	//Check name field
     	EditText nameField = (EditText)activity.findViewById(R.id.RecipeNameField);
     	assertNotNull(nameField);

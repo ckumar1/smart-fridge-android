@@ -18,6 +18,7 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
 	
     private static final String STARTING_TAB = "startingTab";
 	Intent launchIntent;	
+	ListActivity activity;
 
 	public MainActivityTest() {
 		super(MainActivity.class);
@@ -26,18 +27,22 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
 	protected void setUp() throws Exception{
         super.setUp();
         launchIntent = new Intent(getInstrumentation()
-                .getTargetContext(), AddRecipeActivity.class);
+                .getTargetContext(), MainActivity.class);
     }
 
     protected void tearDown() throws Exception{
         super.tearDown();
     }
     
+    private void activityStart() {
+    	startActivity(launchIntent, null, null);
+    	activity = getActivity();
+    	assertNotNull(activity);
+    }
+    
     public void testStartOnAnyTab() {
     	launchIntent.putExtra(STARTING_TAB, "food");
-    	startActivity(launchIntent, null, null);
-    	ListActivity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	Button add = (Button)activity.findViewById(R.id.addBtn);
     	assertNotNull(add);
@@ -48,36 +53,28 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     
     public void testStartOnFoodTab() {
     	launchIntent.putExtra(STARTING_TAB, "food");
-    	startActivity(launchIntent, null, null);
-    	ListActivity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	checkFoodTabState(activity);     
     }
     
     public void testStartOnRecipeTab() {
     	launchIntent.putExtra(STARTING_TAB, "recipes");
-    	startActivity(launchIntent, null, null);
-    	ListActivity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	checkRecipeTabState(activity);
     }
     
     public void testStartOnSettingsTab() {
     	launchIntent.putExtra(STARTING_TAB, "settings");
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	checkSettingsTabState(activity);
     }
     
     public void testClickLogout() {
     	launchIntent.putExtra(STARTING_TAB, "food");
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	// Get the logout button and click it
     	Button logoutBtn = (Button) activity.findViewById(R.id.logoutBtn);
@@ -110,9 +107,7 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     
     public void testClickFoodTab() {
     	launchIntent.putExtra(STARTING_TAB, "recipes");
-    	startActivity(launchIntent, null, null);
-    	ListActivity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	assertFalse("foodTab should be false", MainActivity.foodTab);
     	
@@ -126,9 +121,7 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     
     public void testClickRecipeTab() {
     	launchIntent.putExtra(STARTING_TAB, "food");
-    	startActivity(launchIntent, null, null);
-    	ListActivity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	assertTrue("foodTab should be true", MainActivity.foodTab);
     	
@@ -142,9 +135,7 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     
     public void testClickSettingsTabs() {
     	launchIntent.putExtra(STARTING_TAB, "food");
-    	startActivity(launchIntent, null, null);
-    	ListActivity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	assertTrue("foodTab should be true", MainActivity.foodTab);
     	
@@ -245,9 +236,7 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     
     public void testClickAdvancedRecipeSearchButton() {
     	launchIntent.putExtra(STARTING_TAB, "recipes");
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	Button advRecipeSearchBtn = (Button) activity.findViewById(R.id.btnAdvancedRecipeSearch);
     	assertNotNull(advRecipeSearchBtn);
@@ -263,9 +252,7 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     
     public void testClickCheckBoxNotifications() {
     	launchIntent.putExtra(STARTING_TAB, "settings");
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	CheckBox notifications = (CheckBox)activity.findViewById(R.id.checkBoxNotifications);
     	assertNotNull(notifications);
@@ -290,9 +277,7 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     
     public void testClickChangePassword() {
     	launchIntent.putExtra(STARTING_TAB, "settings");
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	Button changePass = (Button)activity.findViewById(R.id.btnChangePassword);
     	assertNotNull(changePass);
@@ -302,9 +287,7 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     
     public void testClickMetricRadioButton() {
     	launchIntent.putExtra(STARTING_TAB, "settings");
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	// Check that the radio buttons are there
     	RadioButton metric = (RadioButton)activity.findViewById(R.id.radioButtonMetric);
@@ -325,9 +308,7 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     
     public void testClickImperialRadioButton() {
     	launchIntent.putExtra(STARTING_TAB, "settings");
-    	startActivity(launchIntent, null, null);
-    	Activity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	// Check that the radio buttons are there
     	RadioButton metric = (RadioButton)activity.findViewById(R.id.radioButtonMetric);
@@ -348,9 +329,7 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     
     public void testClickIndividualFood() {
     	launchIntent.putExtra(STARTING_TAB, "food");
-    	startActivity(launchIntent, null, null);
-    	ListActivity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	assertTrue("foodTab should be true", MainActivity.foodTab);
     	
@@ -376,9 +355,7 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity>{
     
     public void testClickIndividualRecipe() {
     	launchIntent.putExtra(STARTING_TAB, "recipes");
-    	startActivity(launchIntent, null, null);
-    	ListActivity activity = getActivity();
-    	assertNotNull(activity);
+    	activityStart();
     	
     	assertFalse("foodTab should be false", MainActivity.foodTab);
     	

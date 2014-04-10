@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class IndividualFoodActivity extends Activity implements OnDateSetListener{
 
@@ -35,8 +36,7 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
         String name = food.getName();
         TextView nameText = (TextView) findViewById(R.id.FoodName);
         nameText.setText(name);
-        
-    	       
+         
         int quantity = food.getQuantity();
         TextView quantityText = (TextView) findViewById(R.id.FoodQuantity);
         quantityText.setText(""+quantity);
@@ -53,12 +53,12 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
                 newFragment.show(ft, "date_dialog");
             }
         });
-        
+
         //nutritional information will be displayed and can edit; need to conntect to API
         String nutritionalInformation = food.getDescription();
         TextView nutritionalInfoText = (TextView) findViewById(R.id.nutritionalInformationText);
         nutritionalInfoText.setText(nutritionalInformation);
-            }
+	}
 	
 	@Override
 	public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -90,7 +90,15 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
         
         case R.id.update_button:
         	String name = ((TextView)findViewById(R.id.FoodName)).getText().toString();
-            food.setName(name);
+        	if(name.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
+                break;
+            }
+            if(name.contains("<") && name.contains(">")){
+                Toast.makeText(getApplicationContext(), "No tags (<>) allowed", Toast.LENGTH_LONG).show();
+                break;
+            }
+        	food.setName(name);
                 
             food.setExpirationDate(((TextView)findViewById(R.id.ExpDate)).getText().toString());
           

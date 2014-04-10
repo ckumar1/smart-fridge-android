@@ -1,9 +1,14 @@
 package com.example.smart_fridge_android;
 
-import android.test.AndroidTestCase;
+import android.test.ActivityUnitTestCase;
 
-public class IndividualRecipeActivityTest extends AndroidTestCase{
+public class IndividualRecipeActivityTest 
+	extends ActivityUnitTestCase<IndividualRecipeActivity>{
 	
+	public IndividualRecipeActivityTest() {
+		super(IndividualRecipeActivity.class);
+	}
+
 	protected void setUp() throws Exception{
         super.setUp();
         //TODO Write Set up code
