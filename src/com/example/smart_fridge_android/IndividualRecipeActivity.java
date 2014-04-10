@@ -2,7 +2,6 @@ package com.example.smart_fridge_android;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.app.Activity;
 import android.content.Intent;

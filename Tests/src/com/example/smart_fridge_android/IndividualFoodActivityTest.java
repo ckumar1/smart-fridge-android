@@ -38,6 +38,11 @@ public class IndividualFoodActivityTest
 
     protected void tearDown() throws Exception{
         super.tearDown();
+        DatabaseHandler db = new DatabaseHandler(activity.getApplicationContext());
+    	if(db.getFoodById(testFood.getId()) != null) {
+    		db.deleteFood(testFood);
+    	}
+    	assertNull(db.getFoodById(testFood.getId()));
     }
     
     public void testViewFood() {
@@ -187,7 +192,8 @@ public class IndividualFoodActivityTest
     }
     
     /*  Delete the added food. This is done outside tearDown so that
-        we can test the delete button as well */
+        we can test the delete button. We also delete in teardown if we
+        need to */
     private void deleteTestFood() {
         DatabaseHandler db = new DatabaseHandler(activity.getApplicationContext());
         
