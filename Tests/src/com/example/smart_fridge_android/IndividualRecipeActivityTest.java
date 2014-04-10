@@ -50,11 +50,10 @@ public class IndividualRecipeActivityTest
     	TextView nameText = (TextView) activity.findViewById(R.id.IndRecipeNameField);
         TextView instructionsText = (TextView) activity.findViewById(R.id.IndRecipeInstructionsField);
         TextView ingredientsText = (TextView) activity.findViewById(R.id.IndRecipeIngredientsField);
-        TextView nutriInfoText = (TextView) activity.findViewById(R.id.IndRecipeNutrInfoField);
         assertNotNull(nameText);
         assertNotNull(instructionsText);
         assertNotNull(ingredientsText);
-        assertNotNull(nutriInfoText);
+       
 
         // Check that the text fields are all showing the correct things
         assertEquals("nameText should be TESTMACNCHEESETEST", 
@@ -63,9 +62,7 @@ public class IndividualRecipeActivityTest
         		"Boil noodles. Add cheese", instructionsText.getText().toString());
         assertEquals("ingredientText should be macaroni\ncheese", 
         		"macaroni\ncheese", ingredientsText.getText().toString());
-        // TODO will likely change as the code is revised
-        assertEquals("nutriInfoText should be empty", 
-        		"", nutriInfoText.getText().toString());
+    
         
         deleteTestRecipe();
     }
@@ -98,7 +95,7 @@ public class IndividualRecipeActivityTest
     	assertNotNull(iMadeThisButton);
     	iMadeThisButton.performClick();
     	
-    	TextView nameText = (TextView) activity.findViewById(R.id.IMadethisRecipeName);
+    	TextView nameText = (TextView) activity.findViewById(R.id.RecipeName);
     	assertNotNull(nameText);
     	assertEquals("nameText should be set to TESTMACNCHEESETEST", 
     			"TESTMACNCHEESETEST", nameText.getText().toString());
