@@ -46,18 +46,11 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
     Button calorieCountButton;
     EditText recipeNameEditText;
 
-    String caloriesFromYummly;
-
     String contentView; // Keeps track of current view to be used in onBackPressed method
 
-    // url to yummly api
     // Using Carl's api id and api key for now.
-
     // Url to perform a search of recipes on yummly's site
     private static String url_yummly_search_recipes = "http://api.yummly.com/v1/api/recipes";
-
-    // Url to get specific details about a recipe
-    private static String url_yummly_get_recipe_details = "http://api.yummly.com/v1/api/recipe/";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -158,31 +151,10 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
 
                 Intent recipeResultIntent = new Intent(getApplicationContext(), RecipeSearchResultActivity.class);
                 recipeResultIntent.putExtra(TAG_YUMMLY_ID, yummlyId);
-                recipeResultIntent.putExtra("recipeName", recipes.get(position).getName());
-                recipeResultIntent.putExtra("recipeIngredients", recipes.get(position).getIngredients());
+                recipeResultIntent.putExtra(TAG_RECIPE_NAME, recipes.get(position).getName());
+                recipeResultIntent.putExtra(TAG_RECIPE_INGREDIENTS, recipes.get(position).getIngredients());
 
                 startActivity(recipeResultIntent);
-
-//                try {
-//                    Get specific recipe details
-//                    caloriesFromYummly = new GetRecipeDetails(yummlyId).execute().get();
-//                } catch (InterruptedException e){
-//
-//                } catch (ExecutionException e){
-//
-//                }
-//
-//                setContentView(R.layout.recipe_result);
-//                contentView = "recipe_result";
-//                TextView name = (TextView) findViewById(R.id.textViewRecipeResultName);
-//                TextView ingredients = (TextView) findViewById(R.id.textViewIngredientsResultList);
-//                TextView calories = (TextView) findViewById(R.id.textViewRecipeSearchCarloriesResultList);
-//
-//                name.setText(recipes.get(position).getName());
-//                ingredients.setText(recipes.get(position).getIngredients());
-//                calories.setText(caloriesFromYummly);
-
-
             }
         });
     }
@@ -274,86 +246,6 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
 
             // dismiss the dialog once done
             pDialog.dismiss();
-        }
-    }
-
-
-    /**
-     * Background Async Task to execute the yummly query for getting specific recipe details
-     * */
-    class GetRecipeDetails extends AsyncTask<String, String, String> {
-
-        String yummlyId;
-        String calories;
-
-        public GetRecipeDetails(String yummlyId){
-            this.yummlyId = yummlyId;
-        }
-
-        List<Recipe> recipes = new ArrayList<Recipe>();
-
-        /**
-         * Before starting background thread Show Progress Dialog
-         * */
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(AdvancedSearchRecipeActivity.this);
-            pDialog.setMessage("Gathering your recipe information...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
-            pDialog.show();
-        }
-
-        /**
-         * Performing yummly api query
-         * */
-        protected String doInBackground(String... args) {
-
-            url_yummly_get_recipe_details += yummlyId;
-
-            // Building Parameters
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-            params.add(new BasicNameValuePair(TAG_APP_ID, ACTUAL_APP_ID));
-            params.add(new BasicNameValuePair(TAG_APP_KEY, ACTUAL_APP_KEY));
-
-            // getting JSON Object
-            json = jsonParser.makeHttpRequest(url_yummly_get_recipe_details,
-                    "GET", params);
-
-            // check log cat for response
-            Log.d("Create Response", json.toString());
-
-            // Go through all the new data on the recipe from yummly
-            try {
-                JSONArray nutritionEstimates = json.getJSONArray("nutritionEstimates");
-
-                for (int i = 0; i < nutritionEstimates.length(); i++) {
-                    JSONObject individualEstimate = nutritionEstimates.getJSONObject(i);
-
-                    // Looking for calories.
-                    if (individualEstimate.get("attribute").equals("ENERC_KCAL")){
-                        calories = individualEstimate.get("value").toString();
-                    }
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            return calories;
-        }
-
-        /**
-         * After completing background task dismiss the progress dialog
-         * **/
-        protected void onPostExecute(String file_url) {
-
-            // dismiss the dialog once done
-            pDialog.dismiss();
-
-            caloriesFromYummly = calories;
         }
     }
 }
