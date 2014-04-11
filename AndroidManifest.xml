@@ -36,6 +36,7 @@
         <activity android:name=".IndividualFoodActivity" />
         <activity android:name=".AdvancedSearchRecipeActivity"/>
         <activity android:name=".RecipeSearchResultActivity"/>
+        <activity android:name=".IMadeThisActivity" />
     </application>
 
 </manifest>
