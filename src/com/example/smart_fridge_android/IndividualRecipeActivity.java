@@ -26,7 +26,9 @@ public class IndividualRecipeActivity extends Activity {
 	DatabaseHandler db;
 	Recipe recipe;
 	ArrayList<HashMap<String, String>> ingredList;
-
+	
+	
+    private String id;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class IndividualRecipeActivity extends Activity {
 		setContentView(R.layout.individual_recipe_item);
 
 		Intent intent = getIntent();
-        String id = intent.getStringExtra("rid");
+	    id = intent.getStringExtra("rid");
         
         db = new DatabaseHandler(this);
         db.getDatabaseName();
@@ -96,20 +98,10 @@ public class IndividualRecipeActivity extends Activity {
 			break; 
 
 		case R.id.IMadeThisButton:
-			setContentView(R.layout.i_made_this);
-			//TextView nameText = (TextView) findViewById(R.id.IMadethisRecipeName);
-			//nameText.setText(recipe.getName());
-			/*
-	    	List<String> list = new ArrayList<String>();
-	        list = recipe.getIngredientList(); 
-	        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.i_made_this, list);
-
-	       ListView listViewItems = new ListView(this);
-	       listViewItems.setAdapter(adp);
-			 */		    
-
-			TextView nameText = (TextView) findViewById(R.id.IMadethisRecipeName);
-			nameText.setText(recipe.getName());
+			Intent iMadeThisIntent = new Intent(getApplicationContext(), IMadeThisActivity.class);
+			iMadeThisIntent.putExtra("rid", id);
+			startActivity(iMadeThisIntent);
+		
 			break;	
 		
 		case R.id.UpdateButton:

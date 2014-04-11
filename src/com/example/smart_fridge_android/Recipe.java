@@ -76,7 +76,7 @@ public class Recipe {
     
     public List<String> getIngredientList() {
     	if(ingredients != null) {
-    		return Arrays.asList(ingredients.split("<b>"));
+    		return Arrays.asList(ingredients.split("\n"));
     	}
     	return null;
     }
@@ -91,7 +91,7 @@ public class Recipe {
 	    	ingredientList = ingredients.get(0);
 	    	// place a <b> between each item in the list
 	    	for(int i = 1; i < ingredients.size(); i++) {
-	    		ingredientList += "<b>" + ingredients.get(i);
+	    		ingredientList += "\n" + ingredients.get(i);
 	    	}
     	}
     	this.ingredients = ingredientList;

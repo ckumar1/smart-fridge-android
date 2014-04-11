@@ -16,39 +16,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/include1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:text="RecipeName" />
+        android:text="RecipeName"
+        android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/textView1"
+    <Button
+        android:id="@+id/IMadeThisButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/IMadethisRecipeName"
-        android:layout_marginRight="19dp"
-        android:layout_marginTop="61dp"
-        android:layout_toLeftOf="@+id/IMadethisRecipeName"
-        android:text="Ingredient: " />
+        android:layout_below="@android:id/list"
+        android:layout_centerHorizontal="true"
+        android:onClick="onButtonClick"
+        android:text="Done" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_toRightOf="@+id/IMadethisRecipeName"
-        android:text="Amount used: " />
-
-
-     
-    <TextView
-                    android:id="@+id/IndRecipeIngredientsField"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="18dp"
-                    android:layout_toRightOf="@+id/IndRecipeIngredients"
-                    android:text="ingredientsField"
-                    android:textSize="20sp" />
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="338dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/IMadethisRecipeName" >
+    </ListView>
 
 </RelativeLayout>
-
