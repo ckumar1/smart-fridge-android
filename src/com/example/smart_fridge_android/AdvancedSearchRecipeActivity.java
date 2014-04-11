@@ -72,9 +72,14 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
             finish();
         } else if (contentView.equals("recipe_search_results")){
             setContentView(R.layout.advanced_recipe_search);
+            contentView = "advanced_recipe_search";
         } else if (contentView.equals("recipe_result")){
             setContentView(R.layout.recipe_search_results);
+            contentView = "recipe_search_results";
+
             setResultsAdapter(recipes);
+        } else {
+            finish();
         }
     }
 
