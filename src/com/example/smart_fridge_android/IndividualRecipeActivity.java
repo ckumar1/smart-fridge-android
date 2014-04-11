@@ -13,7 +13,9 @@ import android.graphics.Matrix;
 import android.widget.Toast;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class IndividualRecipeActivity extends Activity {
@@ -128,7 +130,7 @@ public class IndividualRecipeActivity extends Activity {
 	        	recipe.setDirections(directionsNew);
 	        	
 	        	String ingredientsNew = ((TextView)findViewById(R.id.IndRecipeIngredientsField)).getText().toString();
-	        	recipe.setIngredients(ingredientsNew);
+	        	recipe.setIngredientsList(Arrays.asList(ingredientsNew.split("<b>")));
 	        	
 	        	db.updateRecipe(recipe);
 	        	break;
