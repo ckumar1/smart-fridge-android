@@ -42,7 +42,7 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
     String upc_name = "";
-	private String upcResult = "";
+	String upcResult = "";
 
     @Override
 	public void onCreate(Bundle savedInstanceState) {
