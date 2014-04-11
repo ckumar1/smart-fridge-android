@@ -187,6 +187,9 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            recipes.clear(); // Start with a fresh list for recipes
+
             pDialog = new ProgressDialog(AdvancedSearchRecipeActivity.this);
             pDialog.setMessage("Gathering your recipe results...");
             pDialog.setIndeterminate(false);
