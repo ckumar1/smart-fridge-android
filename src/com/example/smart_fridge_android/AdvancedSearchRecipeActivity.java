@@ -46,6 +46,8 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
 
     String caloriesFromYummly;
 
+    String contentView; // Keeps track of current view to be used in onBackPressed method
+
     // url to yummly api
     // Using Carl's api id and api key for now.
 
@@ -60,6 +62,25 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.advanced_recipe_search);
+        contentView = "advanced_recipe_search";
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (contentView.equals("advanced_recipe_search")){
+            finish();
+        } else if (contentView.equals("recipe_search_results")){
+            setContentView(R.layout.advanced_recipe_search);
+            contentView = "advanced_recipe_search";
+        } else if (contentView.equals("recipe_result")){
+            setContentView(R.layout.recipe_search_results);
+            contentView = "recipe_search_results";
+
+            setResultsAdapter(recipes);
+        } else {
+            finish();
+        }
     }
 
     public void onButtonClick(View view) {
@@ -73,6 +94,7 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
                 new GetRecipes().execute();
 
                 setContentView(R.layout.recipe_search_results);
+                contentView = "recipe_search_results";
                 break;
 
             case R.id.btnCalorieCount:
@@ -142,6 +164,7 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
                 }
 
                 setContentView(R.layout.recipe_result);
+                contentView = "recipe_result";
                 TextView name = (TextView) findViewById(R.id.textViewRecipeResultName);
                 TextView ingredients = (TextView) findViewById(R.id.textViewIngredientsResultList);
                 TextView calories = (TextView) findViewById(R.id.textViewRecipeSearchCarloriesResultList);
@@ -164,6 +187,9 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            recipes.clear(); // Start with a fresh list for recipes
+
             pDialog = new ProgressDialog(AdvancedSearchRecipeActivity.this);
             pDialog.setMessage("Gathering your recipe results...");
             pDialog.setIndeterminate(false);

@@ -50,10 +50,7 @@
                     android:layout_toRightOf="@+id/IndRecipeName"
                     android:ems="10"
                     android:text="nameField"
-                    android:textSize="20sp" >
-
-                    <requestFocus />
-                </EditText>
+                    android:textSize="20sp" />
 
             </RelativeLayout>
 
@@ -153,4 +150,4 @@
 
             </LinearLayout>
     </ScrollView>
-    </LinearLayout>
+</LinearLayout>
