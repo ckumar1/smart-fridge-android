@@ -11,21 +11,23 @@ public class Recipe {
     private String notes;
     // Delimited by <b>
     private String ingredients;
+    private String imagePath;
 
     public Recipe(){
 
     }
 
-    public Recipe(String name, String directions, String notes, List<String>ingredients){
-    	this(name, directions, notes, "");
+    public Recipe(String name, String directions, String notes, List<String>ingredients, String imagePath){
+    	this(name, directions, notes, imagePath, "");
     	this.setIngredientsList(ingredients);
     }
     
-    public Recipe(String name, String directions, String notes, String ingredients) {
+    public Recipe(String name, String directions, String notes, String ingredients, String imagePath) {
         this.name = name;
         this.directions = directions;
         this.notes = notes;
         this.ingredients = ingredients;
+        this.imagePath = imagePath;
     }
 
     public int getId() {
@@ -58,6 +60,14 @@ public class Recipe {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
     
     public String getIngredients() {
@@ -95,6 +105,7 @@ public class Recipe {
                 ", directions='" + directions + '\'' +
                 ", notes='" + notes + '\'' +
                 ", ingredients='" + ingredients + '\'' +
+                ", imagePath=" + imagePath +
                 '}';
     }
 
@@ -110,6 +121,7 @@ public class Recipe {
         if (ingredients != null ? !ingredients.equals(recipe.ingredients) : recipe.ingredients != null) return false;
         if (name != null ? !name.equals(recipe.name) : recipe.name != null) return false;
         if (notes != null ? !notes.equals(recipe.notes) : recipe.notes != null) return false;
+        if (imagePath != null ? !imagePath.equals(recipe.imagePath) : recipe.imagePath != null) return false;
 
         return true;
     }

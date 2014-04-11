@@ -1,8 +1,17 @@
 package com.example.smart_fridge_android;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
+import android.hardware.Camera;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +24,9 @@ import android.content.Intent;
 public class AddRecipeActivity extends Activity {
 
     private static final String STARTING_TAB = "startingTab";
-
+    static final int CAMERA_RESULT = 1;
+    private Uri imageUri;
+    private String imagePath;
     private List <String> ingredlist = new ArrayList<String>();
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +82,15 @@ public class AddRecipeActivity extends Activity {
                 builder.show();
                 break;
 
+            case R.id.addimgR:
+                if (Camera.getNumberOfCameras() > 0) {
+                    dispatchTakePictureIntent();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "No camera found", Toast.LENGTH_LONG).show();
+                }
+                break;
+                
             case R.id.addrec:
                 Recipe recipe = new Recipe();
 
@@ -92,13 +112,19 @@ public class AddRecipeActivity extends Activity {
                 }
                 recipe.setDirections(directions);
 
-
                 if(ingredlist.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Ingredients are required", Toast.LENGTH_LONG).show();
                     break;
                 }
                 recipe.setIngredientsList(ingredlist);
 
+                if (imagePath != null && !imagePath.isEmpty()) {
+                    recipe.setImagePath(imagePath);
+                }
+                else {
+                    recipe.setImagePath("");
+                }
+                
                 DatabaseHandler db = new DatabaseHandler(getApplicationContext());
                 db.addRecipe(recipe);
 
@@ -110,6 +136,27 @@ public class AddRecipeActivity extends Activity {
         }
         removeAddButton();
 	}
+
+    private void dispatchTakePictureIntent() {
+        Intent imageIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+        File imagesFolder = new File(Environment.getExternalStorageDirectory(), "fridge_images");
+        imagesFolder.mkdirs();
+        //filePath = "/fridge_images/recipe_image" + timeStamp + ".png"
+
+        File image = new File(imagesFolder, "recipe_image" + timeStamp + ".png");
+        Uri uriSavedImage = Uri.fromFile(image);
+
+        imageIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
+        imagePath = image.toString();
+        startActivityForResult(imageIntent, CAMERA_RESULT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_RESULT && resultCode == RESULT_OK) {
+        }
+    }
 
     private void removeAddButton(){
         Button addButton = (Button) findViewById(R.id.addBtn);

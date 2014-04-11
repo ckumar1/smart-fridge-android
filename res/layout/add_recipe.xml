@@ -34,11 +34,19 @@
         android:id="@+id/addrec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="24dp"
-        android:layout_toRightOf="@+id/textView3"
         android:onClick="onButtonClick"
-        android:text="Add Recipe" />
+        android:text="Add Recipe" android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/showlist"
+        android:layout_alignStart="@+id/showlist"/>
+
+    <Button
+        android:id="@+id/addimgR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onButtonClick"
+        android:text="Add Image"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@id/textView3"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -94,11 +102,11 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/showlist"
-        android:layout_marginTop="18dp"
-        android:layout_toLeftOf="@+id/addrec"
         android:text="Instructions: "
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_alignBottom="@+id/InstructionsField"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"/>
 
     <EditText
         android:id="@+id/InstructionsField"

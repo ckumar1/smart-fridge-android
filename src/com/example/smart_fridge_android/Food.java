@@ -7,6 +7,7 @@ public class Food {
     private String description;
     private String expirationDate;
     private String category;
+    private String imagePath;
     private int calories;
     private int quantity;
 
@@ -14,13 +15,14 @@ public class Food {
 
     }
 
-    public Food(String name, String description, String expirationDate, String category, int calories, int quantity) {
+    public Food(String name, String description, String expirationDate, String category, String imagePath, int calories, int quantity) {
         this.name = name;
         this.description = description;
         this.category = category;
         this.expirationDate = expirationDate;
         this.calories = calories;
         this.quantity = quantity;
+        this.imagePath = imagePath;
     }
 
     public int getId(){
@@ -70,6 +72,14 @@ public class Food {
     public void setCalories(int calories) {
         this.calories = calories;
     }
+    
+    public String getImagePath() {
+    	return imagePath;
+    }
+    
+    public void setImagePath(String imagePath) {
+    	this.imagePath = imagePath;
+    }
 
     public int getQuantity() { 
     	return quantity; 
@@ -87,8 +97,9 @@ public class Food {
                 ", description='" + description + '\'' +
                 ", category='" + category + '\'' +
                 ", expirationDate='" + expirationDate + '\'' +
-                ", calories=" + calories +
-                ", quantity=" + quantity +
+                ", calories=" + calories + '\'' +
+                ", quantity=" + quantity + '\'' +
+                ", imagePath=" + imagePath +
                 '}';
     }
 
@@ -108,6 +119,7 @@ public class Food {
         if (expirationDate != null ? !expirationDate.equals(food.expirationDate) : food.expirationDate != null)
             return false;
         if (name != null ? !name.equals(food.name) : food.name != null) return false;
+        if (imagePath != null ? !imagePath.equals(food.imagePath) : food.imagePath != null) return false;
 
         return true;
     }

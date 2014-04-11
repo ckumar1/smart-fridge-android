@@ -4,13 +4,19 @@ import java.text.SimpleDateFormat;
 import android.app.DatePickerDialog.OnDateSetListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.io.File;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,10 +46,28 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
         int quantity = food.getQuantity();
         TextView quantityText = (TextView) findViewById(R.id.FoodQuantity);
         quantityText.setText(""+quantity);
+
+        String path = food.getImagePath();
+        if (path != null && !path.isEmpty()) {
+            File imgFile = new File(path);
+            if (imgFile.exists()) {
+                Log.w("Image", "Image Exists!");
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                ImageView myImage = (ImageView) findViewById(R.id.imgView);
+
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                Bitmap rotatedBitmap = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(),
+                        myBitmap.getHeight(), matrix, true);
+                myImage.setImageBitmap(rotatedBitmap);
+
+            }
+        }
         
         TextView expDateText = (TextView) findViewById(R.id.ExpDate);
+
         expDateText.setText(food.getExpirationDate());
-        
+
         expDateText.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -59,7 +83,7 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
         TextView nutritionalInfoText = (TextView) findViewById(R.id.nutritionalInformationText);
         nutritionalInfoText.setText(nutritionalInformation);
 	}
-	
+
 	@Override
 	public void onDateSet(DatePicker view, int year, int monthOfYear,
 			int dayOfMonth) {
@@ -80,6 +104,13 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
         switch (v.getId()){
         
         case R.id.DeleteButton:
+            String foodImgPath = food.getImagePath();
+            if (foodImgPath != null && !foodImgPath.isEmpty()) {
+                File food_image = new File(foodImgPath);
+                Boolean deleted = food_image.delete(); //Delete the photo from your phone
+                if (!deleted)
+                    Log.w("Delete Food", "Food Image wasn't deleted");
+            }
         	db.deleteFood(food);
         	
         	Intent i = new Intent(this, MainActivity.class);

@@ -27,7 +27,7 @@ public class IndividualFoodActivityTest
         DatabaseHandler db = new DatabaseHandler(getInstrumentation()
         		.getTargetContext());
         testFood = db.addFood(new Food("TESTAPPLETEST", "Red", "1/1/15", 
-        		"Fruit", 100, 1));
+        		"Fruit", "", 100, 1));
         assertNotNull(testFood);
         
         launchIntent.putExtra("fid", Integer.toString(testFood.getId()));

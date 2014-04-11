@@ -28,7 +28,7 @@ public class IndividualRecipeActivityTest
         		.getTargetContext());
         testRecipe = db.addRecipe(new Recipe("TESTMACNCHEESETEST", 
         		"Boil noodles. Add cheese", "Add lots of cheese", 
-        		"macaroni<b>cheese"));
+        		"macaroni<b>cheese", ""));
         assertNotNull(testRecipe);
         
         launchIntent.putExtra("rid", Integer.toString(testRecipe.getId()));
@@ -95,7 +95,7 @@ public class IndividualRecipeActivityTest
     	assertNotNull(iMadeThisButton);
     	iMadeThisButton.performClick();
     	
-    	TextView nameText = (TextView) activity.findViewById(R.id.RecipeName);
+    	TextView nameText = (TextView) activity.findViewById(R.id.IMadethisRecipeName);
     	assertNotNull(nameText);
     	assertEquals("nameText should be set to TESTMACNCHEESETEST", 
     			"TESTMACNCHEESETEST", nameText.getText().toString());

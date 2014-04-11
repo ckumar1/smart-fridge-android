@@ -1,21 +1,22 @@
 package com.example.smart_fridge_android;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
-
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.widget.Toast;
+
+import java.io.File;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class IndividualRecipeActivity extends Activity {
 
@@ -35,23 +36,38 @@ public class IndividualRecipeActivity extends Activity {
 		setContentView(R.layout.individual_recipe_item);
 
 		Intent intent = getIntent();
-		String id = intent.getStringExtra("rid");
+        String id = intent.getStringExtra("rid");
+        
+        db = new DatabaseHandler(this);
+        db.getDatabaseName();
+        
+        recipe = db.getRecipeById(Integer.parseInt(id));
+        
+        TextView nameText = (TextView) findViewById(R.id.IndRecipeNameField);
+        nameText.setText(recipe.getName());
+        
+        TextView instructions = (TextView) findViewById(R.id.IndRecipeInstructionsField);
+        instructions.setText(recipe.getDirections());
+        
+        TextView ingredients = (TextView) findViewById(R.id.IndRecipeIngredientsField);
+        ingredients.setText(recipe.getIngredients().replace("<b>", "\n"));
 
-		db = new DatabaseHandler(this);
-		db.getDatabaseName();
+       String path = recipe.getImagePath();
+        if (path != null && !path.isEmpty()) {
+             File imgFile = new  File(path);
+            if(imgFile.exists()) {
+                Log.w("Image", "Image Exists!");
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                ImageView myImage = (ImageView) findViewById(R.id.imgViewRecipe); //fix this
 
-		recipe = db.getRecipeById(Integer.parseInt(id));
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                Bitmap rotatedBitmap = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(),
+                        myBitmap.getHeight(), matrix, true);
+                myImage.setImageBitmap(rotatedBitmap);
+            }
 
-		TextView nameText = (TextView) findViewById(R.id.IndRecipeNameField);
-		nameText.setText(recipe.getName());
-
-		TextView instructions = (TextView) findViewById(R.id.IndRecipeInstructionsField);
-		instructions.setText(recipe.getDirections());
-
-		TextView ingredients = (TextView) findViewById(R.id.IndRecipeIngredientsField);
-		ingredients.setText(recipe.getIngredients().replace("<b>", "\n"));
-
-		
+        }
 	}
 
 
@@ -64,6 +80,13 @@ public class IndividualRecipeActivity extends Activity {
 		switch (v.getId()) {
 
 		case R.id.IndRecipeDeleteButton:
+            String recipeImgPath = recipe.getImagePath();
+            if (recipeImgPath != null && !recipeImgPath.isEmpty()) {
+                File recipe_image = new File(recipeImgPath);
+                Boolean deleted = recipe_image.delete(); //Delete the photo from your phone
+                if (!deleted)
+                    Log.w("Delete Recipe", "Recipe Image wasn't deleted");
+            }
 			db.deleteRecipe(recipe);
 
 			Intent i = new Intent(this, MainActivity.class);
@@ -88,7 +111,6 @@ public class IndividualRecipeActivity extends Activity {
 			 */		    
 			TextView nameText = (TextView) findViewById(R.id.IMadethisRecipeName);
 			nameText.setText(recipe.getName());
-
 			break;	
 		
 		case R.id.UpdateButton:
@@ -107,13 +129,10 @@ public class IndividualRecipeActivity extends Activity {
 	        	recipe.setDirections(directionsNew);
 	        	
 	        	String ingredientsNew = ((TextView)findViewById(R.id.IndRecipeIngredientsField)).getText().toString();
-	        	recipe.setIngredients(ingredientsNew);
+	        	recipe.setIngredientsList(Arrays.asList(ingredientsNew.split("<b>")));
 	        	
 	        	db.updateRecipe(recipe);
 	        	break;
-	            
-
-
 		}
 	}
 
