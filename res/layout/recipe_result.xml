@@ -1,121 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:weightSum="1">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/recipeResultsScrollView"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
 
-    <TextView
-            android:id="@+id/textViewRecipeResultName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recipe"
-            android:layout_gravity="center_horizontal"
-            android:textSize="30sp"
-            android:textAlignment="center"/>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
 
         <TextView
-                android:id="@+id/textViewIngredientsResult"
+                android:id="@+id/textViewRecipeResultName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="20dp"
-                android:text="Ingredients:"
-                android:textSize="25sp" />
-
-        <TextView
-                android:id="@+id/textViewIngredientsResultList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="18dp"
-                android:layout_toRightOf="@+id/textViewIngredientsResult"
-                android:text="Ingredients"
-                android:textSize="25sp" />
-
-        <!--<TextView-->
-                <!--android:id="@+id/textViewIngredientsResult"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Ingredients: "-->
-                <!--android:layout_gravity="center_horizontal"-->
-                <!--android:textSize="25sp"-->
-                <!--android:layout_marginLeft="20dp"/>-->
-        <!--<TextView-->
-                <!--android:id="@+id/textViewIngredientsResultList"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Ingredient"-->
-                <!--android:textSize="25sp"-->
-                <!--android:layout_alignBottom="@id/textViewIngredientsResult"-->
-                <!--android:layout_toRightOf="@id/textViewIngredientsResult"-->
-                <!--android:layout_marginLeft="60dp"/>-->
-
-    </RelativeLayout>
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
-
-        <TextView
-                android:id="@+id/textViewInstructionsResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Instructions: "
+                android:text="Recipe"
                 android:layout_gravity="center_horizontal"
-                android:textSize="25sp"
-                android:layout_marginLeft="20dp"/>
-        <TextView
-                android:id="@+id/textViewInstructionsResultList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Instructions url will go here"
-                android:textSize="25sp"
-                android:layout_alignBottom="@id/textViewInstructionsResult"
-                android:layout_toRightOf="@id/textViewInstructionsResult"
-                android:layout_marginLeft="60dp"/>
+                android:textSize="30sp"
+                android:textAlignment="center"/>
 
-    </RelativeLayout>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
+            <TextView
+                    android:id="@+id/textViewIngredientsResult"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="Ingredients:"
+                    android:textSize="25sp" />
 
-        <TextView
-                android:id="@+id/textViewRecipeSearchCaloriesResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Calories: "
-                android:layout_gravity="center_horizontal"
-                android:textSize="25sp"
-                android:layout_marginLeft="20dp"/>
-        <TextView
-                android:id="@+id/textViewRecipeSearchCarloriesResultList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Calories"
-                android:textSize="25sp"
-                android:layout_alignBottom="@id/textViewRecipeSearchCaloriesResult"
-                android:layout_toRightOf="@id/textViewRecipeSearchCaloriesResult"
-                android:layout_marginLeft="60dp"/>
+            <TextView
+                    android:id="@+id/textViewIngredientsResultList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="18dp"
+                    android:layout_toRightOf="@+id/textViewIngredientsResult"
+                    android:text="Ingredients"
+                    android:textSize="25sp" />
 
-    </RelativeLayout>
+            <!--<TextView-->
+            <!--android:id="@+id/textViewIngredientsResult"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Ingredients: "-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:textSize="25sp"-->
+            <!--android:layout_marginLeft="20dp"/>-->
+            <!--<TextView-->
+            <!--android:id="@+id/textViewIngredientsResultList"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Ingredient"-->
+            <!--android:textSize="25sp"-->
+            <!--android:layout_alignBottom="@id/textViewIngredientsResult"-->
+            <!--android:layout_toRightOf="@id/textViewIngredientsResult"-->
+            <!--android:layout_marginLeft="60dp"/>-->
 
-    <ListView
-            android:id="@android:id/list"
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
+        </RelativeLayout>
 
-</LinearLayout>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
+            <TextView
+                    android:id="@+id/textViewInstructionsResult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Instructions: "
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="25sp"
+                    android:layout_marginLeft="20dp"/>
+            <TextView
+                    android:id="@+id/textViewInstructionsResultList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Instructions url will go here"
+                    android:textSize="25sp"
+                    android:layout_alignBottom="@id/textViewInstructionsResult"
+                    android:layout_toRightOf="@id/textViewInstructionsResult"
+                    android:layout_marginLeft="60dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
+            <TextView
+                    android:id="@+id/textViewRecipeSearchCaloriesResult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calories: "
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="25sp"
+                    android:layout_marginLeft="20dp"/>
+            <TextView
+                    android:id="@+id/textViewRecipeSearchCarloriesResultList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calories"
+                    android:textSize="25sp"
+                    android:layout_alignBottom="@id/textViewRecipeSearchCaloriesResult"
+                    android:layout_toRightOf="@id/textViewRecipeSearchCaloriesResult"
+                    android:layout_marginLeft="60dp"/>
+
+        </RelativeLayout>
+
+        <ListView
+                android:id="@android:id/list"
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
+
+    </LinearLayout>
+</ScrollView>
