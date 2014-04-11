@@ -188,7 +188,6 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
            
               //display results
               Log.i("result",contents);
-              Toast.makeText(getApplicationContext(), contents, Toast.LENGTH_LONG).show();
               
               PerformUpcLookup lookup = new PerformUpcLookup();
               lookup.execute();
@@ -252,7 +251,11 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
         protected void onPostExecute(String file_url) {
             // dismiss the dialog once done
             pDialog.dismiss();
-            addBarcodeItem();
+            if (!upc_name.equals("")) {
+            	addBarcodeItem();
+            } else {
+            	Toast.makeText(getApplicationContext(), "Could not find item for barcode", Toast.LENGTH_LONG).show();
+            }
         	
         }
         
