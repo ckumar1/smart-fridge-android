@@ -24,6 +24,8 @@ public class RecipeSearchResultActivity extends Activity {
     private static final String ACTUAL_APP_ID = "5780cd3c";
     private static final String ACTUAL_APP_KEY = "c2d2c46e25e5051ee5f51ebedcdd16fd";
     private static final String TAG_YUMMLY_ID = "yummlyId";
+    private static final String TAG_RECIPE_NAME = "name";
+    private static final String TAG_RECIPE_INGREDIENTS = "ingredients";
 
     // Url to get specific details about a recipe
     private static String url_yummly_get_recipe_details = "http://api.yummly.com/v1/api/recipe/";
@@ -43,8 +45,8 @@ public class RecipeSearchResultActivity extends Activity {
         Intent intent = getIntent();
 
         String yummlyId = intent.getStringExtra(TAG_YUMMLY_ID);
-        String recipeName = intent.getStringExtra("recipeName");
-        String recipeIngredients = intent.getStringExtra("recipeIngredients");
+        String recipeName = intent.getStringExtra(TAG_RECIPE_NAME);
+        String recipeIngredients = intent.getStringExtra(TAG_RECIPE_INGREDIENTS);
 
 
         try {
