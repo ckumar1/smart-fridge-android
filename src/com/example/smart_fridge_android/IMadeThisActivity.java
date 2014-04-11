@@ -61,11 +61,12 @@ public class IMadeThisActivity  extends ListActivity {
       NavigationBar.onTabsClicked(view, this);
       switch (view.getId()){
 
-          case R.id.IMadeThisButton:
+          case R.id.IMadeThisDoneButton:
         	  Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         	  startActivity(intent);       	  
         	 
         	  break;
+        	  
         	  
       } 
       }

@@ -11,6 +11,15 @@
         layout="@layout/main_nav_bar" />
 
     <TextView
+        android:id="@+id/QuantityLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/IMadethisRecipeName"
+        android:layout_marginRight="16dp"
+        android:text="Quantity:" />
+
+    <TextView
         android:id="@+id/IMadethisRecipeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,21 +28,21 @@
         android:text="RecipeName"
         android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/IMadeThisButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@android:id/list"
-        android:layout_centerHorizontal="true"
-        android:onClick="onButtonClick"
-        android:text="Done" />
-
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="338dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/IMadethisRecipeName" >
+        android:layout_below="@+id/QuantityLabel" >
     </ListView>
+
+    <Button
+        android:id="@+id/IMadeThisDoneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onButtonClick"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Done" />
 
 </RelativeLayout>
