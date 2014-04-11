@@ -1,9 +1,14 @@
 package com.example.smart_fridge_android;
 
 import java.util.List;
+
+import com.example.smart_fridge_android.AddFoodActivity.PerformUpcLookup;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
 import android.view.View;
+import android.view.WindowManager.BadTokenException;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,6 +19,8 @@ public class AddFoodActivityTest
     private static final String STARTING_TAB = "startingTab";
 	Intent launchIntent;
 	AddFoodActivity activity;
+    private int SCAN_REQUEST_CODE = 0;
+
 	
 	public AddFoodActivityTest() {
 		super(AddFoodActivity.class);
@@ -39,7 +46,7 @@ public class AddFoodActivityTest
     			View.INVISIBLE, addButton.getVisibility());
     }
     
-    public void testDatePickerSelection() {
+    public void testDatePickerSelectionExecute() {
     	Button manualBtn = (Button)activity.findViewById(R.id.manualBtn);
     	assertNotNull(manualBtn);
     	
@@ -68,6 +75,21 @@ public class AddFoodActivityTest
     	// Months are offset by 1
     	assertEquals("dateSelector should be set to 03/03/2014", 
     			"03/03/2014", dateSelector.getText().toString());
+    }
+    
+    public void testDatePickerSelectorPopup() {
+    	Button manualBtn = (Button)activity.findViewById(R.id.manualBtn);
+    	assertNotNull(manualBtn);
+    	
+    	manualBtn.performClick();
+    	
+    	TextView dateSelector = (TextView)activity.findViewById(R.id.dateSelector);
+    	assertNotNull(dateSelector);
+    	assertTrue("dateSelector onClickListener needs to be set", 
+    			dateSelector.hasOnClickListeners());
+    	
+    	dateSelector.performClick();
+    	// TODO Finish tests for dialog popup.
     }
     
     public void testManualAddValidFood() {
@@ -187,6 +209,25 @@ public class AddFoodActivityTest
     	// Make sure intent was not sent
     	addIntent = getStartedActivityIntent();
     	assertNull(addIntent);
+    }
+    
+    public void testUPCRequest() {
+    	Intent intent = new Intent();
+    	intent.putExtra("SCAN_RESULT", "077975025871");
+    	try{
+    		activity.onActivityResult(SCAN_REQUEST_CODE, 
+    			Activity.RESULT_OK, intent);
+    	} catch (BadTokenException e) {
+    		// Trying to show the Dialog throws an exception.
+    		// This is a well-known bug in tests
+    		// https://code.google.com/p/android/issues/detail?id=14616
+    	}
+    	
+    	// make a get call and check if the correct value returns
+    	// We're using a Pretzels, Nibbler, Sourdough bag to test
+    	PerformUpcLookup lookup = activity.new PerformUpcLookup();
+    	activity.upcResult = "077975025871";
+    	assertEquals("Pretzels, Nibblers, Sourdough", lookup.doInBackground());
     }
     
     private Food findFoodInList(List<Food> list, String name) {
