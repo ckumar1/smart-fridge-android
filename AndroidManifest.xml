@@ -35,6 +35,7 @@
         <activity android:name="com.example.smart_fridge_android.IndividualRecipeActivity" />
         <activity android:name=".IndividualFoodActivity" />
         <activity android:name=".AdvancedSearchRecipeActivity"/>
+        <activity android:name=".RecipeSearchResultActivity"/>
     </application>
 
 </manifest>

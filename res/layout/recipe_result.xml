@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="18dp"
-                    android:layout_toRightOf="@+id/textViewIngredientsResult"
+                    android:layout_toRightOf="@id/textViewIngredientsResult"
                     android:text="Ingredients"
                     android:textSize="25sp" />
 
@@ -85,11 +85,11 @@
                     android:id="@+id/textViewInstructionsResultList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Instructions url will go here"
-                    android:textSize="25sp"
-                    android:layout_alignBottom="@id/textViewInstructionsResult"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="18dp"
                     android:layout_toRightOf="@id/textViewInstructionsResult"
-                    android:layout_marginLeft="60dp"/>
+                    android:text="Instructions URL will go here"
+                    android:textSize="25sp" />
 
         </RelativeLayout>
 

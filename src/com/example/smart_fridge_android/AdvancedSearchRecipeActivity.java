@@ -2,6 +2,7 @@ package com.example.smart_fridge_android;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
 
     private static final String TAG_RECIPE_NAME = "name";
     private static final String TAG_RECIPE_INGREDIENTS = "ingredients";
+    private static final String TAG_YUMMLY_ID = "yummlyId";
     private static final String TAG_APP_ID = "_app_id";
     private static final String TAG_APP_KEY = "_app_key";
     private static final String ACTUAL_APP_ID = "5780cd3c";
@@ -154,24 +156,33 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
 
                 String yummlyId = yummlyRecipeIds.get(position);
 
-                try {
-                    // Get specific recipe details
-                    caloriesFromYummly = new GetRecipeDetails(yummlyId).execute().get();
-                } catch (InterruptedException e){
+                Intent recipeResultIntent = new Intent(getApplicationContext(), RecipeSearchResultActivity.class);
+                recipeResultIntent.putExtra(TAG_YUMMLY_ID, yummlyId);
+                recipeResultIntent.putExtra("recipeName", recipes.get(position).getName());
+                recipeResultIntent.putExtra("recipeIngredients", recipes.get(position).getIngredients());
 
-                } catch (ExecutionException e){
+                startActivity(recipeResultIntent);
 
-                }
+//                try {
+//                    Get specific recipe details
+//                    caloriesFromYummly = new GetRecipeDetails(yummlyId).execute().get();
+//                } catch (InterruptedException e){
+//
+//                } catch (ExecutionException e){
+//
+//                }
+//
+//                setContentView(R.layout.recipe_result);
+//                contentView = "recipe_result";
+//                TextView name = (TextView) findViewById(R.id.textViewRecipeResultName);
+//                TextView ingredients = (TextView) findViewById(R.id.textViewIngredientsResultList);
+//                TextView calories = (TextView) findViewById(R.id.textViewRecipeSearchCarloriesResultList);
+//
+//                name.setText(recipes.get(position).getName());
+//                ingredients.setText(recipes.get(position).getIngredients());
+//                calories.setText(caloriesFromYummly);
 
-                setContentView(R.layout.recipe_result);
-                contentView = "recipe_result";
-                TextView name = (TextView) findViewById(R.id.textViewRecipeResultName);
-                TextView ingredients = (TextView) findViewById(R.id.textViewIngredientsResultList);
-                TextView calories = (TextView) findViewById(R.id.textViewRecipeSearchCarloriesResultList);
 
-                name.setText(recipes.get(position).getName());
-                ingredients.setText(recipes.get(position).getIngredients());
-                calories.setText(caloriesFromYummly);
             }
         });
     }
