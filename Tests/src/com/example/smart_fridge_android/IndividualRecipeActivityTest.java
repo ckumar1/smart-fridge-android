@@ -95,11 +95,6 @@ public class IndividualRecipeActivityTest
     	assertNotNull(iMadeThisButton);
     	iMadeThisButton.performClick();
     	
-    	TextView nameText = (TextView) activity.findViewById(R.id.IMadethisRecipeName);
-    	assertNotNull(nameText);
-    	assertEquals("nameText should be set to TESTMACNCHEESETEST", 
-    			"TESTMACNCHEESETEST", nameText.getText().toString());
-    	
     	// TODO add more when IMadeThis is finished
     	deleteTestRecipe();
     }

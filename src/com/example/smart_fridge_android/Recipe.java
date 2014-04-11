@@ -76,7 +76,12 @@ public class Recipe {
     
     public List<String> getIngredientList() {
     	if(ingredients != null) {
-    		return Arrays.asList(ingredients.split("\n"));
+    		if(ingredients.contains("<b>")) {
+    			return Arrays.asList(ingredients.split(""));
+    		}
+    		else {
+    			return Arrays.asList(ingredients.split("\n"));
+    		}
     	}
     	return null;
     }

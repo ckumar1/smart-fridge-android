@@ -243,7 +243,7 @@ public class AddRecipeActivityTest
     	
     	assertNotNull(addedItem);
     	assertEquals("Boil noodles and add cheese", addedItem.getDirections());
-    	assertEquals("macaroni<b>cheese", addedItem.getIngredients());
+    	assertEquals("macaroni\ncheese", addedItem.getIngredients());
     	
     	// Need to delete the food again and check that it is gone
     	db.deleteRecipe(addedItem);

@@ -13,7 +13,7 @@ public class RecipeTest extends AndroidTestCase{
 	protected void setUp() throws Exception{
         super.setUp();
         recipe = new Recipe("Mac and Cheese", "Boil macaroni and add cheese",
-        		"Don't add too much cheese", "Macaroni<b>Cheese", "");
+        		"Don't add too much cheese", "Macaroni\nCheese", "");
         recipe.setId(0);
     }
 
@@ -57,9 +57,9 @@ public class RecipeTest extends AndroidTestCase{
     }
 
     public void testSetGetIngredientsString() {
-    	assertEquals("Macaroni<b>Cheese", recipe.getIngredients());
-    	recipe.setIngredients("Macaroni<b>Cheese<b>Water");
-    	assertEquals("Macaroni<b>Cheese<b>Water", recipe.getIngredients());
+    	assertEquals("Macaroni\nCheese", recipe.getIngredients());
+    	recipe.setIngredients("Macaroni\nCheese\nWater");
+    	assertEquals("Macaroni\nCheese\nWater", recipe.getIngredients());
     }
     
     public void testSetGetIngredientsList() {
@@ -75,18 +75,17 @@ public class RecipeTest extends AndroidTestCase{
     	ingredientList.remove(0);
     	recipe.setIngredientsList(ingredientList);
     	assertEquals(ingredientList, recipe.getIngredientList());
-    	assertEquals("Cheese<b>Water", recipe.getIngredients());
+    	assertEquals("Cheese\nWater", recipe.getIngredients());
     }
     
     public void testToString() {
-    	// TODO
     	/*
     	String recipeStr = "Recipe{id=0, name='Mac and Cheese', " +
     			"directions='Boil macaroni and add cheese', " +
     			"notes='Don't add too much cheese', " +
     			"ingredients='Macaroni<b>Cheese'}";
     	assertEquals(recipeStr, recipe.toString());
-    */
+    	*/
     }
     
     public void testEquals() {
@@ -99,7 +98,7 @@ public class RecipeTest extends AndroidTestCase{
     	
     	Recipe other = new Recipe("Mac and Cheese", 
     			"Boil macaroni and add cheese", "Don't add too much cheese", 
-    			"Macaroni<b>Cheese", "");
+    			"Macaroni\nCheese", "");
         other.setId(0);
     	
     	// Check different Id
@@ -134,10 +133,10 @@ public class RecipeTest extends AndroidTestCase{
     			other, recipe);
     	recipe.setIngredients("Water");
     	assertEquals(recipe, other);
-    	other.setIngredients("Water<b>Cheese");
-    	MoreAsserts.assertNotEqual("other ingredients should be 'Water<b>Cheese'", 
+    	other.setIngredients("Water\nCheese");
+    	MoreAsserts.assertNotEqual("other ingredients should be 'Water\nCheese'", 
     			other, recipe);
-    	recipe.setIngredients("Water<b>Cheese");
+    	recipe.setIngredients("Water\nCheese");
     	
     	//Check different name, including null checks
     	assertEquals(recipe, other);
