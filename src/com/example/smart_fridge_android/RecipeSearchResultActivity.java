@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.widget.TextView;
 import org.apache.http.NameValuePair;
@@ -33,6 +35,7 @@ public class RecipeSearchResultActivity extends Activity {
     JSONObject json;
     private JSONParser jsonParser = new JSONParser();
     String caloriesFromYummly;
+    String recipeUrl;
     private ProgressDialog pDialog;
     private String calories;
 
@@ -61,10 +64,14 @@ public class RecipeSearchResultActivity extends Activity {
         TextView name = (TextView) findViewById(R.id.textViewRecipeResultName);
         TextView ingredients = (TextView) findViewById(R.id.textViewIngredientsResultList);
         TextView calories = (TextView) findViewById(R.id.textViewRecipeSearchCarloriesResultList);
+        TextView instructionsUrl = (TextView) findViewById(R.id.textViewInstructionsUrlResultList);
 
         name.setText(recipeName);
         ingredients.setText(recipeIngredients);
         calories.setText(caloriesFromYummly);
+        instructionsUrl.setText(recipeUrl);
+
+        Linkify.addLinks(instructionsUrl, Linkify.ALL); // Allows links to be clickable
     }
 
     /**
@@ -124,6 +131,9 @@ public class RecipeSearchResultActivity extends Activity {
                         calories = individualEstimate.get("value").toString();
                     }
                 }
+
+                recipeUrl = json.getJSONObject("source").get("sourceRecipeUrl").toString();
+                caloriesFromYummly = calories;
 
             } catch (JSONException e) {
                 e.printStackTrace();

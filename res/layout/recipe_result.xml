@@ -82,13 +82,13 @@
                     android:textSize="25sp"
                     android:layout_marginLeft="20dp"/>
             <TextView
-                    android:id="@+id/textViewInstructionsResultList"
+                    android:id="@+id/textViewInstructionsUrlResultList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="18dp"
                     android:layout_toRightOf="@id/textViewInstructionsResult"
-                    android:text="Instructions URL will go here"
+                    android:text="Instructions URL"
                     android:textSize="25sp" />
 
         </RelativeLayout>
