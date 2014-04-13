@@ -3,11 +3,13 @@ package com.example.smart_fridge_android;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -15,6 +17,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -29,12 +34,20 @@ public class RecipeSearchResultActivity extends Activity {
     private static final String TAG_RECIPE_NAME = "name";
     private static final String TAG_RECIPE_INGREDIENTS = "ingredients";
 
-    JSONObject json;
+    private JSONObject json;
     private JSONParser jsonParser = new JSONParser();
-    String caloriesFromYummly;
-    String recipeUrl;
     private ProgressDialog pDialog;
     private String calories;
+
+    private String caloriesFromYummly;
+    private String recipeUrl;
+    private String recipeImageUrl;
+
+    private TextView nameTextView;
+    private TextView ingredientsTextView;
+    private TextView caloriesTextView;
+    private TextView instructionsUrlTextView;
+    private ImageView recipeImageView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +61,12 @@ public class RecipeSearchResultActivity extends Activity {
         String recipeName = intent.getStringExtra(TAG_RECIPE_NAME);
         String recipeIngredients = intent.getStringExtra(TAG_RECIPE_INGREDIENTS);
 
+        nameTextView = (TextView) findViewById(R.id.textViewRecipeResultName);
+        ingredientsTextView = (TextView) findViewById(R.id.textViewIngredientsResultList);
+        caloriesTextView = (TextView) findViewById(R.id.textViewRecipeSearchCarloriesResultList);
+        instructionsUrlTextView = (TextView) findViewById(R.id.textViewInstructionsUrlResultList);
+        recipeImageView = (ImageView) findViewById(R.id.recipeImageView);
+
 
         try {
             caloriesFromYummly = new GetRecipeDetails(yummlyId).execute().get();
@@ -58,17 +77,12 @@ public class RecipeSearchResultActivity extends Activity {
 
         }
 
-        TextView name = (TextView) findViewById(R.id.textViewRecipeResultName);
-        TextView ingredients = (TextView) findViewById(R.id.textViewIngredientsResultList);
-        TextView calories = (TextView) findViewById(R.id.textViewRecipeSearchCarloriesResultList);
-        TextView instructionsUrl = (TextView) findViewById(R.id.textViewInstructionsUrlResultList);
+        nameTextView.setText(recipeName);
+        ingredientsTextView.setText(recipeIngredients);
+        caloriesTextView.setText(caloriesFromYummly);
+        instructionsUrlTextView.setText(recipeUrl);
 
-        name.setText(recipeName);
-        ingredients.setText(recipeIngredients);
-        calories.setText(caloriesFromYummly);
-        instructionsUrl.setText(recipeUrl);
-
-        Linkify.addLinks(instructionsUrl, Linkify.ALL); // Allows links to be clickable
+        Linkify.addLinks(instructionsUrlTextView, Linkify.ALL); // Allows links to be clickable
     }
 
     /**
@@ -130,8 +144,20 @@ public class RecipeSearchResultActivity extends Activity {
                     }
                 }
 
-                recipeUrl = json.getJSONObject("source").get("sourceRecipeUrl").toString();
+                // Set the values to be used in the layout
                 caloriesFromYummly = calories;
+                recipeUrl = json.getJSONObject("source").get("sourceRecipeUrl").toString();
+                recipeImageUrl = json.getJSONArray("images").getJSONObject(0).get("hostedLargeUrl").toString();
+
+                try {
+                    Bitmap recipeBitmap = BitmapFactory.decodeStream(new URL(recipeImageUrl).openConnection().getInputStream());
+                    recipeImageView.setImageBitmap(recipeBitmap);
+                } catch (MalformedURLException e){
+                    Log.d("Exception thrown", "Recipe bitmap threw MalformedURLException");
+                } catch (IOException e){
+                    Log.d("Exception thrown", "Recipe bitmap thew IOException");
+                }
+
 
             } catch (JSONException e) {
                 e.printStackTrace();

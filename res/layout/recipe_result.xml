@@ -27,6 +27,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp">
 
+            <ImageView
+                    android:id="@+id/recipeImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
             <TextView
                     android:id="@+id/textViewIngredientsResult"
                     android:layout_width="wrap_content"
@@ -46,24 +60,6 @@
                     android:layout_toRightOf="@id/textViewIngredientsResult"
                     android:text="Ingredients"
                     android:textSize="25sp" />
-
-            <!--<TextView-->
-            <!--android:id="@+id/textViewIngredientsResult"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Ingredients: "-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:textSize="25sp"-->
-            <!--android:layout_marginLeft="20dp"/>-->
-            <!--<TextView-->
-            <!--android:id="@+id/textViewIngredientsResultList"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Ingredient"-->
-            <!--android:textSize="25sp"-->
-            <!--android:layout_alignBottom="@id/textViewIngredientsResult"-->
-            <!--android:layout_toRightOf="@id/textViewIngredientsResult"-->
-            <!--android:layout_marginLeft="60dp"/>-->
 
         </RelativeLayout>
 
