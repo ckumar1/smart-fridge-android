@@ -29,9 +29,6 @@ public class RecipeSearchResultActivity extends Activity {
     private static final String TAG_RECIPE_NAME = "name";
     private static final String TAG_RECIPE_INGREDIENTS = "ingredients";
 
-    // Url to get specific details about a recipe
-    private static String url_yummly_get_recipe_details = "http://api.yummly.com/v1/api/recipe/";
-
     JSONObject json;
     private JSONParser jsonParser = new JSONParser();
     String caloriesFromYummly;
@@ -104,7 +101,8 @@ public class RecipeSearchResultActivity extends Activity {
          * */
         protected String doInBackground(String... args) {
 
-            url_yummly_get_recipe_details += yummlyId;
+            // Url to get specific details about a recipe
+            String url_yummly_get_recipe_details = "http://api.yummly.com/v1/api/recipe/" + yummlyId;
 
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
