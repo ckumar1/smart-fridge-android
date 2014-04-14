@@ -37,8 +37,8 @@ public class RecipeSearchResultActivity extends Activity {
     private JSONObject json;
     private JSONParser jsonParser = new JSONParser();
     private ProgressDialog pDialog;
-    private String calories;
 
+    private String calories;
     private String caloriesFromYummly;
     private String recipeUrl;
     private String recipeImageUrl;
@@ -145,7 +145,6 @@ public class RecipeSearchResultActivity extends Activity {
                 }
 
                 // Set the values to be used in the layout
-                caloriesFromYummly = calories;
                 recipeUrl = json.getJSONObject("source").get("sourceRecipeUrl").toString();
                 recipeImageUrl = json.getJSONArray("images").getJSONObject(0).get("hostedLargeUrl").toString();
 

@@ -58,6 +58,12 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
 
         setContentView(R.layout.advanced_recipe_search);
         contentView = "advanced_recipe_search";
+
+        // Don't need the add button from the navbar
+        Button add = (Button) findViewById(R.id.addBtn);
+        if (add != null){
+            add.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -80,6 +86,8 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
 
     public void onButtonClick(View view) {
 
+        NavigationBar navBar = new NavigationBar();
+        navBar.onButtonClick(view, getApplicationContext());
         NavigationBar.onTabsClicked(view, this);
 
         switch (view.getId()) {

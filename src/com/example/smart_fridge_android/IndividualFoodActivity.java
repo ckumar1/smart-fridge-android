@@ -141,7 +141,12 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
             String nutrition = ((TextView)findViewById(R.id.nutritionalInformationText)).getText().toString();
             food.setDescription(nutrition);
             
-            db.updateFood(food);    
+            db.updateFood(food);
+
+            Intent updateFoodIntent = new Intent(getApplicationContext(), MainActivity.class);
+            updateFoodIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            updateFoodIntent.putExtra(STARTING_TAB, "food");
+            startActivity(updateFoodIntent);
            
             break;
         }

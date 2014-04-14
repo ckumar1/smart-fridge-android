@@ -108,25 +108,31 @@ public class IndividualRecipeActivity extends Activity {
 			break;	
 		
 		case R.id.UpdateButton:
-		      	String recipeName = ((TextView)findViewById(R.id.IndRecipeNameField)).getText().toString();
-	        	if(recipeName.isEmpty()) {
-	                Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
-	                break;
-	            }
-	            if(recipeName.contains("<") && recipeName.contains(">")){
-	                Toast.makeText(getApplicationContext(), "No tags (<>) allowed", Toast.LENGTH_LONG).show();
-	                break;
-	            }
-	        	recipe.setName(recipeName);
-	            
-	        	String directionsNew = ((TextView)findViewById(R.id.IndRecipeInstructionsField)).getText().toString();
-	        	recipe.setDirections(directionsNew);
-	        	
-	        	String ingredientsNew = ((TextView)findViewById(R.id.IndRecipeIngredientsField)).getText().toString();
-	        	recipe.setIngredientsList(Arrays.asList(ingredientsNew.split("<b>")));
-	        	
-	        	db.updateRecipe(recipe);
-	        	break;
+            String recipeName = ((TextView)findViewById(R.id.IndRecipeNameField)).getText().toString();
+            if(recipeName.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
+                break;
+            }
+            if(recipeName.contains("<") && recipeName.contains(">")){
+                Toast.makeText(getApplicationContext(), "No tags (<>) allowed", Toast.LENGTH_LONG).show();
+                break;
+            }
+            recipe.setName(recipeName);
+
+            String directionsNew = ((TextView)findViewById(R.id.IndRecipeInstructionsField)).getText().toString();
+            recipe.setDirections(directionsNew);
+
+            String ingredientsNew = ((TextView)findViewById(R.id.IndRecipeIngredientsField)).getText().toString();
+            recipe.setIngredientsList(Arrays.asList(ingredientsNew.split("<b>")));
+
+            db.updateRecipe(recipe);
+
+            Intent updateRecipeIntent = new Intent(getApplicationContext(), MainActivity.class);
+            updateRecipeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            updateRecipeIntent.putExtra(STARTING_TAB, "recipes");
+            startActivity(updateRecipeIntent);
+
+            break;
 		}
 	}
 
