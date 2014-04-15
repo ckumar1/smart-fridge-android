@@ -2,7 +2,10 @@ package com.example.smart_fridge_android;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -93,11 +96,16 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
         switch (view.getId()) {
 
             case R.id.btnSearchRecipes:
-                prepareSearch();
-                new GetRecipes().execute();
 
-                setContentView(R.layout.recipe_search_results);
-                contentView = "recipe_search_results";
+                if (isOnline()) {
+                    prepareSearch();
+                    new GetRecipes().execute();
+
+                    setContentView(R.layout.recipe_search_results);
+                    contentView = "recipe_search_results";
+                } else {
+                    Toast.makeText(getApplicationContext(), "Network connection required to do this", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.btnCalorieCount:
@@ -152,8 +160,7 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id)
-            {
+                                    int position, long id) {
 
                 String yummlyId = yummlyRecipeIds.get(position);
 
@@ -162,9 +169,26 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
                 recipeResultIntent.putExtra(TAG_RECIPE_NAME, recipes.get(position).getName());
                 recipeResultIntent.putExtra(TAG_RECIPE_INGREDIENTS, recipes.get(position).getIngredients());
 
-                startActivity(recipeResultIntent);
+                if (isOnline()) {
+                    startActivity(recipeResultIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Network connection required to do this", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
+
+    /**
+     * Determines if android device has network access
+     */
+    private boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
     }
 
     /**
