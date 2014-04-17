@@ -1,0 +1,276 @@
+com.example.smart_fridge_android.AddFoodActivity -> com.example.smart_fridge_android.AddFoodActivity:
+    java.lang.String imagePath -> d
+    int SCAN_REQUEST_CODE -> e
+    android.app.ProgressDialog pDialog -> f
+    com.example.smart_fridge_android.JSONParser jsonParser -> a
+    java.lang.String upc_name -> b
+    java.lang.String upcResult -> c
+    void onCreate(android.os.Bundle) -> onCreate
+    void onDateSet(android.widget.DatePicker,int,int,int) -> onDateSet
+    void onButtonClick(android.view.View) -> onButtonClick
+    void dispatchTakePictureIntent() -> c
+    void addBarcodeItem() -> a
+    void removeAddButton() -> d
+    void scanBarcode() -> b
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    android.app.ProgressDialog access$002(com.example.smart_fridge_android.AddFoodActivity,android.app.ProgressDialog) -> a
+    android.app.ProgressDialog access$000(com.example.smart_fridge_android.AddFoodActivity) -> a
+com.example.smart_fridge_android.AddFoodActivity$1 -> com.example.smart_fridge_android.a:
+    com.example.smart_fridge_android.AddFoodActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.example.smart_fridge_android.AddFoodActivity$PerformUpcLookup -> com.example.smart_fridge_android.b:
+    com.example.smart_fridge_android.AddFoodActivity this$0 -> a
+    void onPreExecute() -> onPreExecute
+    java.lang.String doInBackground(java.lang.String[]) -> a
+    void onPostExecute(java.lang.String) -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.example.smart_fridge_android.AddRecipeActivity -> com.example.smart_fridge_android.AddRecipeActivity:
+    java.lang.String imagePath -> a
+    java.util.List ingredlist -> b
+    void onCreate(android.os.Bundle) -> onCreate
+    void onButtonClick(android.view.View) -> onButtonClick
+    void dispatchTakePictureIntent() -> a
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    void removeAddButton() -> b
+com.example.smart_fridge_android.AddRecipeActivity$1 -> com.example.smart_fridge_android.c:
+    com.example.smart_fridge_android.AddRecipeActivity this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.example.smart_fridge_android.AdvancedSearchRecipeActivity -> com.example.smart_fridge_android.AdvancedSearchRecipeActivity:
+    java.util.List recipes -> a
+    java.util.List yummlyRecipeIds -> b
+    android.app.ProgressDialog pDialog -> i
+    android.widget.ListAdapter adapter -> c
+    org.json.JSONObject json -> d
+    com.example.smart_fridge_android.JSONParser jsonParser -> e
+    android.widget.Button calorieCountButton -> f
+    android.widget.EditText recipeNameEditText -> g
+    java.lang.String contentView -> h
+    java.lang.String url_yummly_search_recipes -> j
+    void onCreate(android.os.Bundle) -> onCreate
+    void onBackPressed() -> onBackPressed
+    void onButtonClick(android.view.View) -> onButtonClick
+    void prepareSearch() -> b
+    void setResultsAdapter(java.util.List) -> a
+    void setListView(java.util.List) -> b
+    boolean isOnline() -> c
+    boolean access$000(com.example.smart_fridge_android.AdvancedSearchRecipeActivity) -> a
+    android.app.ProgressDialog access$102(com.example.smart_fridge_android.AdvancedSearchRecipeActivity,android.app.ProgressDialog) -> a
+    android.app.ProgressDialog access$100(com.example.smart_fridge_android.AdvancedSearchRecipeActivity) -> b
+    java.lang.String access$200() -> a
+    void access$300(com.example.smart_fridge_android.AdvancedSearchRecipeActivity,java.util.List) -> a
+com.example.smart_fridge_android.AdvancedSearchRecipeActivity$1 -> com.example.smart_fridge_android.d:
+    java.util.List val$recipes -> a
+    com.example.smart_fridge_android.AdvancedSearchRecipeActivity this$0 -> b
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+com.example.smart_fridge_android.AdvancedSearchRecipeActivity$GetRecipes -> com.example.smart_fridge_android.e:
+    com.example.smart_fridge_android.AdvancedSearchRecipeActivity this$0 -> a
+    void onPreExecute() -> onPreExecute
+    java.lang.String doInBackground(java.lang.String[]) -> a
+    void onPostExecute(java.lang.String) -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.example.smart_fridge_android.DatabaseHandler -> com.example.smart_fridge_android.f:
+    void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
+    void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
+    com.example.smart_fridge_android.Food addFood(com.example.smart_fridge_android.Food) -> a
+    com.example.smart_fridge_android.Food getFoodById(int) -> a
+    java.util.List getAllFood() -> a
+    int updateFood(com.example.smart_fridge_android.Food) -> b
+    void deleteFood(com.example.smart_fridge_android.Food) -> c
+    com.example.smart_fridge_android.Recipe addRecipe(com.example.smart_fridge_android.Recipe) -> a
+    com.example.smart_fridge_android.Recipe getRecipeById(int) -> b
+    java.util.List getAllRecipes() -> b
+    int updateRecipe(com.example.smart_fridge_android.Recipe) -> b
+    void deleteRecipe(com.example.smart_fridge_android.Recipe) -> c
+com.example.smart_fridge_android.DatePickerDialogFragment -> com.example.smart_fridge_android.g:
+    android.app.DatePickerDialog$OnDateSetListener mDateSetListener -> a
+    android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
+com.example.smart_fridge_android.Food -> com.example.smart_fridge_android.h:
+    int id -> a
+    java.lang.String name -> b
+    java.lang.String description -> c
+    java.lang.String expirationDate -> d
+    java.lang.String category -> e
+    java.lang.String imagePath -> f
+    int calories -> g
+    int quantity -> h
+    int getId() -> a
+    void setId(int) -> a
+    java.lang.String getName() -> b
+    void setName(java.lang.String) -> a
+    java.lang.String getDescription() -> c
+    void setDescription(java.lang.String) -> b
+    java.lang.String getExpirationDate() -> d
+    void setExpirationDate(java.lang.String) -> c
+    java.lang.String getCategory() -> e
+    void setCategory(java.lang.String) -> d
+    int getCalories() -> f
+    void setCalories(int) -> b
+    java.lang.String getImagePath() -> g
+    void setImagePath(java.lang.String) -> e
+    int getQuantity() -> h
+    void setQuantity(int) -> c
+    java.lang.String toString() -> toString
+    boolean equals(java.lang.Object) -> equals
+com.example.smart_fridge_android.FoodCustomAdapter -> com.example.smart_fridge_android.i:
+    java.lang.String HAS_NOT_EXPIRED -> a
+    android.content.Context context -> b
+    java.util.List values -> c
+    java.util.List parsedValues -> d
+    java.lang.String id -> e
+    java.lang.String name -> f
+    java.lang.String expirationDate -> g
+    java.lang.String expires -> h
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    java.util.List parse(java.lang.String) -> a
+    boolean expired(java.lang.String) -> b
+com.example.smart_fridge_android.IMadeThisActivity -> com.example.smart_fridge_android.IMadeThisActivity:
+    java.util.ArrayList ingredientList -> a
+    android.widget.ListAdapter adapter -> b
+    com.example.smart_fridge_android.DatabaseHandler db -> c
+    com.example.smart_fridge_android.Recipe recipe -> d
+    int count -> e
+    void onCreate(android.os.Bundle) -> onCreate
+    void onButtonClick(android.view.View) -> onButtonClick
+    void setRecipeAdapter() -> a
+com.example.smart_fridge_android.IndividualFoodActivity -> com.example.smart_fridge_android.IndividualFoodActivity:
+    com.example.smart_fridge_android.DatabaseHandler db -> a
+    com.example.smart_fridge_android.Food food -> b
+    void onCreate(android.os.Bundle) -> onCreate
+    void onDateSet(android.widget.DatePicker,int,int,int) -> onDateSet
+    void onButtonClick(android.view.View) -> onButtonClick
+com.example.smart_fridge_android.IndividualFoodActivity$1 -> com.example.smart_fridge_android.j:
+    com.example.smart_fridge_android.IndividualFoodActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.example.smart_fridge_android.IndividualRecipeActivity -> com.example.smart_fridge_android.IndividualRecipeActivity:
+    com.example.smart_fridge_android.DatabaseHandler db -> a
+    com.example.smart_fridge_android.Recipe recipe -> b
+    java.lang.String id -> c
+    void onCreate(android.os.Bundle) -> onCreate
+    void onButtonClick(android.view.View) -> onButtonClick
+com.example.smart_fridge_android.JSONParser -> com.example.smart_fridge_android.k:
+    java.io.InputStream is -> a
+    org.json.JSONObject jObj -> b
+    java.lang.String json -> c
+    org.json.JSONObject makeHttpRequest(java.lang.String,java.lang.String,java.util.List) -> a
+com.example.smart_fridge_android.LoginActivity -> com.example.smart_fridge_android.LoginActivity:
+    com.example.smart_fridge_android.JSONParser jsonParser -> a
+    android.widget.EditText inputEmail -> b
+    android.widget.EditText inputPassword -> c
+    java.lang.String url_login -> e
+    com.example.smart_fridge_android.SessionManager session -> d
+    void onCreate(android.os.Bundle) -> onCreate
+    void onButtonClick(android.view.View) -> onButtonClick
+com.example.smart_fridge_android.MainActivity -> com.example.smart_fridge_android.MainActivity:
+    boolean foodTab -> a
+    com.example.smart_fridge_android.DatabaseHandler db -> b
+    com.example.smart_fridge_android.SessionManager session -> c
+    com.example.smart_fridge_android.NavigationBar navBar -> d
+    android.widget.TextView foodView -> e
+    android.widget.TextView recipesView -> f
+    android.widget.TextView settingsView -> g
+    android.widget.CheckBox notifications -> h
+    android.widget.RadioButton metric -> i
+    android.widget.RadioButton imperial -> j
+    android.widget.ListAdapter adapter -> k
+    java.util.ArrayList recipesList -> l
+    java.util.List foodsFromDB -> m
+    java.util.List recipesFromDB -> n
+    java.lang.String startingTab -> o
+    void onCreate(android.os.Bundle) -> onCreate
+    void onButtonClick(android.view.View) -> onButtonClick
+    void setFoodAdapter() -> a
+    void setRecipeAdapter() -> b
+    void setListView() -> c
+    void prepareSettingsView() -> d
+    void setTabListeners() -> e
+com.example.smart_fridge_android.MainActivity$1 -> com.example.smart_fridge_android.l:
+    com.example.smart_fridge_android.MainActivity this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+com.example.smart_fridge_android.NavigationBar -> com.example.smart_fridge_android.m:
+    com.example.smart_fridge_android.SessionManager session -> a
+    void onButtonClick(android.view.View,android.content.Context) -> onButtonClick
+    void setTabColors(android.widget.TextView,android.widget.TextView,android.widget.TextView) -> a
+    void onTabsClicked(android.view.View,android.app.Activity) -> a
+com.example.smart_fridge_android.Recipe -> com.example.smart_fridge_android.n:
+    int id -> a
+    java.lang.String name -> b
+    java.lang.String directions -> c
+    java.lang.String notes -> d
+    java.lang.String ingredients -> e
+    java.lang.String imagePath -> f
+    int getId() -> a
+    void setId(int) -> a
+    java.lang.String getName() -> b
+    void setName(java.lang.String) -> a
+    java.lang.String getDirections() -> c
+    void setDirections(java.lang.String) -> b
+    java.lang.String getNotes() -> d
+    void setNotes(java.lang.String) -> c
+    java.lang.String getImagePath() -> e
+    void setImagePath(java.lang.String) -> d
+    java.lang.String getIngredients() -> f
+    java.util.List getIngredientList() -> g
+    void setIngredients(java.lang.String) -> e
+    void setIngredientsList(java.util.List) -> a
+    java.lang.String toString() -> toString
+    boolean equals(java.lang.Object) -> equals
+com.example.smart_fridge_android.RecipeSearchResultActivity -> com.example.smart_fridge_android.RecipeSearchResultActivity:
+    org.json.JSONObject json -> a
+    com.example.smart_fridge_android.JSONParser jsonParser -> b
+    android.app.ProgressDialog pDialog -> c
+    java.lang.String calories -> d
+    java.lang.String caloriesFromYummly -> e
+    java.lang.String recipeUrl -> f
+    java.lang.String recipeImageUrl -> g
+    android.widget.TextView nameTextView -> h
+    android.widget.TextView ingredientsTextView -> i
+    android.widget.TextView caloriesTextView -> j
+    android.widget.TextView instructionsUrlTextView -> k
+    android.widget.ImageView recipeImageView -> l
+    void onCreate(android.os.Bundle) -> onCreate
+    android.app.ProgressDialog access$002(com.example.smart_fridge_android.RecipeSearchResultActivity,android.app.ProgressDialog) -> a
+    android.app.ProgressDialog access$000(com.example.smart_fridge_android.RecipeSearchResultActivity) -> a
+    org.json.JSONObject access$102(com.example.smart_fridge_android.RecipeSearchResultActivity,org.json.JSONObject) -> a
+    com.example.smart_fridge_android.JSONParser access$200(com.example.smart_fridge_android.RecipeSearchResultActivity) -> b
+    org.json.JSONObject access$100(com.example.smart_fridge_android.RecipeSearchResultActivity) -> c
+    java.lang.String access$302(com.example.smart_fridge_android.RecipeSearchResultActivity,java.lang.String) -> a
+    java.lang.String access$402(com.example.smart_fridge_android.RecipeSearchResultActivity,java.lang.String) -> b
+    java.lang.String access$502(com.example.smart_fridge_android.RecipeSearchResultActivity,java.lang.String) -> c
+    java.lang.String access$500(com.example.smart_fridge_android.RecipeSearchResultActivity) -> d
+    android.widget.ImageView access$600(com.example.smart_fridge_android.RecipeSearchResultActivity) -> e
+    java.lang.String access$300(com.example.smart_fridge_android.RecipeSearchResultActivity) -> f
+com.example.smart_fridge_android.RecipeSearchResultActivity$GetRecipeDetails -> com.example.smart_fridge_android.o:
+    java.lang.String yummlyId -> a
+    com.example.smart_fridge_android.RecipeSearchResultActivity this$0 -> b
+    void onPreExecute() -> onPreExecute
+    java.lang.String doInBackground(java.lang.String[]) -> a
+    void onPostExecute(java.lang.String) -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.example.smart_fridge_android.RegisterActivity -> com.example.smart_fridge_android.RegisterActivity:
+    com.example.smart_fridge_android.JSONParser jsonParser -> a
+    android.widget.EditText inputName -> b
+    android.widget.EditText inputEmail -> c
+    android.widget.EditText inputPassword -> d
+    android.widget.EditText inputConfirmPassword -> e
+    java.lang.String url_create_user -> f
+    void onCreate(android.os.Bundle) -> onCreate
+    void onButtonClick(android.view.View) -> onButtonClick
+com.example.smart_fridge_android.SessionManager -> com.example.smart_fridge_android.p:
+    android.content.SharedPreferences pref -> a
+    android.content.SharedPreferences$Editor editor -> b
+    android.content.Context _context -> c
+    int PRIVATE_MODE -> d
+    void createLoginSession(java.lang.String,java.lang.String) -> a
+    void logoutUser() -> a
+    boolean isLoggedIn() -> b
+    void createNotificationsSession(boolean) -> a
+    void createUnitsSession(java.lang.String) -> a
+    java.lang.String getUnits() -> c
+    boolean wantsNotifications() -> d
+com.example.smart_fridge_android.UpcApis -> com.example.smart_fridge_android.q:
+    java.lang.String getNutritionixUrl() -> a
+    java.lang.String getNutritionixAppId() -> b
+    java.lang.String getNutritionixAppKey() -> c

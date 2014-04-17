@@ -16,6 +16,6 @@
     "adb shell am instrument -w com.example.smart_fridge_android.tests/android.test.InstrumentationTestRunner"
     -->
     <instrumentation android:name="android.test.InstrumentationTestRunner"
-                     android:targetPackage="com.example.smart_fridge_android"
+                     android:targetPackage="com.smart_fridge.smart_fridge_android"
                      android:label="Tests for com.example.smart_fridge_android"/>
 </manifest>
