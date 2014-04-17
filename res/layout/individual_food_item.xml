@@ -24,23 +24,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
 
-                <TextView
-                        android:id="@+id/individualFoodItemName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Name: "
-                        android:textSize="20sp"
-                        android:layout_marginLeft="73dp" android:layout_centerVertical="true"
-                        android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
-
                 <EditText
                         android:id="@+id/FoodName"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="name"
                         android:textSize="20sp"
+                        android:layout_marginTop="10dp"
                         android:layout_alignTop="@+id/individualFoodItemName"
                         android:layout_toRightOf="@+id/individualFoodItemName" android:layout_marginLeft="70dp"/>
+
+                <TextView
+                    android:id="@+id/individualFoodItemName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="Name: "
+                    android:textSize="20sp" />
 
             </RelativeLayout>
 
@@ -48,23 +51,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
 
-                <TextView
-                        android:id="@+id/individualFoodItemQuantity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Quantity: "
-                        android:textSize="20sp" android:layout_centerVertical="true"
-                        android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-                        android:layout_marginLeft="49dp"/>
-
                 <EditText
                         android:id="@+id/FoodQuantity"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="quantity"
                         android:textSize="20sp"
-                        android:layout_alignParentTop="true" android:layout_toRightOf="@+id/individualFoodItemQuantity"
-                        android:layout_marginLeft="65dp"/>
+                        android:layout_alignParentTop="true" 
+                        android:layout_toRightOf="@+id/individualFoodItemQuantity"
+                        android:layout_marginLeft="50dp"/>
+
+                <TextView
+                    android:id="@+id/individualFoodItemQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="Quantity: "
+                    android:textSize="20sp" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -78,12 +85,12 @@
                         android:text="Expiration\nDate: "
                         android:textSize="20sp" android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-                        android:layout_marginLeft="44dp"/>
+                        android:layout_marginLeft="20dp"/>
 
                 <TextView
                         android:id="@+id/ExpDate"
                         style="@android:style/Widget.DeviceDefault.Spinner"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:ems="10" android:layout_centerVertical="true" android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"/>
@@ -100,59 +107,66 @@
                         android:text="Nutritional\nInformation: "
                         android:textSize="20sp"
                         android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" android:layout_marginLeft="36dp"/>
+                        android:layout_alignParentStart="true" 
+                        android:layout_marginTop="10dp"
+						android:layout_marginLeft="20dp"
+						/>
 
                 <EditText
-                        android:id="@+id/nutritionalInformationText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="nutringgoeshere"
-                        android:textSize="20sp"
-                        android:layout_alignParentTop="true" android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"/>
+                    android:id="@+id/nutritionalInformationText"
+                    android:layout_width="165dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:text="nutringgoeshere"
+                    android:layout_marginLeft="50dp"
+                    android:textSize="20sp" />
+
                 </RelativeLayout>
 
             <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
 
-                <TextView
-                        android:id="@+id/textView1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Image:"
-                        android:textAppearance="?android:attr/textAppearanceMedium" android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/imgView" android:layout_marginLeft="44dp"/>
-
                 <ImageView
                         android:id="@+id/imgView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"/>
+
+                <Button
+                    android:id="@+id/update_button"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="100dp"
+                    android:onClick="onButtonClick"
+                    android:layout_marginTop="20dp"
+                    android:text="Update" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/update_button"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/imgView"
+                    android:text="Image:"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
             </RelativeLayout>
 
-
-
             <Button
-                    android:id="@+id/DeleteButton"
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="45dp"
-                    android:layout_marginLeft="74dp"
-                    android:onClick="onButtonClick"
-                    android:text="Delete Item" android:layout_gravity="center_horizontal"/>
-
-            <Button
-                    android:id="@+id/update_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignRight="@+id/FoodQuantity"
-                    android:layout_alignTop="@+id/DeleteButton"
-                    android:onClick="onButtonClick"
-                    android:text="Update" android:layout_gravity="center_horizontal"/>
+                android:id="@+id/DeleteButton"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="230dp"
+                android:layout_marginTop="10dp"
+                android:onClick="onButtonClick"
+                android:text="Delete Item" />
 
         </LinearLayout>
     </ScrollView>
