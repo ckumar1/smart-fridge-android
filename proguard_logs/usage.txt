@@ -1,0 +1,112 @@
+com.example.smart_fridge_android.AddFoodActivity:
+    private static final java.lang.String STARTING_TAB
+    static final int CAMERA_RESULT
+    private android.net.Uri imageUri
+com.example.smart_fridge_android.AddRecipeActivity:
+    private static final java.lang.String STARTING_TAB
+    static final int CAMERA_RESULT
+    private android.net.Uri imageUri
+com.example.smart_fridge_android.AdvancedSearchRecipeActivity:
+    private static final java.lang.String TAG_RECIPE_NAME
+    private static final java.lang.String TAG_RECIPE_INGREDIENTS
+    private static final java.lang.String TAG_YUMMLY_ID
+    private static final java.lang.String TAG_APP_ID
+    private static final java.lang.String TAG_APP_KEY
+    private static final java.lang.String ACTUAL_APP_ID
+    private static final java.lang.String ACTUAL_APP_KEY
+com.example.smart_fridge_android.BuildConfig
+com.example.smart_fridge_android.DatabaseHandler:
+    private static final int DATABASE_VERSION
+    private static final java.lang.String DATABASE_NAME
+    private static final java.lang.String TABLE_USERS
+    private static final java.lang.String TABLE_FOOD
+    private static final java.lang.String TABLE_RECIPES
+    private static final java.lang.String KEY_USER_ID
+    private static final java.lang.String KEY_USER_NAME
+    private static final java.lang.String KEY_USER_EMAIL
+    private static final java.lang.String KEY_USER_PASSWORD_HASH
+    private static final java.lang.String KEY_USER_LOGGED_IN
+    private static final java.lang.String KEY_FOOD_ID
+    private static final java.lang.String KEY_FOOD_NAME
+    private static final java.lang.String KEY_FOOD_DESCRIPTION
+    private static final java.lang.String KEY_FOOD_CATEGORY
+    private static final java.lang.String KEY_FOOD_EXPIRATION_DATE
+    private static final java.lang.String KEY_FOOD_CALORIES
+    private static final java.lang.String KEY_FOOD_QUANTITY
+    private static final java.lang.String KEY_FOOD_PHOTO
+    private static final java.lang.String KEY_RECIPE_ID
+    private static final java.lang.String KEY_RECIPE_NAME
+    private static final java.lang.String KEY_RECIPE_DIRECTIONS
+    private static final java.lang.String KEY_RECIPE_NOTES
+    private static final java.lang.String KEY_RECIPE_INGREDIENTS
+    private static final java.lang.String KEY_RECIPE_PHOTO
+    221:223:public void deleteAllFood()
+com.example.smart_fridge_android.IMadeThisActivity:
+    private static final java.lang.String TAG_RECIPE_ID
+    private static final java.lang.String TAG_RECIPE_NAME
+    private static final java.lang.String TAG_RECIPE_INGREDIENT
+    private android.widget.ListView listViewIng
+    private android.content.Context ctx
+    java.util.List recipesFromDB
+com.example.smart_fridge_android.IndividualFoodActivity:
+    private static final java.lang.String STARTING_TAB
+com.example.smart_fridge_android.IndividualRecipeActivity:
+    private static final java.lang.String STARTING_TAB
+    private static final java.lang.String TAG_INGREDIENT_ID
+    private static final java.lang.String TAG_INGREDIENT_NAME
+    java.util.ArrayList ingredList
+com.example.smart_fridge_android.LoginActivity:
+    private android.app.ProgressDialog pDialog
+    private static final java.lang.String TAG_SUCCESS
+    private static final java.lang.String TAG_USER
+    private static final java.lang.String TAG_UID
+    private static final java.lang.String TAG_EMAIL
+    private static final java.lang.String STARTING_TAB
+    20:20:static synthetic android.app.ProgressDialog access$002(com.example.smart_fridge_android.LoginActivity,android.app.ProgressDialog)
+    20:20:static synthetic android.app.ProgressDialog access$000(com.example.smart_fridge_android.LoginActivity)
+    20:20:static synthetic java.lang.String access$100()
+com.example.smart_fridge_android.LoginActivity$PerformLogin
+com.example.smart_fridge_android.LoginActivity$PerformLogin$1
+com.example.smart_fridge_android.MainActivity:
+    private static final java.lang.String TAG_RECIPE_ID
+    private static final java.lang.String TAG_RECIPE_NAME
+    private static final java.lang.String STARTING_TAB
+com.example.smart_fridge_android.NavigationBar:
+    private static final java.lang.String STARTING_TAB
+com.example.smart_fridge_android.R
+com.example.smart_fridge_android.R$array
+com.example.smart_fridge_android.R$attr
+com.example.smart_fridge_android.R$drawable
+com.example.smart_fridge_android.R$id
+com.example.smart_fridge_android.R$layout
+com.example.smart_fridge_android.R$string
+com.example.smart_fridge_android.Recipe:
+    21:23:public Recipe(java.lang.String,java.lang.String,java.lang.String,java.util.List,java.lang.String)
+com.example.smart_fridge_android.RecipeSearchResultActivity:
+    private static final java.lang.String TAG_APP_ID
+    private static final java.lang.String TAG_APP_KEY
+    private static final java.lang.String ACTUAL_APP_ID
+    private static final java.lang.String ACTUAL_APP_KEY
+    private static final java.lang.String TAG_YUMMLY_ID
+    private static final java.lang.String TAG_RECIPE_NAME
+    private static final java.lang.String TAG_RECIPE_INGREDIENTS
+com.example.smart_fridge_android.RegisterActivity:
+    private static final java.lang.String STARTING_TAB
+    private android.app.ProgressDialog pDialog
+    private static final java.lang.String TAG_SUCCESS
+    19:19:static synthetic android.app.ProgressDialog access$002(com.example.smart_fridge_android.RegisterActivity,android.app.ProgressDialog)
+    19:19:static synthetic android.app.ProgressDialog access$000(com.example.smart_fridge_android.RegisterActivity)
+    19:19:static synthetic java.lang.String access$100()
+com.example.smart_fridge_android.RegisterActivity$CreateNewUser
+com.example.smart_fridge_android.RegisterActivity$CreateNewUser$1
+com.example.smart_fridge_android.SessionManager:
+    private static final java.lang.String PREF_NAME
+    private static final java.lang.String IS_LOGIN
+    public static final java.lang.String KEY_UID
+    public static final java.lang.String KEY_EMAIL
+    public static final java.lang.String KEY_UNITS
+    public static final java.lang.String WANTS_NOTIFICATIONS
+    71:84:public void checkLogin()
+    90:98:public java.util.HashMap getUserDetails()
+com.example.smart_fridge_android.UpcApis:
+    7:7:public UpcApis()

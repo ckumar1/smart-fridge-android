@@ -1,0 +1,200 @@
+com.example.smart_fridge_android.AddFoodActivity
+com.example.smart_fridge_android.AddFoodActivity: AddFoodActivity()
+com.example.smart_fridge_android.AddFoodActivity: void onButtonClick(android.view.View)
+com.example.smart_fridge_android.AddRecipeActivity
+com.example.smart_fridge_android.AddRecipeActivity: AddRecipeActivity()
+com.example.smart_fridge_android.AddRecipeActivity: void onButtonClick(android.view.View)
+com.example.smart_fridge_android.AdvancedSearchRecipeActivity
+com.example.smart_fridge_android.AdvancedSearchRecipeActivity: AdvancedSearchRecipeActivity()
+com.example.smart_fridge_android.AdvancedSearchRecipeActivity: void onButtonClick(android.view.View)
+com.example.smart_fridge_android.IMadeThisActivity
+com.example.smart_fridge_android.IMadeThisActivity: IMadeThisActivity()
+com.example.smart_fridge_android.IMadeThisActivity: void onButtonClick(android.view.View)
+com.example.smart_fridge_android.IndividualFoodActivity
+com.example.smart_fridge_android.IndividualFoodActivity: IndividualFoodActivity()
+com.example.smart_fridge_android.IndividualFoodActivity: void onButtonClick(android.view.View)
+com.example.smart_fridge_android.IndividualRecipeActivity
+com.example.smart_fridge_android.IndividualRecipeActivity: IndividualRecipeActivity()
+com.example.smart_fridge_android.IndividualRecipeActivity: void onButtonClick(android.view.View)
+com.example.smart_fridge_android.LoginActivity
+com.example.smart_fridge_android.LoginActivity: LoginActivity()
+com.example.smart_fridge_android.LoginActivity: void onButtonClick(android.view.View)
+com.example.smart_fridge_android.MainActivity
+com.example.smart_fridge_android.MainActivity: MainActivity()
+com.example.smart_fridge_android.MainActivity: void onButtonClick(android.view.View)
+com.example.smart_fridge_android.NavigationBar: void onButtonClick(android.view.View,android.content.Context)
+com.example.smart_fridge_android.R$array: int units_array
+com.example.smart_fridge_android.R$drawable: int fridge_icon
+com.example.smart_fridge_android.R$drawable: int ic_launcher
+com.example.smart_fridge_android.R$id: int DeleteButton
+com.example.smart_fridge_android.R$id: int ExpDate
+com.example.smart_fridge_android.R$id: int FoodName
+com.example.smart_fridge_android.R$id: int FoodQuantity
+com.example.smart_fridge_android.R$id: int IMadeThisButton
+com.example.smart_fridge_android.R$id: int IMadeThisDoneButton
+com.example.smart_fridge_android.R$id: int IMadeThisQuantity
+com.example.smart_fridge_android.R$id: int IMadethisRecipeName
+com.example.smart_fridge_android.R$id: int IndRecipeDeleteButton
+com.example.smart_fridge_android.R$id: int IndRecipeIngredients
+com.example.smart_fridge_android.R$id: int IndRecipeIngredientsField
+com.example.smart_fridge_android.R$id: int IndRecipeInstructions
+com.example.smart_fridge_android.R$id: int IndRecipeInstructionsField
+com.example.smart_fridge_android.R$id: int IndRecipeName
+com.example.smart_fridge_android.R$id: int IndRecipeNameField
+com.example.smart_fridge_android.R$id: int IndRecipeTitle
+com.example.smart_fridge_android.R$id: int IngredientField
+com.example.smart_fridge_android.R$id: int InstructionsField
+com.example.smart_fridge_android.R$id: int QuantityLabel
+com.example.smart_fridge_android.R$id: int RecipeNameField
+com.example.smart_fridge_android.R$id: int UpdateButton
+com.example.smart_fridge_android.R$id: int addBtn
+com.example.smart_fridge_android.R$id: int addMan
+com.example.smart_fridge_android.R$id: int addimgR
+com.example.smart_fridge_android.R$id: int addingred
+com.example.smart_fridge_android.R$id: int addrec
+com.example.smart_fridge_android.R$id: int btnAddIngredients
+com.example.smart_fridge_android.R$id: int btnAdvancedRecipeSearch
+com.example.smart_fridge_android.R$id: int btnCalorieCount
+com.example.smart_fridge_android.R$id: int btnChangePassword
+com.example.smart_fridge_android.R$id: int btnLinkToRegisterScreen
+com.example.smart_fridge_android.R$id: int btnLogin
+com.example.smart_fridge_android.R$id: int btnRegister
+com.example.smart_fridge_android.R$id: int btnSearchRecipes
+com.example.smart_fridge_android.R$id: int changePassword
+com.example.smart_fridge_android.R$id: int checkBoxNotifications
+com.example.smart_fridge_android.R$id: int dateSelector
+com.example.smart_fridge_android.R$id: int editText
+com.example.smart_fridge_android.R$id: int editText1
+com.example.smart_fridge_android.R$id: int editText2
+com.example.smart_fridge_android.R$id: int editText3
+com.example.smart_fridge_android.R$id: int editTextCategory
+com.example.smart_fridge_android.R$id: int editTextRecipeName
+com.example.smart_fridge_android.R$id: int editTextUseIngredients
+com.example.smart_fridge_android.R$id: int foodExpirationDate
+com.example.smart_fridge_android.R$id: int foodItemNavBar
+com.example.smart_fridge_android.R$id: int foodName
+com.example.smart_fridge_android.R$id: int food_id
+com.example.smart_fridge_android.R$id: int foodgroupField
+com.example.smart_fridge_android.R$id: int imageBtn
+com.example.smart_fridge_android.R$id: int imageView1
+com.example.smart_fridge_android.R$id: int imgView
+com.example.smart_fridge_android.R$id: int imgViewRecipe
+com.example.smart_fridge_android.R$id: int include
+com.example.smart_fridge_android.R$id: int include1
+com.example.smart_fridge_android.R$id: int individualFoodItemExpirationDate
+com.example.smart_fridge_android.R$id: int individualFoodItemName
+com.example.smart_fridge_android.R$id: int individualFoodItemNutritionalInfo
+com.example.smart_fridge_android.R$id: int individualFoodItemQuantity
+com.example.smart_fridge_android.R$id: int ingredientName
+com.example.smart_fridge_android.R$id: int loginEmail
+com.example.smart_fridge_android.R$id: int loginPassword
+com.example.smart_fridge_android.R$id: int login_error
+com.example.smart_fridge_android.R$id: int logoutBtn
+com.example.smart_fridge_android.R$id: int mImageView
+com.example.smart_fridge_android.R$id: int manualBtn
+com.example.smart_fridge_android.R$id: int nameField
+com.example.smart_fridge_android.R$id: int nutritionalInformationText
+com.example.smart_fridge_android.R$id: int quantityField
+com.example.smart_fridge_android.R$id: int radioButtonImperial
+com.example.smart_fridge_android.R$id: int radioButtonMetric
+com.example.smart_fridge_android.R$id: int recipeImageView
+com.example.smart_fridge_android.R$id: int recipeResultsScrollView
+com.example.smart_fridge_android.R$id: int recipe_id
+com.example.smart_fridge_android.R$id: int recipe_id2
+com.example.smart_fridge_android.R$id: int recipe_name
+com.example.smart_fridge_android.R$id: int registerConfirmPassword
+com.example.smart_fridge_android.R$id: int registerEmail
+com.example.smart_fridge_android.R$id: int registerName
+com.example.smart_fridge_android.R$id: int registerPassword
+com.example.smart_fridge_android.R$id: int register_error
+com.example.smart_fridge_android.R$id: int scanBtn
+com.example.smart_fridge_android.R$id: int scrollView1
+com.example.smart_fridge_android.R$id: int scrollView2
+com.example.smart_fridge_android.R$id: int showlist
+com.example.smart_fridge_android.R$id: int tabFood
+com.example.smart_fridge_android.R$id: int tabRecipes
+com.example.smart_fridge_android.R$id: int tabSettings
+com.example.smart_fridge_android.R$id: int textView
+com.example.smart_fridge_android.R$id: int textView1
+com.example.smart_fridge_android.R$id: int textView2
+com.example.smart_fridge_android.R$id: int textView3
+com.example.smart_fridge_android.R$id: int textView4
+com.example.smart_fridge_android.R$id: int textView6
+com.example.smart_fridge_android.R$id: int textViewAdvancedRecipeSearch
+com.example.smart_fridge_android.R$id: int textViewCalorieCount
+com.example.smart_fridge_android.R$id: int textViewCategory
+com.example.smart_fridge_android.R$id: int textViewIngredientsResult
+com.example.smart_fridge_android.R$id: int textViewIngredientsResultList
+com.example.smart_fridge_android.R$id: int textViewInstructionsResult
+com.example.smart_fridge_android.R$id: int textViewInstructionsUrlResultList
+com.example.smart_fridge_android.R$id: int textViewRecipeName
+com.example.smart_fridge_android.R$id: int textViewRecipeResultName
+com.example.smart_fridge_android.R$id: int textViewRecipeSearchCaloriesResult
+com.example.smart_fridge_android.R$id: int textViewRecipeSearchCarloriesResultList
+com.example.smart_fridge_android.R$id: int textViewRecipeSearchResults
+com.example.smart_fridge_android.R$id: int textViewUseIngredients
+com.example.smart_fridge_android.R$id: int update_button
+com.example.smart_fridge_android.R$layout: int add_food
+com.example.smart_fridge_android.R$layout: int add_food_manual
+com.example.smart_fridge_android.R$layout: int add_recipe
+com.example.smart_fridge_android.R$layout: int advanced_recipe_search
+com.example.smart_fridge_android.R$layout: int change_password
+com.example.smart_fridge_android.R$layout: int food_list_item
+com.example.smart_fridge_android.R$layout: int i_made_this
+com.example.smart_fridge_android.R$layout: int i_made_this_list_item
+com.example.smart_fridge_android.R$layout: int individual_food_item
+com.example.smart_fridge_android.R$layout: int individual_recipe_item
+com.example.smart_fridge_android.R$layout: int login
+com.example.smart_fridge_android.R$layout: int main
+com.example.smart_fridge_android.R$layout: int main_nav_bar
+com.example.smart_fridge_android.R$layout: int recipe_list_item
+com.example.smart_fridge_android.R$layout: int recipe_result
+com.example.smart_fridge_android.R$layout: int recipe_search_results
+com.example.smart_fridge_android.R$layout: int register
+com.example.smart_fridge_android.R$layout: int settings
+com.example.smart_fridge_android.R$string: int AddFood
+com.example.smart_fridge_android.R$string: int AddFoodName
+com.example.smart_fridge_android.R$string: int ExpirationDate
+com.example.smart_fridge_android.R$string: int IndRecipeInstructions
+com.example.smart_fridge_android.R$string: int Quantity
+com.example.smart_fridge_android.R$string: int Recipe
+com.example.smart_fridge_android.R$string: int RecipeName
+com.example.smart_fridge_android.R$string: int action_settings
+com.example.smart_fridge_android.R$string: int add
+com.example.smart_fridge_android.R$string: int add_food_barcode
+com.example.smart_fridge_android.R$string: int add_food_manual
+com.example.smart_fridge_android.R$string: int add_food_title
+com.example.smart_fridge_android.R$string: int add_recipe
+com.example.smart_fridge_android.R$string: int add_recipe_ingredients
+com.example.smart_fridge_android.R$string: int add_recipe_instructions
+com.example.smart_fridge_android.R$string: int add_recipe_name
+com.example.smart_fridge_android.R$string: int app_name
+com.example.smart_fridge_android.R$string: int confirm_password
+com.example.smart_fridge_android.R$string: int create_account
+com.example.smart_fridge_android.R$string: int email
+com.example.smart_fridge_android.R$string: int food
+com.example.smart_fridge_android.R$string: int foodGroup
+com.example.smart_fridge_android.R$string: int full_name
+com.example.smart_fridge_android.R$string: int hello_world
+com.example.smart_fridge_android.R$string: int individual_item_expiration_date
+com.example.smart_fridge_android.R$string: int individual_item_name
+com.example.smart_fridge_android.R$string: int individual_item_nutritional_information
+com.example.smart_fridge_android.R$string: int individual_item_quantity
+com.example.smart_fridge_android.R$string: int login
+com.example.smart_fridge_android.R$string: int login_title
+com.example.smart_fridge_android.R$string: int logout
+com.example.smart_fridge_android.R$string: int my_fridge
+com.example.smart_fridge_android.R$string: int name
+com.example.smart_fridge_android.R$string: int password
+com.example.smart_fridge_android.R$string: int recipes
+com.example.smart_fridge_android.R$string: int register
+com.example.smart_fridge_android.R$string: int register_title
+com.example.smart_fridge_android.R$string: int settings
+com.example.smart_fridge_android.R$string: int title_activity_individual_recipe
+com.example.smart_fridge_android.R$string: int units
+com.example.smart_fridge_android.R$string: int units_prompt
+com.example.smart_fridge_android.RecipeSearchResultActivity
+com.example.smart_fridge_android.RecipeSearchResultActivity: RecipeSearchResultActivity()
+com.example.smart_fridge_android.RegisterActivity
+com.example.smart_fridge_android.RegisterActivity: RegisterActivity()
+com.example.smart_fridge_android.RegisterActivity: void onButtonClick(android.view.View)

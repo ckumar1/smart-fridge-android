@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.smart_fridge_android"
+    package="com.smart_fridge.smart_fridge_android"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -21,7 +21,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar">
         <activity
-            android:name="com.example.smart_fridge_android.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,11 +29,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.smart_fridge_android.RegisterActivity" />
-        <activity android:name="com.example.smart_fridge_android.AddRecipeActivity" />
-        <activity android:name="com.example.smart_fridge_android.MainActivity" />
-        <activity android:name="com.example.smart_fridge_android.AddFoodActivity" />
-        <activity android:name="com.example.smart_fridge_android.IndividualRecipeActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".AddRecipeActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".AddFoodActivity" />
+        <activity android:name=".IndividualRecipeActivity" />
         <activity android:name=".IndividualFoodActivity" />
         <activity android:name=".AdvancedSearchRecipeActivity"/>
         <activity android:name=".RecipeSearchResultActivity"/>
