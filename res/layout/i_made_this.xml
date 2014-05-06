@@ -48,23 +48,33 @@
         android:layout_centerHorizontal="true"
         android:text="Done" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/IMadeThisDoneButton"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="127dp"
-        android:text="Ingredient list for the recipe you just made:" />
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/IngredientListScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@+id/IMadeThisDoneButton"
+    android:layout_marginLeft="30dp"
+    android:layout_marginTop="390dp" >
 
     <TextView
         android:id="@+id/IngredientList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/textView1"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginTop="3dp"
+        android:layout_toLeftOf="@+id/IMadethisRecipeName"
         android:text="TextView" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/IngredientListExp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/IMadeThisDoneButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="148dp"
+        android:text="Ingredient list for the recipe you just made:" />
 
 </RelativeLayout>

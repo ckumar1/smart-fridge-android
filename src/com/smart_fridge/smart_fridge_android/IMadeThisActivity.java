@@ -50,7 +50,20 @@ public class IMadeThisActivity  extends ListActivity {
 
 		db = new DatabaseHandler(this);
 		db.getDatabaseName();
-
+		
+		if(id.contains("*"))
+		{
+			String recName = id.substring(0, id.indexOf('*'));
+			String ingredListYum = id.substring(id.indexOf('*')+1);
+			
+			TextView nameText = (TextView) findViewById(R.id.IMadethisRecipeName);
+			nameText.setText(recName);
+			setRecipeAdapter(); 
+			TextView ingredients = (TextView) findViewById(R.id.IngredientList);
+	        ingredients.setText(ingredListYum.replace("<b>", "\n"));
+		}
+		else
+		{
 		recipe = db.getRecipeById(Integer.parseInt(id));
 		TextView nameText = (TextView) findViewById(R.id.IMadethisRecipeName);
 		nameText.setText(recipe.getName());
@@ -58,6 +71,7 @@ public class IMadeThisActivity  extends ListActivity {
 		
 		TextView ingredients = (TextView) findViewById(R.id.IngredientList);
         ingredients.setText(recipe.getIngredients().replace("<b>", "\n"));
+		}
 
 	}
 

@@ -9,8 +9,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.util.Linkify;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -48,7 +51,9 @@ public class RecipeSearchResultActivity extends Activity {
     private TextView caloriesTextView;
     private TextView instructionsUrlTextView;
     private ImageView recipeImageView;
-
+    private String recipeName;
+    private String recipeIngredients;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +63,8 @@ public class RecipeSearchResultActivity extends Activity {
         Intent intent = getIntent();
 
         String yummlyId = intent.getStringExtra(TAG_YUMMLY_ID);
-        String recipeName = intent.getStringExtra(TAG_RECIPE_NAME);
-        String recipeIngredients = intent.getStringExtra(TAG_RECIPE_INGREDIENTS);
+        recipeName = intent.getStringExtra(TAG_RECIPE_NAME);
+        recipeIngredients = intent.getStringExtra(TAG_RECIPE_INGREDIENTS);
 
         nameTextView = (TextView) findViewById(R.id.textViewRecipeResultName);
         ingredientsTextView = (TextView) findViewById(R.id.textViewIngredientsResultList);
@@ -83,6 +88,22 @@ public class RecipeSearchResultActivity extends Activity {
         instructionsUrlTextView.setText(recipeUrl);
 
         Linkify.addLinks(instructionsUrlTextView, Linkify.ALL); // Allows links to be clickable
+    }
+    public void onButtonClick(View v) {
+		NavigationBar navBar = new NavigationBar();
+		navBar.onButtonClick(v,  getApplicationContext());
+		NavigationBar.onTabsClicked(v, this);
+
+		switch (v.getId()) {
+
+		case R.id.IMadeThisButton:
+			//Toast.makeText(getApplicationContext(), "HERE", Toast.LENGTH_LONG).show();
+			Intent i = new Intent(getApplicationContext(), IMadeThisActivity.class);
+			i.putExtra("rid", recipeName + "*" + recipeIngredients);
+			//i.putExtra("recipeIngredients", recipeIngredients);
+			startActivity(i);
+			break;
+		}
     }
 
     /**
