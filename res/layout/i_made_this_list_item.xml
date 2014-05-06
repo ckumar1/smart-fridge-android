@@ -13,18 +13,15 @@
 
     <!-- Name Label -->
     <TextView
-            android:id="@+id/ingredientName"
+            android:id="@+id/foodName"
             android:layout_width="fill_parent"
             android:layout_height="35dp"
             android:paddingTop="6dip"
             android:paddingLeft="6dip"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold" 
+            android:onClick="onButtonClick"/>
     
-    <EditText
-        android:id="@+id/IMadeThisQuantity"
-        android:layout_width="86dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="225dp" />
+   
     
 </LinearLayout>
