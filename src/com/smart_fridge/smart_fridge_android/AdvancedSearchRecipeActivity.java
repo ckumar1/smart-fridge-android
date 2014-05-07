@@ -146,6 +146,14 @@ public class AdvancedSearchRecipeActivity extends ListActivity {
         adapter = new SimpleAdapter(AdvancedSearchRecipeActivity.this, recipesList, R.layout.recipe_list_item,
                 new String[] {TAG_RECIPE_NAME}, new int[] {R.id.recipe_name});
 
+        // Alert if no results returned
+        TextView noItemsFound = (TextView) findViewById(R.id.noResultsFound);
+        if (recipes.isEmpty()){
+            noItemsFound.setVisibility(View.VISIBLE);
+        } else {
+            noItemsFound.setVisibility(View.INVISIBLE);
+        }
+
         setListAdapter(adapter);
         setListView(recipes);
     }
