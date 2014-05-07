@@ -19,16 +19,6 @@
                 android:textSize="25dip"
                 android:textStyle="bold" />
 
-        <!-- Profile Image -->
-        <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/ic_launcher"
-                android:layout_gravity="center_horizontal"/>
 
         <!--  Name Label -->
         <TextView

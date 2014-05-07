@@ -59,6 +59,16 @@
                 android:text="Login"
                 android:onClick="onButtonClick"/>
 
+
+        <!--  Login Button -->
+        <Button
+                android:id="@+id/btnNoAccount"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:text="I don't want to create an account"
+                android:onClick="onButtonClick"/>
+
         <!--  Link to Registration Screen -->
         <Button
                 android:id="@+id/btnLinkToRegisterScreen"

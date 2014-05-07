@@ -27,13 +27,10 @@ public class LoginActivity extends Activity {
     EditText inputPassword;
 
     // url to log in a user
-    private static String url_login = "http://fridgepantry.herokuapp.com/sign_in/";
+    private static String url_login = "https://fridgepantry.herokuapp.com/api/access/";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_USER = "user";
-    private static final String TAG_UID = "uid";
-    private static final String TAG_EMAIL = "email";
 
     private static final String STARTING_TAB = "startingTab";
 
@@ -50,8 +47,6 @@ public class LoginActivity extends Activity {
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
             i.putExtra(STARTING_TAB, "food");
             startActivity(i);
-        } else {
-            //Toast.makeText(getApplicationContext(), "User NOT already logged in", Toast.LENGTH_LONG).show();
         }
 
         setContentView(R.layout.login);
@@ -67,19 +62,22 @@ public class LoginActivity extends Activity {
 
             case R.id.btnLogin:
                 // Implement this when external db is set up
-                //new PerformLogin().execute();
+                new PerformLogin().execute();
 
                 // Store the session data.
-                session.createLoginSession("TEST_USERNAME", "TEST_EMAIL"); // Need to populate with real data
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra(STARTING_TAB, "food");
-                startActivity(intent);
                 break;
 
             case R.id.btnLinkToRegisterScreen:
                 Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(i);
+                break;
+
+            case R.id.btnNoAccount:
+                session.createLoginSession("No Account");
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra(STARTING_TAB, "food");
+                startActivity(intent);
                 break;
         }
     }
@@ -126,34 +124,22 @@ public class LoginActivity extends Activity {
                 int success = json.getInt(TAG_SUCCESS);
 
                 if (success == 1) {
-                    // successfully logged in user, store session info
-                    //session.createLoginSession("", json.getString(""));
 
-                    // Selects the user data
-                    JSONArray userArray = json.getJSONArray(TAG_USER);
-                    JSONObject user = userArray.getJSONObject(0);
+                    session.createLoginSession(inputEmail.getText().toString());
 
-                    // Store the session data.
-                    session.createLoginSession(user.getString(TAG_UID), user.getString(TAG_EMAIL));
-
-                    // Open user's projects list page
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(i);
-
-                    // closing this screen
-                    finish();
-                } else {
-                    // failed to log in user
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(), "Incorrect email and password",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra(STARTING_TAB, "food");
+                    startActivity(intent);
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+                // failed to log in user
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), "Incorrect email and password",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
             }
 
             return null;

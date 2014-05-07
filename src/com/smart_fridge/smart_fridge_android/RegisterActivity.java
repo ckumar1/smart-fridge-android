@@ -30,15 +30,19 @@ public class RegisterActivity extends Activity {
     EditText inputConfirmPassword;
 
     // url to create new user
-    private static String url_create_user = "http://www.http://fridgepantry.herokuapp.com/sign_up/";
+    private static String url_create_user = "https://fridgepantry.herokuapp.com/api/access/new";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
+
+    SessionManager session;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
+
+        session = new SessionManager(getApplicationContext());
 
         // Edit Text
         inputName = (EditText) findViewById(R.id.registerName);
@@ -57,11 +61,9 @@ public class RegisterActivity extends Activity {
                     Toast.makeText(getApplicationContext(), "Passwords do not match!", Toast.LENGTH_SHORT).show();
                 } else {
                     // Implement when external db is set up
-                    //new CreateNewUser().execute();
+                    new CreateNewUser().execute();
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra(STARTING_TAB, "food");
-                    startActivity(intent);
+
                 }
                 break;
         }
@@ -112,23 +114,20 @@ public class RegisterActivity extends Activity {
 
                 if (success == 1) {
                     // successfully created user
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(i);
-
-                    // closing this screen
-                    finish();
-                } else {
-                    // failed to create user
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(), "Registration unsuccessful",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
+                    session.createLoginSession(email);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra(STARTING_TAB, "food");
+                    startActivity(intent);
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+                // failed to create user
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), "Registration unsuccessful",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
             }
 
             return null;
