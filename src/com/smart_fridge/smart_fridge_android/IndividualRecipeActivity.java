@@ -44,13 +44,13 @@ public class IndividualRecipeActivity extends Activity {
         
         recipe = db.getRecipeById(Integer.parseInt(id));
         
-        TextView nameText = (TextView) findViewById(R.id.IndRecipeNameField);
+        TextView nameText = (TextView) findViewById(R.id.individualRecipeNameEditText);
         nameText.setText(recipe.getName());
         
-        TextView instructions = (TextView) findViewById(R.id.IndRecipeInstructionsField);
+        TextView instructions = (TextView) findViewById(R.id.individualRecipeInstructionsEditText);
         instructions.setText(recipe.getDirections());
         
-        TextView ingredients = (TextView) findViewById(R.id.IndRecipeIngredientsField);
+        TextView ingredients = (TextView) findViewById(R.id.individualRecipeIngredientsEditText);
         ingredients.setText(recipe.getIngredients().replace("<b>", "\n"));
 
        String path = recipe.getImagePath();
@@ -59,7 +59,7 @@ public class IndividualRecipeActivity extends Activity {
             if(imgFile.exists()) {
                 Log.w("Image", "Image Exists!");
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                ImageView myImage = (ImageView) findViewById(R.id.imgViewRecipe); //fix this
+                ImageView myImage = (ImageView) findViewById(R.id.individualRecipeImageView); //fix this
 
                 Matrix matrix = new Matrix();
                 matrix.postRotate(90);
@@ -80,7 +80,7 @@ public class IndividualRecipeActivity extends Activity {
 
 		switch (v.getId()) {
 
-		case R.id.IndRecipeDeleteButton:
+		case R.id.btnDeleteIndividualRecipe:
             String recipeImgPath = recipe.getImagePath();
             if (recipeImgPath != null && !recipeImgPath.isEmpty()) {
                 File recipe_image = new File(recipeImgPath);
@@ -98,7 +98,7 @@ public class IndividualRecipeActivity extends Activity {
 			this.startActivity(i);
 			break; 
 
-		case R.id.IMadeThisButton:
+		case R.id.btnIMadeThisIndividualRecipe:
 
 			Intent iMadeThisIntent = new Intent(getApplicationContext(), IMadeThisActivity.class);
 			iMadeThisIntent.putExtra("rid", id);
@@ -106,8 +106,8 @@ public class IndividualRecipeActivity extends Activity {
 
 			break;	
 		
-		case R.id.UpdateButton:
-            String recipeName = ((TextView)findViewById(R.id.IndRecipeNameField)).getText().toString();
+		case R.id.btnUpdateIndividualRecipe:
+            String recipeName = ((TextView)findViewById(R.id.individualRecipeNameEditText)).getText().toString();
             if(recipeName.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
                 break;
@@ -118,10 +118,10 @@ public class IndividualRecipeActivity extends Activity {
             }
             recipe.setName(recipeName);
 
-            String directionsNew = ((TextView)findViewById(R.id.IndRecipeInstructionsField)).getText().toString();
+            String directionsNew = ((TextView)findViewById(R.id.individualRecipeInstructionsEditText)).getText().toString();
             recipe.setDirections(directionsNew);
 
-            String ingredientsNew = ((TextView)findViewById(R.id.IndRecipeIngredientsField)).getText().toString();
+            String ingredientsNew = ((TextView)findViewById(R.id.individualRecipeIngredientsEditText)).getText().toString();
             recipe.setIngredientsList(Arrays.asList(ingredientsNew.split("<b>")));
 
             db.updateRecipe(recipe);

@@ -1,153 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
 
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/main_nav_bar" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
 
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <LinearLayout
+    <RelativeLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="322dp"
-            android:orientation="vertical" >
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/IndRecipeTitle"
+        <include
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Recipe"
-                android:textSize="20sp" />
+                layout="@layout/main_nav_bar"
+                android:id="@+id/include"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+        <ListView
+                android:id="@android:id/list"
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
 
-                <TextView
-                    android:id="@+id/IndRecipeName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="69dp"
-                    android:text="Name:"
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/IndRecipeNameField"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@+id/IndRecipeName"
-                    android:ems="10"
-                    android:text="nameField"
-                    android:textSize="20sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/IndRecipeInstructions"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="14dp"
-                    android:text="Instructions:"
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/IndRecipeInstructionsField"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="18dp"
-                    android:layout_toRightOf="@+id/IndRecipeInstructions"
-                    android:text="instructionsField"
-                    android:textSize="20sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/IndRecipeIngredients"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="20dp"
-                    android:text="Ingredients:"
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/IndRecipeIngredientsField"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="18dp"
-                    android:layout_toRightOf="@+id/IndRecipeIngredients"
-                    android:text="ingredientsField"
-                    android:textSize="20sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                
-            </RelativeLayout>
-
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-            <ImageView
-                    android:id="@+id/imgViewRecipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_alignParentBottom = "true"
-                    android:layout_marginTop="20dp"/>
-
-            </RelativeLayout>
-
-            <Button
-                android:id="@+id/IndRecipeDeleteButton"
-                style="?android:attr/buttonStyleSmall"
+        <TextView
+                android:id="@+id/individualRecipeNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:text="Name:"
+                android:layout_marginTop="42dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp"
+                android:layout_below="@id/include"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        <EditText
+                android:id="@+id/individualRecipeNameEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="9"
+                android:layout_alignBottom="@id/individualRecipeNameTextView"
+                android:layout_alignParentRight="true"
+                android:layout_alignBaseline="@id/individualRecipeNameTextView"/>
+
+        <TextView
+                android:id="@+id/individualRecipeInstructionsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instructions:"
+                android:layout_marginTop="42dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp"
+                android:layout_below="@id/individualRecipeNameTextView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        <EditText
+                android:id="@+id/individualRecipeInstructionsEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_alignLeft="@id/individualRecipeNameEditText"
+                android:layout_alignStart="@id/individualRecipeNameEditText"
+                android:layout_alignBaseline="@id/individualRecipeInstructionsTextView"/>
+
+        <TextView
+                android:id="@+id/individualRecipeIngredientsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredients:"
+                android:layout_marginTop="42dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp"
+                android:layout_below="@id/individualRecipeInstructionsTextView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+
+        <EditText
+                android:id="@+id/individualRecipeIngredientsEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@id/individualRecipeIngredientsTextView"
+                android:layout_alignLeft="@id/individualRecipeInstructionsEditText"
+                android:layout_alignStart="@id/individualRecipeInstructionsEditText"
+                android:layout_alignBaseline="@id/individualRecipeIngredientsTextView"/>
+
+
+        <Button
+                android:id="@+id/btnUpdateIndividualRecipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:onClick="onButtonClick"
+                android:layout_below="@+id/individualRecipeIngredientsEditText"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="100dp"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Delete Recipe"
-                android:onClick="onButtonClick" />
-            
-            <Button
-                    android:id="@+id/IMadeThisButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onButtonClick"
-                    android:text="I Made This!" />
+                android:id="@+id/btnDeleteIndividualRecipe"
+                android:layout_alignTop="@+id/btnUpdateIndividualRecipe"
+                android:layout_alignRight="@+id/individualRecipeIngredientsEditText"
+                android:layout_alignEnd="@+id/individualRecipeIngredientsEditText"
+                android:layout_marginRight="10dp"
+                android:onClick="onButtonClick"/>
 
-                <Button
-                    android:id="@+id/UpdateButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onButtonClick"
-                    android:text="Update" />
+        <ImageView
+                android:id="@+id/individualRecipeImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/btnUpdateIndividualRecipe"
+                android:layout_marginTop="30dp"
+                android:onClick="onButtonClick"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I Made This!"
+                android:id="@+id/btnIMadeThisIndividualRecipe"
+                android:layout_alignBaseline="@id/btnUpdateIndividualRecipe"
+                android:layout_centerHorizontal="true"
+                android:onClick="onButtonClick"/>
 
-            </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

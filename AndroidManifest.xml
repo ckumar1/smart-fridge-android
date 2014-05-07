@@ -30,15 +30,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".AddRecipeActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".AddFoodActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".IndividualRecipeActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".IndividualFoodActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".AdvancedSearchRecipeActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".RecipeSearchResultActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".IMadeThisActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".AddRecipeActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".AddFoodActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".IndividualRecipeActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".IndividualFoodActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".AdvancedSearchRecipeActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".RecipeSearchResultActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".IMadeThisActivity"
+                  android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

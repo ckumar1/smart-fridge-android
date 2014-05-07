@@ -40,11 +40,11 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
         food = db.getFoodById(Integer.parseInt(id));
         
         String name = food.getName();
-        TextView nameText = (TextView) findViewById(R.id.FoodName);
+        TextView nameText = (TextView) findViewById(R.id.individualFoodItemNameEditText);
         nameText.setText(name);
          
         int quantity = food.getQuantity();
-        TextView quantityText = (TextView) findViewById(R.id.FoodQuantity);
+        TextView quantityText = (TextView) findViewById(R.id.individualFoodItemQuantityEditText);
         quantityText.setText(""+quantity);
 
         String path = food.getImagePath();
@@ -53,7 +53,7 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
             if (imgFile.exists()) {
                 Log.w("Image", "Image Exists!");
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                ImageView myImage = (ImageView) findViewById(R.id.imgView);
+                ImageView myImage = (ImageView) findViewById(R.id.individualFoodItemImageView);
 
                 Matrix matrix = new Matrix();
                 matrix.postRotate(90);
@@ -64,7 +64,7 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
             }
         }
         
-        TextView expDateText = (TextView) findViewById(R.id.ExpDate);
+        TextView expDateText = (TextView) findViewById(R.id.individualFoodItemExpirationDateSpinner);
 
         expDateText.setText(food.getExpirationDate());
 
@@ -80,7 +80,7 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
 
         //nutritional information will be displayed and can edit; need to conntect to API
         String nutritionalInformation = food.getDescription();
-        TextView nutritionalInfoText = (TextView) findViewById(R.id.nutritionalInformationText);
+        TextView nutritionalInfoText = (TextView) findViewById(R.id.individualFoodItemNutritionalInfoEditText);
         nutritionalInfoText.setText(nutritionalInformation);
 	}
 
@@ -88,7 +88,7 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
 	public void onDateSet(DatePicker view, int year, int monthOfYear,
 			int dayOfMonth) {
 		Calendar cal = new GregorianCalendar(year, monthOfYear, dayOfMonth);
-		TextView mDateTextView = (TextView)findViewById(R.id.ExpDate);
+		TextView mDateTextView = (TextView)findViewById(R.id.individualFoodItemExpirationDateSpinner);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		mDateTextView.setText(dateFormat.format(cal.getTime()));
 	}
@@ -103,7 +103,7 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
                     
         switch (v.getId()){
         
-        case R.id.DeleteButton:
+        case R.id.btnDeleteIndividualFoodItem:
             String foodImgPath = food.getImagePath();
             if (foodImgPath != null && !foodImgPath.isEmpty()) {
                 File food_image = new File(foodImgPath);
@@ -119,8 +119,8 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
 			this.startActivity(i);
         	break;      	
         
-        case R.id.update_button:
-        	String name = ((TextView)findViewById(R.id.FoodName)).getText().toString();
+        case R.id.btnUpdateIndividualFoodItem:
+        	String name = ((TextView)findViewById(R.id.individualFoodItemNameEditText)).getText().toString();
         	if(name.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Name is required", Toast.LENGTH_LONG).show();
                 break;
@@ -131,14 +131,14 @@ public class IndividualFoodActivity extends Activity implements OnDateSetListene
             }
         	food.setName(name);
                 
-            food.setExpirationDate(((TextView)findViewById(R.id.ExpDate)).getText().toString());
+            food.setExpirationDate(((TextView)findViewById(R.id.individualFoodItemExpirationDateSpinner)).getText().toString());
           
             try {
-                int quantity = Integer.parseInt(((TextView)findViewById(R.id.FoodQuantity)).getText().toString());
+                int quantity = Integer.parseInt(((TextView)findViewById(R.id.individualFoodItemQuantityEditText)).getText().toString());
                 food.setQuantity(quantity);
             } catch(NumberFormatException e) {	}
             
-            String nutrition = ((TextView)findViewById(R.id.nutritionalInformationText)).getText().toString();
+            String nutrition = ((TextView)findViewById(R.id.individualFoodItemNutritionalInfoEditText)).getText().toString();
             food.setDescription(nutrition);
             
             db.updateFood(food);
