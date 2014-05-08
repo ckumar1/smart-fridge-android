@@ -15,11 +15,6 @@
                 layout="@layout/main_nav_bar"
                 android:id="@+id/include"/>
 
-        <ListView
-                android:id="@android:id/list"
-                android:layout_width="0dp"
-                android:layout_height="0dp"/>
-
         <TextView
                 android:id="@+id/individualRecipeNameTextView"
                 android:layout_width="wrap_content"

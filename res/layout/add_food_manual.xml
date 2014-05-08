@@ -1,127 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
 
-    <include
-        android:id="@+id/include1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/main_nav_bar" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="41dp"
-        android:gravity="right"
-        android:text="@string/ExpirationDate" />
+    <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="22dp"
-        android:text="@string/Quantity" />
+        <include
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/main_nav_bar"
+                android:id="@+id/include"/>
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_below="@+id/textView4"
-        android:layout_marginTop="30dp"
-        android:text="@string/foodGroup" />
+        <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name:"
+                android:layout_marginTop="42dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp"
+                android:layout_below="@id/include"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        <EditText
+                android:id="@+id/nameField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="9"
+                android:layout_alignBottom="@id/textView2"
+                android:layout_alignParentRight="true"
+                android:layout_alignBaseline="@id/textView2"/>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="23dp"
-        android:text="@string/AddFoodName"/>
+        <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Expiration Date:"
+                android:layout_marginTop="42dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp"
+                android:layout_below="@id/textView2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        <TextView
+                android:id="@+id/dateSelector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                style="@android:style/Widget.DeviceDefault.Spinner"
+                android:layout_alignLeft="@id/nameField"
+                android:layout_alignStart="@id/nameField"
+                android:layout_alignBaseline="@id/textView3"/>
 
-    <EditText
-        android:id="@+id/nameField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_toRightOf="@+id/textView2"
-        android:ems="10" >
+        <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity:"
+                android:layout_marginTop="42dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp"
+                android:layout_below="@id/textView3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
 
-        <requestFocus />
-    </EditText>
 
-    <Button
-        android:id="@+id/addMan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
-        android:onClick="onButtonClick"
-        android:text="@string/add" />
+        <EditText
+                android:id="@+id/quantityField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@id/textView4"
+                android:layout_alignLeft="@id/dateSelector"
+                android:layout_alignStart="@id/dateSelector"
+                android:layout_alignBaseline="@id/textView4"/>
 
-    <EditText
-        android:id="@+id/quantityField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_alignLeft="@+id/nameField"
-        android:ems="10"
-        android:inputType="numberDecimal" />
+        <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Food Group:"
+                android:layout_marginTop="42dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp"
+                android:layout_below="@id/textView4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/addMan"
-        android:layout_below="@+id/include1"
-        android:layout_marginTop="14dp"
-        android:text="@string/AddFood"/>
+        <EditText
+                android:id="@+id/foodgroupField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_alignBottom="@id/textView6"
+                android:layout_alignParentRight="true"
+                android:layout_alignLeft="@id/quantityField"
+                android:layout_alignStart="@id/quantityField"
+                android:layout_alignBaseline="@id/textView6"/>
 
-    <TextView
-        android:id="@+id/dateSelector"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/quantityField"
-        android:layout_alignTop="@+id/textView3"
-        android:ems="10"
-        style="@android:style/Widget.DeviceDefault.Spinner" />
+        <Button
+                android:id="@+id/imageBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Image"
+                android:onClick="onButtonClick"
+                android:layout_below="@+id/foodgroupField"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="100dp"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Food"
+                android:id="@+id/addMan"
+                android:layout_below="@id/foodgroupField"
+                android:layout_alignLeft="@+id/foodgroupField"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="100dp"
+                android:onClick="onButtonClick"/>
 
-    <EditText
-        android:id="@+id/foodgroupField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/quantityField"
-        android:layout_alignTop="@+id/textView6"
-        android:ems="10" />
+        <ImageView
+                android:id="@+id/mImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/imageBtn"
+                android:layout_marginTop="30dp"/>
 
-    <Button
-        android:id="@+id/imageBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/foodgroupField"
-        android:layout_marginTop="18dp"
-        android:layout_toLeftOf="@+id/textView1"
-        android:onClick="onButtonClick"
-        android:text="Add Image" />
 
-    <ImageView
-        android:id="@+id/mImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageBtn"
-        android:layout_marginLeft="29dp"
-        android:layout_toRightOf="@+id/addMan" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

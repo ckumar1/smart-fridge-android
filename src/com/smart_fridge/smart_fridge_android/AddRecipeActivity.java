@@ -25,7 +25,6 @@ public class AddRecipeActivity extends Activity {
 
     private static final String STARTING_TAB = "startingTab";
     static final int CAMERA_RESULT = 1;
-    private Uri imageUri;
     private String imagePath;
     private List <String> ingredlist = new ArrayList<String>();
 	

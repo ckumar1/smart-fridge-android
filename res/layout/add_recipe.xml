@@ -1,120 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
 
-    <include
-        android:id="@+id/include1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/main_nav_bar" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/include1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
-        android:text="Add Recipe"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="26dp"
-        android:layout_toLeftOf="@+id/RecipeNameField"
-        android:text="Name: "
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        <include
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/main_nav_bar"
+                android:id="@+id/include"/>
 
-    <Button
-        android:id="@+id/addrec"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onButtonClick"
-        android:text="Add Recipe" android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/showlist"
-        android:layout_alignStart="@+id/showlist"/>
+        <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name:"
+                android:layout_marginTop="42dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp"
+                android:layout_below="@id/include"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        <EditText
+                android:id="@+id/RecipeNameField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="9"
+                android:layout_alignBottom="@id/textView1"
+                android:layout_alignParentRight="true"
+                android:layout_alignBaseline="@id/textView1"/>
 
-    <Button
-        android:id="@+id/addimgR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onButtonClick"
-        android:text="Add Image"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@id/textView3"/>
+        <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredients:"
+                android:layout_marginTop="42dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp"
+                android:layout_below="@id/textView1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        <EditText
+                android:id="@+id/IngredientField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_alignLeft="@id/RecipeNameField"
+                android:layout_alignStart="@id/RecipeNameField"
+                android:layout_alignBaseline="@id/textView3"/>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editText2"
-        android:layout_alignBottom="@+id/IngredientField"
-        android:layout_alignRight="@+id/textView1"
-        android:text="Ingredients: "
-        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <EditText
-        android:id="@+id/RecipeNameField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_alignParentRight="true"
-        android:ems="10" />
+        <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instructions:"
+                android:layout_marginTop="42dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp"
+                android:layout_below="@id/textView3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:visibility="invisible"/>
 
-    <EditText
-        android:id="@+id/IngredientField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/RecipeNameField"
-        android:layout_marginTop="14dp"
-        android:layout_toRightOf="@+id/textView1"
-        android:ems="10" >
-    </EditText>
 
-    <Button
-        android:id="@+id/addingred"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/IngredientField"
-        android:onClick="onButtonClick"
-        android:text="Add new ingredient" />
+        <Button
+                android:id="@+id/addingred"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Ingredient"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@id/textView4"
+                android:layout_alignLeft="@id/IngredientField"
+                android:layout_alignStart="@id/IngredientField"
+                android:layout_alignBaseline="@id/textView4"
+                android:onClick="onButtonClick"/>
+        
+        <Button 
+                android:id="@+id/showlist"
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content"
+                android:text="View Current Ingredients List"
+                android:layout_below="@id/addingred"
+                android:layout_alignParentRight="true"
+                android:layout_alignStart="@id/addingred"
+                android:onClick="onButtonClick"/>
 
-    <Button
-        android:id="@+id/showlist"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/addingred"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/addingred"
-        android:onClick="onButtonClick"
-        android:text="View current ingredient list" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Instructions: "
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_alignBottom="@+id/InstructionsField"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"/>
 
-    <EditText
-        android:id="@+id/InstructionsField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/showlist"
-        android:ems="10"
-        android:inputType="textMultiLine" />
+        <Button
+                android:id="@+id/addimgR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Image"
+                android:onClick="onButtonClick"
+                android:layout_below="@+id/textView9"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="100dp"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Recipe"
+                android:id="@+id/addrec"
+                android:layout_below="@id/textView9"
+                android:layout_alignLeft="@+id/addingred"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="100dp"
+                android:onClick="onButtonClick"/>
 
-</RelativeLayout>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instructions:"
+                android:id="@+id/textView9"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp"
+                android:layout_below="@+id/showlist"
+                android:layout_alignLeft="@+id/textView4" 
+                android:layout_alignStart="@+id/textView4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/InstructionsField" 
+                android:ems="10"
+                android:layout_above="@+id/addrec"
+                android:layout_alignLeft="@+id/showlist"
+                android:layout_alignStart="@+id/showlist"
+                android:layout_alignBaseline="@id/textView9"/>
+
+
+    </RelativeLayout>
+</ScrollView>
