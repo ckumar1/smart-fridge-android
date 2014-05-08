@@ -14,10 +14,13 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.Camera;
 import android.net.Uri;
@@ -175,8 +178,27 @@ public class AddFoodActivity extends Activity implements OnDateSetListener{
     public void scanBarcode() {
         Intent intent = new Intent("com.google.zxing.client.android.SCAN");
         intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+        try {
         startActivityForResult(intent, SCAN_REQUEST_CODE); 
+        } catch (ActivityNotFoundException e) {
+        	downloadFromMarket();
+        }
     }
+    
+    public void downloadFromMarket() {  
+        AlertDialog.Builder downloadDialog = new AlertDialog.Builder(this);  
+        downloadDialog.setTitle("Warning");  
+        downloadDialog.setMessage("Barcode app not found. Download?");  
+        downloadDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {  
+             public void onClick(DialogInterface dialogInterface, int i) {  
+                  Uri uri = Uri.parse("market://search?q=pname:com.google.zxing.client.android");  
+                  Intent intent = new Intent(Intent.ACTION_VIEW, uri);  
+                  startActivity(intent);  
+             }  
+        });  
+
+        downloadDialog.show();  
+   }
     
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
     	if (requestCode == SCAN_REQUEST_CODE) {
