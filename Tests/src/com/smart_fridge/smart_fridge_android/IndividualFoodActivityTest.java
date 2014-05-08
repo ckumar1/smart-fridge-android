@@ -46,10 +46,10 @@ public class IndividualFoodActivityTest
     }
     
     public void testViewFood() {
-        TextView nameText = (TextView) activity.findViewById(R.id.FoodName);
-        TextView quantityText = (TextView) activity.findViewById(R.id.FoodQuantity);
-        TextView expDateText = (TextView) activity.findViewById(R.id.ExpDate);
-        TextView nutriInfoText = (TextView) activity.findViewById(R.id.nutritionalInformationText);
+        TextView nameText = (TextView) activity.findViewById(R.id.individualFoodItemNameEditText);
+        TextView quantityText = (TextView) activity.findViewById(R.id.individualFoodItemQuantityEditText);
+        TextView expDateText = (TextView) activity.findViewById(R.id.individualFoodItemExpirationDateSpinner);
+        TextView nutriInfoText = (TextView) activity.findViewById(R.id.individualFoodItemNutritionalInfoEditText);
         assertNotNull(nameText);
         assertNotNull(quantityText);
         assertNotNull(expDateText);
@@ -72,7 +72,7 @@ public class IndividualFoodActivityTest
     }
 
     public void testDeleteFood() {
-    	Button deleteButton = (Button) activity.findViewById(R.id.DeleteButton);
+    	Button deleteButton = (Button) activity.findViewById(R.id.btnDeleteIndividualFoodItem);
     	assertNotNull(deleteButton);
 
     	deleteButton.performClick();
@@ -95,32 +95,32 @@ public class IndividualFoodActivityTest
     }
     
     public void testValidUpdateFood() {
-    	TextView nameText = (TextView) activity.findViewById(R.id.FoodName);
+    	TextView nameText = (TextView) activity.findViewById(R.id.individualFoodItemNameEditText);
         assertNotNull(nameText);
         nameText.setText("TESTBANANATEST");
         assertEquals("nameText should be the new value TESTBANANATEST",
         		"TESTBANANATEST", nameText.getText().toString());
         
-    	TextView quantityText = (TextView) activity.findViewById(R.id.FoodQuantity);
+    	TextView quantityText = (TextView) activity.findViewById(R.id.individualFoodItemQuantityEditText);
         assertNotNull(quantityText);
     	quantityText.setText("2");
     	assertEquals("quantityText should be the new value 2", "2",
     			quantityText.getText().toString());
         
-        TextView expDateText = (TextView) activity.findViewById(R.id.ExpDate);
+        TextView expDateText = (TextView) activity.findViewById(R.id.individualFoodItemExpirationDateSpinner);
         assertNotNull(expDateText);
         expDateText.setText("2/2/22");
         assertEquals("expDateText should be the new value 2/2/22", "2/2/22", 
         		expDateText.getText().toString());
         
-        TextView nutriInfoText = (TextView) activity.findViewById(R.id.nutritionalInformationText);
+        TextView nutriInfoText = (TextView) activity.findViewById(R.id.individualFoodItemNutritionalInfoEditText);
         assertNotNull(nutriInfoText);
         nutriInfoText.setText("Yellow");
         assertEquals("nutriInfoText should be the new value Yellow", 
         		"Yellow", nutriInfoText.getText().toString());
         
         // Perform the update
-        Button updateButton = (Button) activity.findViewById(R.id.update_button);
+        Button updateButton = (Button) activity.findViewById(R.id.btnUpdateIndividualFoodItem);
         assertNotNull(updateButton);
         updateButton.performClick();
         
@@ -138,11 +138,11 @@ public class IndividualFoodActivityTest
     }
     
     public void testInvalidUpdateFood() {
-    	Button updateButton = (Button) activity.findViewById(R.id.update_button);
+    	Button updateButton = (Button) activity.findViewById(R.id.btnUpdateIndividualFoodItem);
         assertNotNull(updateButton);
         
         // Test failure with blank name field
-    	TextView nameText = (TextView) activity.findViewById(R.id.FoodName);
+    	TextView nameText = (TextView) activity.findViewById(R.id.individualFoodItemNameEditText);
         assertNotNull(nameText);
         nameText.setText("");
         assertEquals("nameText should be empty",

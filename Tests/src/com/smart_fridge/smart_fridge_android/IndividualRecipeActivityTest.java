@@ -47,9 +47,9 @@ public class IndividualRecipeActivityTest
     }
 
     public void testViewRecipe() {
-    	TextView nameText = (TextView) activity.findViewById(R.id.IndRecipeNameField);
-        TextView instructionsText = (TextView) activity.findViewById(R.id.IndRecipeInstructionsField);
-        TextView ingredientsText = (TextView) activity.findViewById(R.id.IndRecipeIngredientsField);
+    	TextView nameText = (TextView) activity.findViewById(R.id.individualRecipeNameEditText);
+        TextView instructionsText = (TextView) activity.findViewById(R.id.individualRecipeInstructionsEditText);
+        TextView ingredientsText = (TextView) activity.findViewById(R.id.individualRecipeIngredientsEditText);
         assertNotNull(nameText);
         assertNotNull(instructionsText);
         assertNotNull(ingredientsText);
@@ -68,7 +68,7 @@ public class IndividualRecipeActivityTest
     }
     
     public void testDeleteRecipe() {
-    	Button deleteButton = (Button) activity.findViewById(R.id.IndRecipeDeleteButton);
+    	Button deleteButton = (Button) activity.findViewById(R.id.btnDeleteIndividualRecipe);
     	assertNotNull(deleteButton);
 
     	deleteButton.performClick();
@@ -91,7 +91,7 @@ public class IndividualRecipeActivityTest
     }
     
     public void testOpenIMadeThis() {
-    	Button iMadeThisButton = (Button) activity.findViewById(R.id.IMadeThisButton);
+    	Button iMadeThisButton = (Button) activity.findViewById(R.id.btnIMadeThisIndividualRecipe);
     	assertNotNull(iMadeThisButton);
     	iMadeThisButton.performClick();
     	
