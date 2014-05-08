@@ -17,6 +17,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/IMadethisRecipeName"
         android:layout_marginRight="16dp"
+          android:textSize="18sp"
         android:text="Click on your food item to enter how much you used" />
 
     <TextView
@@ -26,18 +27,7 @@
         android:layout_below="@+id/include1"
         android:layout_centerHorizontal="true"
         android:text="RecipeName"
-        android:textSize="20sp" />
-
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="fill_parent"
-        android:layout_height="150dp"
-        android:layout_above="@+id/IMadeThisDoneButton"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/QuantityLabel"
-        android:layout_marginBottom="180dp">
-
-    </ListView>
+        android:textSize="22sp" />
 
     <Button
         android:id="@+id/IMadeThisDoneButton"
@@ -47,7 +37,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Done" />
-
+    
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/IngredientListScrollView"
@@ -55,26 +45,37 @@
     android:layout_height="match_parent"
     android:layout_above="@+id/IMadeThisDoneButton"
     android:layout_marginLeft="30dp"
-    android:layout_marginTop="390dp" >
+    android:layout_marginTop="380dp" >
 
     <TextView
         android:id="@+id/IngredientList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView1"
+        android:layout_alignTop="@+id/IngredientListExp"
         android:layout_marginRight="36dp"
         android:layout_marginTop="3dp"
+          android:textSize="18sp"
         android:layout_toLeftOf="@+id/IMadethisRecipeName"
         android:text="TextView" />
     </ScrollView>
+
+  
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="160dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/QuantityLabel" >
+    </ListView>
 
     <TextView
         android:id="@+id/IngredientListExp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/IMadeThisDoneButton"
+        android:layout_below="@android:id/list"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="148dp"
+        android:layout_marginTop="14dp"
+          android:textSize="18sp"
         android:text="Ingredient list for the recipe you just made:" />
 
 </RelativeLayout>
